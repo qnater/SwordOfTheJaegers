@@ -1,5 +1,6 @@
 
-header { 
+header1 { 
+     background-color: orangered;
 }
 footer{
     background-color: dimgrey;
@@ -12,14 +13,14 @@ h1{
     color: white; text-align: center; 
     font-family: Cambria;
     height: 100px;
-    background-image: url("Font.PNG");
+    background-image: url("../images/Font.PNG");
     vertical-align: bottom;
+    
     
 }
 
 ul {
   list-style-type: none;
-  margin: 0;
   padding: 0;
   overflow: hidden;
   background-color: dimgrey;
@@ -38,4 +39,10 @@ li a {
   text-decoration: none;
 }
 
+.navigation{
+    height: 20px; background-color: orangered;
+}
 
+main{
+    margin-bottom: 100px;
+}
