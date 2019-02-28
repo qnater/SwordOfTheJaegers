@@ -1,0 +1,41 @@
+
+header { 
+}
+footer{
+    background-color: dimgrey;
+        position: fixed;
+        bottom: 0;
+    width: 100%;
+}
+
+h1{
+    color: white; text-align: center; 
+    font-family: Cambria;
+    height: 100px;
+    background-image: url("Font.PNG");
+    vertical-align: bottom;
+    
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: dimgrey;
+}
+
+li {
+  float: left;
+}
+
+li a {
+  display: block;
+  color: white;
+  font-family: Arial, bold;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+
