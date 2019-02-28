@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="../ressources/css/t_main_css.css">
     <link rel="stylesheet" type="text/css" href="../ressources/css/t_start_css.css">
+    <link rel="stylesheet" type="text/css" href="../ressources/css/s_mockup_css.css">
 </head>
 <body>
     
@@ -15,7 +16,7 @@
     <nav>
         <ul>
             <li class="hamburger";>
-                <img src="ressources/images/hamburger_icon.svg">
+                <img src="../ressources/images/hamburger_icon.svg" width="10%" >
             </li>
             <li>
                 <a href="description_start.html">Description</a>
@@ -41,32 +42,23 @@
     <!-- Début zone pour votre contenu -->
     <section id="articles">
         <article>
+            <div class="introduction" >
                 <h2>Maquettes</h2>
-                <p>By Quentin Nater</p>
+                <span>By Quentin Nater</span>
+            </div>
             <h3>Character</h3>
             <table>
                 <tr>
-                    <td>
-                        <img src="../ressources/images/mockup/warrior.PNG" width="20%" alt="Display Warrior" #="Display Warrior" />
+                    <td class="tdIco" >
+                        <img src="../ressources/images/mockup/warrior.PNG"  alt="Display Warrior" #="Display Warrior" />
                     </td>
-                    <td>
-                        Warrior
+            
+                    <td class="tdIco">
+                        <img src="../ressources/images/mockup/caster.PNG"  alt="Display Caster" #="Display Caster" />
                     </td>
-                </tr>
-                <tr>
-                    <td>
-                        <img src="../ressources/images/mockup/caster.PNG" width="20%" alt="Display Warrior" #="Display Warrior" />
-                    </td>
-                    <td>
-                        Caster
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <img src="../ressources/images/mockup/paladin.PNG" width="20%" alt="Display Warrior" #="Display Warrior" />
-                    </td>
-                    <td>
-                        Paladin
+                
+                    <td class="tdIco">
+                        <img src="../ressources/images/mockup/paladin.PNG" alt="Display Paladin" #="Display Paladin" />
                     </td>
                 </tr>
             </table>
@@ -76,36 +68,22 @@
             <h3>Monsters</h3>
             <table>
                 <tr>
-                    <td>
-                        <img src="../ressources/images/mockup/slim.PNG" width="20%" alt="Display Warrior" #="Display Warrior" />
+                    <td class="tdIco">
+                        <img src="../ressources/images/mockup/slim.PNG" alt="Display Slim" #="Display Slim" />
                     </td>
-                    <td>
-                        Slim
+            
+                    <td class="tdIco">
+                        <img src="../ressources/images/mockup/bat.PNG" width="20%" alt="Display Bat" #="Display Bat" />
                     </td>
-                </tr>
-                <tr>
-                    <td>
-                        <img src="../ressources/images/mockup/bat.PNG" width="20%" alt="Display Warrior" #="Display Warrior" />
+
+                    <td class="tdIco">
+                        <img src="../ressources/images/mockup/packy.PNG" alt="Display Packy" #="Display Packy" />
                     </td>
-                    <td>
-                        Bat
+   
+                    <td class="tdIco">
+                        <img src="../ressources/images/mockup/dragon.PNG" alt="Display Dragon" #="Display Dragon" />
                     </td>
-                </tr>
-                <tr>
-                    <td>
-                        <img src="../ressources/images/mockup/packy.PNG" width="20%" alt="Display Warrior" #="Display Warrior" />
-                    </td>
-                    <td>
-                        Packy
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <img src="../ressources/images/mockup/dragon.PNG" width="20%" alt="Display Warrior" #="Display Warrior" />
-                    </td>
-                    <td>
-                        Dragon
-                    </td>
+   
                 </tr>
             </table>
             
@@ -115,7 +93,7 @@
             <table>
                 <tr>
                     <td>
-                        <img src="../ressources/images/mockup/gbackground.PNG" width="40%" alt="Display Warrior" #="Display Warrior" />
+                        <img src="../ressources/images/mockup/background.PNG" alt="Display Background" #="Display Background" class=" imgMap" />
                     </td>
                     <td>
                         Rooms
@@ -123,12 +101,92 @@
                 </tr>
                 <tr>
                     <td>
-                        <img src="../ressources/images/mockup/introduction.PNG" width="40%" alt="Display Warrior" #="Display Warrior" />
+                        <img src="../ressources/images/mockup/introduction.PNG" alt="Display Introduction" #="Display Introduction" class=" imgMap" />
                     </td>
                     <td>
                         Introduction/Welcome
                     </td>
                 </tr>
+            </table>
+            
+            <!-- ====================================================== -->
+            
+            <h3>Game</h3>
+            <table>
+            <tr>
+                    <td>
+                        <img src="../ressources/images/mockup/game.PNG" alt="Display Game" #="Display Game" class=" imgMap" />
+                    </td>
+                    <td>
+                        Interface
+                    </td>
+
+             </tr>
+            </table>
+            
+             <!-- ====================================================== -->
+            
+            <h3>Informations</h3>
+            <table>
+            <tr>
+                    <td class="tdL">
+                        <img src="../ressources/images/mockup/gameInfo.PNG" alt="Display Game Infos" #="Display Game Infos" class=" imgMap"/>
+                    </td>
+         
+                    <td>
+                        <table>
+                            <tr>
+                                <td>0</td>
+                                <td>Map in the background</td>
+                            </tr>
+                            <tr>
+                                <td>1</td>
+                                <td>Hero (Player) - Position fixed</td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>Monster Nbr 1 - Position random</td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td>Monster Nbr 2 - Position random</td>
+                            </tr>
+                            <tr>
+                                <td>4</td>
+                                <td>Monster Nbr 3 - Position random</td>
+                            </tr>
+                            <tr>
+                                <td>5</td>
+                                <td>Title of the game</td>
+                            </tr>
+                            <tr>
+                                <td>6</td>
+                                <td>Lifes</td>
+                            </tr>
+                        </table>    
+                    </td>
+             </tr>
+            </table>
+            
+            <!-- ====================================================== -->
+            
+            <h3>Attacks</h3>
+            <table>
+            <tr>
+                <td class="tdIco" >
+                    <img src="../ressources/images/mockup/attackPhysique.PNG"  alt="Display Physical Strike" #="Display Physical Strike" />
+                </td>
+                <td>
+                    Physical Strike
+                </td>
+            
+                <td class="tdIco">
+                    <img src="../ressources/images/mockup/attackMagic.PNG"  alt="Display Magical Strike" #="Display Magical Strike" />
+                </td>
+                 <td>
+                    Magical Strike
+                </td>
+            </tr>
             </table>
         </article>
     </section>

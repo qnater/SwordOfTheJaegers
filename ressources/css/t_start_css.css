@@ -9,3 +9,13 @@ header
     background-color: orangered;
 }
 
+main
+{
+    margin-bottom: 100px;
+}
+
+.navigation
+{
+    height          : 20px; 
+    backgroud-color : orangered;
+}

@@ -1,0 +1,57 @@
+h3
+{
+    text-align: center;
+    margin-top: 50px;
+}
+table
+{
+    text-align: justify;
+    
+}
+tr
+{
+    padding-bottom: 30px;
+}
+td
+{
+    padding: 5px;
+}
+.tds
+{
+    width : 20%
+}
+.tdIco
+{
+    width : 25%;
+    text-align: center;
+}
+.tdL
+{
+    width : 50%
+}
+img
+{
+    width: 40%;
+    max-width: 500px;
+    min-width: 150px;
+}
+
+.imgMap
+{
+    width: 80%;
+    min-width: 200px;
+}
+
+.introduction
+{
+    text-align: center;
+}
+span
+{
+    font-style: italic;
+}
+h2
+{
+    text-decoration: underline;
+    margin-bottom: -2px;
+}
