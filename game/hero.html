@@ -11,7 +11,7 @@
         <link rel="stylesheet" href="main.css">        
          
     </head>
-     <body style="background-color: black;">
+    <body style="background-color: black;">
         
                
           <script type="text/javascript" >
@@ -29,7 +29,7 @@
             bgImage.onload = function () {
                 bgReady = true;
             };
-            bgImage.src = "pictures/introduction.PNG";
+            bgImage.src = "../ressources/images/mockup/a_chooseHero.PNG";
 
          
             // Handle keyboard controls
@@ -58,10 +58,19 @@
 			 // Update game objects
             var update = function (modifier) 
 			{
-                if (13 in keysDown) 
+                if (87 in keysDown) 
 				{ // Player holding up
-                    window.location.replace("hero.html");
+                    window.location.replace("history.html");
                 }
+                if (67 in keysDown) 
+				{ // Player holding up
+                    window.location.replace("history.html");
+                }
+                if (80 in keysDown) 
+				{ // Player holding up
+                    window.location.replace("history.html");
+                }
+
 
             };
 

@@ -11,7 +11,7 @@
         <link rel="stylesheet" href="main.css">        
          
     </head>
-     <body style="background-color: black;">
+    <body style="background-color: black;">
         
                
           <script type="text/javascript" >
@@ -29,7 +29,7 @@
             bgImage.onload = function () {
                 bgReady = true;
             };
-            bgImage.src = "pictures/introduction.PNG";
+            bgImage.src = "../ressources/images/mockup/a_history.PNG";
 
          
             // Handle keyboard controls
@@ -60,9 +60,8 @@
 			{
                 if (13 in keysDown) 
 				{ // Player holding up
-                    window.location.replace("hero.html");
+                    window.location.replace("game.html");
                 }
-
             };
 
             // The main game loop
