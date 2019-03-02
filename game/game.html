@@ -15,9 +15,10 @@
     <body style="background-image:url(pictures/b.PNG);">
        <iframe src="musics/swordland.mp3" allow="autoplay" id="audio" style="display:none"></iframe>
 	
+        
       
           <script type="text/javascript" >
-
+                           
             // Create the canvas
             var canvas = document.createElement("canvas"); // Creation of the canvas
             var ctx = canvas.getContext("2d"); // Use the 2d technology
@@ -204,17 +205,18 @@
 
                 // Score
                 ctx.fillStyle = "rgb(250, 250, 250)";
-                ctx.font = "24px Cursive";
+                ctx.font = "24px OCR A Std, monospace";
                 ctx.textAlign = "left";
                 ctx.textBaseline = "top";
                 ctx.fillText("Sword of the Jaegers", 35, 20);
 				
 				ctx.fillStyle = "rgb(250, 250, 250)";
-                ctx.font = "24px Cursive";
+                ctx.font = "24px OCR A Std, monospace";
                 ctx.textAlign = "right";
                 ctx.textBaseline = "top";
                 ctx.fillText("Life (\u2665 \u2665 \u2665)", 710, 20); // Display current lifes
             };
+
 
             // The main game loop
             var main = function () 
