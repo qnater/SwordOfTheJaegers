@@ -21,7 +21,37 @@ section
 
 /* Affect the informative part of the page */
 aside
-{  
-    float           : right;
+{
     margin-right    : 10px;
+    float           : right; 
+}
+
+
+/* Put a shadow to a form */
+.shadow
+{
+    box-shadow      :  2px 2px 16px 0 rgba(0.1, 0.1, 0.1, 0.40);
+}
+
+/* Affect lines of a table */
+.sth
+{
+    background-color: orangered; 
+    color           : white; 
+    text-align      : left;
+    padding         : 7px;
+    font-weight     : bold;
+    font-family     : "Roboto Slab", Roboto, serif;
+}
+
+/* Affect lines of a table */
+.str
+{
+     padding        : 7px;
+}
+.sstr
+{
+    padding-left   : 7px;
+    padding-right   : 7px;
+    padding-bottom  : 7px;
 }
