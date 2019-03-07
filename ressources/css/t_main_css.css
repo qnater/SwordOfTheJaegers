@@ -10,7 +10,7 @@
     margin-left:7%;
     margin-right: 7%;
     max-width:1240px;
-    font-family: "Calibri Light", serif;
+    font-family: serif;
  
     border-style: hidden;
     border: 2px 10px 4px 20px;
@@ -78,6 +78,7 @@ p.author{
     overflow: hidden;
     background-color:dimgray;
     margin-top: 0px;
+    margin-left: 1%;
     
 }
 clasfooter
@@ -111,6 +112,7 @@ clasfooter
   font-weight:bold;
   font-family: "Goodlight", sans-serif;
     z-index: -1;
+margin-left: 0px;
 }
 .navDropdown :hover{
     background-color: white;
@@ -173,11 +175,22 @@ li a {
 .shadow{
  
     box-shadow:  2px 2px 16px 0 rgba(0.1, 0.1, 0.1, 0.40);
+
+}
+.str
+{
+     padding : 10px;
 }
 .sth{
    background-color: orangered; 
     color: white; 
-    text-align: left 
+    text-align: left;
+}
+.sstr
+{
+     padding-left : 10px;
+    padding-right : 10px;
+    padding-bottom : 10px;
 }
 .title
 {

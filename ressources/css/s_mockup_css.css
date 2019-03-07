@@ -5,6 +5,11 @@ body
     text-align: center;
 }
 
+main
+{
+    margin-left: 2%;
+    margin-right :2%;
+}
 
 h3
 {
@@ -71,8 +76,11 @@ span
 }
 h2
 {
-    text-decoration: underline;
-    margin-bottom: -2px;
+   text-align: left;
+}
+h3
+{
+   text-align: left;
 }
 .full
 {
