@@ -1,28 +1,118 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:200,400,400i,700|Roboto+Slab:700');
 
-header1 { 
-     background-color: orangered;
+* {
+    box-sizing: border-box;
+}
+body{
+    margin-left:7%;
+    margin-right: 7%;
+   max-width:1240px;
+    box-shadow:  2px 2px 100px 0 rgba(0.1, 0.1, 0.1, 0.40);
+}
+.header1 { 
+    background-color: #e64d00
 }
 footer{
     background-color: dimgrey;
-        position: fixed;
+        position:relative;
         bottom: 0;
     width: 100%;
+}
+p{
+    font-family: "Roboto", sans-serif;
 }
 
 h1{
     color: white; text-align: center; 
-    font-family: Cambria;
+    font-family: serif;
     height: 100px;
     background-image: url("../images/Font.PNG");
-    vertical-align: bottom;
-    
+    vertical-align: text-bottom;
+    margin-bottom: 28px;
+    margin-top: 0;
+}
+h2{
+    border-bottom: 1px solid gainsboro;
+    line-height: 1;
+}
+main{
+    margin-left: 2%;
+    margin-right:2%;
+}
+p.author{
+    width: 100%;
+    font-style:italic;
+    text-align: right;
+    color: darkgray;
+    line-height: 0px;
     
 }
+
+
+/*Dropdown button*/
+.navDropdown{
+    overflow: hidden;
+    background-color:dimgray;
+    margin-top: 0px;
+    
+}
+.active {
+  background-color: white;
+  color: orangered;
+    z-index: 10;
+}
+.navDropdown a{
+  float: left;
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 7px 10px;
+  text-decoration: none;
+  font-size: 17px;
+  font-weight:bold;
+  font-family: "Goodlight", sans-serif;
+    z-index: -1;
+}
+.navDropdown :hover{
+    background-color: white;
+    color: orangered;
+}
+
+    
+.hamburger {
+  display: none;
+    text-align: center;
+    background-color: dimgray;
+} 
+.hamburger:hover{
+    background-color: white;
+    color: orangered;
+}
+/*responsive menu*/
+@media screen and (max-width: 580px) {
+  .navDropdown a {display: none;}
+    .hamburger {
+      display: block;
+    float: center;
+    }
+    
+  }
+@media screen and (max-width: 580px) {
+  .navDropdown.responsive {position: relative;}
+  .navDropdown.responsive .hamburger {
+    position: absolute;
+    top: 0;
+    }
+  }
+  .navDropdown.responsive a {
+    float: none;
+    display: block;
+    text-align: center;
+  }
 
 ul {
   list-style-type: none;
   padding: 0;
-  overflow: hidden;
   background-color: dimgrey;
 }
 
@@ -39,10 +129,20 @@ li a {
   text-decoration: none;
 }
 
-.navigation{
-    height: 20px; background-color: orangered;
-}
 
 main{
     margin-bottom: 100px;
 }
+
+table{
+   width:220px; 
+    box-shadow:  2px 2px 16px 0 rgba(0.1, 0.1, 0.1, 0.40);
+}
+th{
+   background-color: orangered; 
+    color: white; 
+    text-align: left 
+}
+    
+
+
