@@ -1,5 +1,6 @@
-function displayMenu() {
-  var x = index.getElementById("topNav");
+function displayMenu() 
+{
+  var x = document.getElementById("topNav");
   if (x.className === "navDropdown") {
     x.className += " responsive";
   } else {

@@ -1,12 +1,18 @@
 <!doctype html>
 <html>
 <head>
-    <title>624-2 - HTML/CSS/JavaScript</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="ressources/css/t_main_css.css" >
-    <link rel="stylesheet" type="text/css" href="ressources/css/t_main_shadow.css" >
-    <script src="t_main_js.js" type="text/javascript"></script>
+    <title>Sword of the Jaegers - Description</title>
+    <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <script type="text/javascript">
+        if (screen.width > 800) {	document.write("<link rel='stylesheet' type='text/css' href='ressources/css/t_main_css.css' >");	}
+        else {	document.write("<link rel='stylesheet' type='text/css' href='ressources/css/m_main_css.css' >");	}
+    </script>
+
+    <script rel="stylesheet" media="screen" type="text/javascript" src="js/t_main_js.js"></script>
+    
+   <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+         
 
 </head>
 <body>
@@ -77,21 +83,6 @@
                           <img src="ressources/images/logo.png" width="20%">
                     </footer>
             </div>
-
-
-           
-
-            <!-- >javascript -->
-            <script>
-                function displayMenu() {
-              var x = document.getElementById("topNav");
-              if (x.className === "navDropdown") {
-                x.className += " responsive";
-              } else {
-                x.className = "navDropdown";
-              }
-            } 
-            </script>
     </div>
 </body>
 </html>
