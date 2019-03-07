@@ -1,10 +1,7 @@
 body
 {
-    width: 100%;
-    font-family:  OCR A Std, monospace;
     text-align: center;
 }
-
 
 h3
 {
@@ -29,7 +26,7 @@ td
 {
     padding: 5px;
     width: 50%;
-    
+    text-align: center;    
 }
 .tds
 {
@@ -49,7 +46,7 @@ td
     width : 50%
 }
 
-img
+.imgSize
 {
     width: 40%;
     max-width: 500px;
@@ -61,9 +58,6 @@ img
     width: 80%;
     min-width: 200px;
 }
-
-
-
 .introduction
 {
     text-align: center;
@@ -74,8 +68,11 @@ span
 }
 h2
 {
-    text-decoration: underline;
-    margin-bottom: -2px;
+   text-align: left;
+}
+h3
+{
+   text-align: left;
 }
 .full
 {

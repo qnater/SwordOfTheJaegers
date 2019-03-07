@@ -1,42 +1,41 @@
 <!doctype html>
 <html>
 <head>
-    <title>624-2 - HTML/CSS/JavaScript</title>
+    <title>Sword of the Jaegers</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="styleSheet.css">
-</head>
-<body>
+   <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
+     <script type="text/javascript">
+        if (screen.width > 800) {	document.write("<link rel='stylesheet' type='text/css' href='../ressources/css/t_main_css.css' >");	}
+        else {	document.write("<link rel='stylesheet' type='text/css' href='../ressources/css/m_main_css.css' >");	}
+    </script>
 
-<header style="header1">
-    <h1>HES-SO Vs - 624-2 - HTML/CSS/JavaScript</h1>
+    <script rel="stylesheet" media="screen" type="text/javascript" src="../js/t_main_js.js"></script>
     
-    <nav>
-        <ul>
-            <li class="hamburger";>
-                <img src="ressources/images/hamburger_icon.svg">
-            </li>
-            <li>
-                <a href="description_start.html">Description</a>
-            </li>
-            <li>
-                <a href="maquettes_start.html">Maquettes</a>
-            </li>
-            <li class="active">
-                <a href="mockup_start.html">Mockup</a>
-            </li>
-            <li>
-                <a href="flux_start.html">Flux</a>
-            </li>
-            <li>
-                <a href="journal_de_bord_start.html">Journal de bord</a>
-            </li>
-        </ul>
-    </nav>
-</header>
+</head>
+ <div class="body">
+        <header class="header1">
+
+            <h1 class="title">HES-SO Vs - 624-2 - HTML/CSS/JavaScript</h1>
+
+         <ul>
+             <a href="javascript:void(0);" class="hamburger" onclick="displayMenu()">
+                      <img src="../ressources/images/hamburger_icon.svg">
+
+                </a>
+
+                    <div class="navDropdown" id="topNav">
+                            <a href="../index.html" class="unactive">Description</a>
+                            
+                            <a href="maquettes_start.html" class="unactive">Maquettes</a>
+                            <a href="mockup_start.html" class="unactive">Mockup</a>
+                            <a href="flux_start.html" class="active">Flux</a>
+                            <a href="journal_de_bord_start.html" class="unactive">Journal de bord</a>
+                     </div>
+        </ul> 
+        </header>
 
 
-<main>
     <!-- Début zone pour votre contenu -->
     <section id="articles">
         <article>
@@ -52,10 +51,9 @@
         </article>
     </section>
     <!-- >Fin zone pour votre contenu -->
-</main>
     
     <footer>
-        <img id="logo" src="ressources/images/logo.png">
+          <img src="../ressources/images/logo.png" width="150px">
     </footer>
 
 </body>

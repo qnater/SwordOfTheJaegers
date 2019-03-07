@@ -4,93 +4,93 @@
     <title>624-2 - Maquettes</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="../ressources/css/t_main_css.css">
-    <link rel="stylesheet" type="text/css" href="../ressources/css/t_start_css.css">
+    
+    <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
+     <script type="text/javascript">
+        if (screen.width > 800) {	document.write("<link rel='stylesheet' type='text/css' href='../ressources/css/t_main_css.css' >");	}
+        else {	document.write("<link rel='stylesheet' type='text/css' href='../ressources/css/m_main_css.css' >");	}
+    </script>
+    
+     <link rel="stylesheet" type="text/css" href="../ressources/css/t_start_css.css">
     <link rel="stylesheet" type="text/css" href="../ressources/css/s_mockup_css.css">
+   
+
+    <script rel="stylesheet" media="screen" type="text/javascript" src="../js/t_main_js.js"></script>
     
-    <link rel="shortcut icon" href="../favicon.PNG" type="image/x-icon">
 </head>
-<body>
-    
-<header style="header1">
-    <h1>HES-SO Vs - 624-2 - HTML/CSS/JavaScript</h1>
-    
-    <nav>
-        <ul>
-            <li class="hamburger";>
-                <img src="../ressources/images/hamburger_icon.svg" width="10%" >
-            </li>
-            <li>
-                <a href="description_start.html">Description</a>
-            </li>
-            <li>
-                <a href="maquettes_start.html">Maquettes</a>
-            </li>
-            <li class="active">
-                <a href="mockup_start.html">Mockup</a>
-            </li>
-            <li>
-                <a href="flux_start.html">Flux</a>
-            </li>
-            <li>
-                <a href="journal_de_bord_start.html">Journal de bord</a>
-            </li>
-        </ul>
-    </nav>
-</header>
+ <body>
+        <header class="header1">
 
+            <h1 class="title">HES-SO Vs - 624-2 - HTML/CSS/JavaScript</h1>
 
-<main>
-    <!-- Début zone pour votre contenu -->
-    <section id="articles">
+         <ul>
+             <a href="javascript:void(0);" class="hamburger" onclick="displayMenu()">
+                      <img src="../ressources/images/hamburger_icon.svg" >
+
+                </a>
+
+                    <div class="navDropdown" id="topNav">
+                            <a href="../index.html" class="unactive">Description</a>
+                            
+                            <a href="maquettes_start.html" class="active">Maquettes</a>
+                            <a href="mockup_start.html" class="unactive">Mockup</a>
+                            <a href="flux_start.html" class="unactive">Flux</a>
+                            <a href="journal_de_bord_start.html" class="unactive">Journal de bord</a>
+                     </div>
+        </ul> 
+        </header>
+
+    <section>
         <article>
-            <div class="introduction" >
-                <h2>Maquettes</h2>
-                <span>By Quentin Nater</span>
-            </div>
+            <h2>Maquette</h2>
+            <p class="author">Par Quentin Nater le 7/3/2019 à 09:00</p>
+
             <h3>Character</h3><hr>
             <table>
                 <tr>
                     <td class="tdIco" >
-                        <img src="../ressources/images/mockup/warrior.PNG"  alt="Display Warrior" #="Display Warrior" />
+                        <img src="../ressources/images/mockup/warrior.PNG"  alt="Display Warrior" #="Display Warrior" class="imgSize" />
                     </td>
-            
+
                     <td class="tdIco">
-                        <img src="../ressources/images/mockup/caster.PNG"  alt="Display Caster" #="Display Caster" />
+                        <img src="../ressources/images/mockup/caster.PNG"  alt="Display Caster" #="Display Caster" class="imgSize" />
                     </td>
-                
+
                     <td class="tdIco">
-                        <img src="../ressources/images/mockup/paladin.PNG" alt="Display Paladin" #="Display Paladin" />
+                        <img src="../ressources/images/mockup/paladin.PNG" alt="Display Paladin" #="Display Paladin" class="imgSize" />
                     </td>
                 </tr>
             </table>
-            
+
             <!-- ====================================================== -->
-            
+
             <h3>Monsters</h3><hr>
             <table>
                 <tr>
                     <td class="tdIco">
-                        <img src="../ressources/images/mockup/slim.PNG" alt="Display Slim" #="Display Slim" />
-                    </td>
-            
-                    <td class="tdIco">
-                        <img src="../ressources/images/mockup/bat.PNG" width="20%" alt="Display Bat" #="Display Bat" />
+                        <img src="../ressources/images/mockup/slim.PNG" alt="Display Slim" #="Display Slim" class="imgSize" />
                     </td>
 
                     <td class="tdIco">
-                        <img src="../ressources/images/mockup/packy.PNG" alt="Display Packy" #="Display Packy" />
+                        <img src="../ressources/images/mockup/bat.PNG" width="20%" alt="Display Bat" #="Display Bat" class="imgSize" />
                     </td>
-   
+               
                     <td class="tdIco">
-                        <img src="../ressources/images/mockup/dragon.PNG" alt="Display Dragon" #="Display Dragon" />
+                        <img src="../ressources/images/mockup/packy.PNG" alt="Display Packy" #="Display Packy" class="imgSize" />
                     </td>
-   
+                </tr>
+            </table><br>
+            <table>
+                <tr>
+                    <td>
+                        <img src="../ressources/images/mockup/dragon.PNG" alt="Display Dragon" #="Display Dragon"  class="tdIco"  />
+                    </td>
+
                 </tr>
             </table>
-            
+
             <!-- ====================================================== -->
-            
+
             <h3>Backgrounds/Landscapes</h3><hr>
             <table>
                 <tr>
@@ -103,10 +103,10 @@
                 </tr>
               </table>   
                <!-- ====================================================== -->
-            
+
             <h3>1.  Introduction</h3><hr>
             <table>
-                
+
                 <tr>
                     <td>
                         <img src="../ressources/images/mockup/introduction.PNG" alt="Display Introduction" #="Display Introduction" class="imgMap" />
@@ -116,9 +116,9 @@
                     </td>
                 </tr>
             </table>
-            
+
              <!-- ====================================================== -->
-            
+
             <h3>2. Choose your hero</h3><hr>
             <table>
                 <tr>
@@ -130,26 +130,41 @@
                     </td>
                 </tr>
             </table>
-            
-            
+
              <!-- ====================================================== -->
-            
-            <h3>3. History</h3><hr>
+
+            <h3>3. Commands</h3><hr>
+            <table>
+                <tr>
+                    <td>
+                        <img src="../ressources/images/mockup/commands.PNG" alt="Display commands" #="Display commands" class="imgMap" />
+                    </td>
+                    <td>
+                        Press 'Enter' to validate
+                    </td>
+                </tr>
+            </table>
+
+
+
+             <!-- ====================================================== -->
+
+            <h3>4. History</h3><hr>
             <table>
             <tr>
                     <td>
                         <img src="../ressources/images/mockup/history.PNG" alt="Display History" #="Display History" class=" imgMap" />
                     </td>
                     <td>
-                        Interface
+                        Press 'Enter' to validate
                     </td>
 
              </tr>
             </table>
-            
+
             <!-- ====================================================== -->
-            
-            <h3>4. Game</h3><hr>
+
+            <h3>5. Game</h3><hr>
             <table>
             <tr>
                     <td>
@@ -161,10 +176,10 @@
 
              </tr>
             </table>
-            
+
              <!-- ====================================================== -->
-            
-            <h3>4.a Informations</h3><hr>
+
+            <h3>5.a Informations</h3><hr>
             <table>
             <tr>
                     <td>
@@ -172,7 +187,7 @@
                             <img src="../ressources/images/mockup/gameInfo.PNG" alt="Display Game Infos" #="Display Game Infos" class=" imgMap"/>
                         </a>
                     </td>
-            
+
                     <td>
                         <table>
                             <tr>
@@ -207,42 +222,42 @@
                     </td>
              </tr>
             </table>
-            
+
             <!-- ====================================================== -->
-            
+
             <h3>Attacks</h3><hr>
             <table>
             <tr>
                 <td class="tdIco" >
-                    <img src="../ressources/images/mockup/attackPhysique.PNG"  alt="Display Physical Strike" #="Display Physical Strike" />
+                    <img src="../ressources/images/mockup/attackPhysique.PNG"  alt="Display Physical Strike" #="Display Physical Strike" class="imgSize" />
                 </td>
                 <td>
                     Physical Strike
                 </td>
-            
+
                 <td class="tdIco">
-                    <img src="../ressources/images/mockup/attackMagic.PNG"  alt="Display Magical Strike" #="Display Magical Strike" />
+                    <img src="../ressources/images/mockup/attackMagic.PNG"  alt="Display Magical Strike" #="Display Magical Strike" class="imgSize" />
                 </td>
                  <td>
                     Magical Strike
                 </td>
             </tr>
             </table>
-            
+
              <!-- ====================================================== -->
-            
+
             <h3>First Draw</h3><hr>
             <a href="../ressources/images/mockup/firstDraw.PNG" >
                 <img src="../ressources/images/mockup/firstDraw.PNG"  alt="Display First Draw" #="Display First Draw" class="full" />
             </a>
-        </article>
-    </section>
-    <!-- >Fin zone pour votre contenu -->
-</main>
-    
-    <footer>
-        <img id="logo" src="../ressources/images/logo.png">
-    </footer>
 
+            <!-- >Fin zone pour votre contenu -->
+
+
+        </article>
+     </section>
+     <footer>
+          <img src="../ressources/images/logo.png" width="150px">
+    </footer>
 </body>
 </html>
