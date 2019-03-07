@@ -4,7 +4,7 @@ body
     float           : left;
     margin-left     : 10%;
     margin-right    : 10%;
-    width           : 80%;    
+    width           : 80%;
 }
 
 /* Affect the physical part of the page */
@@ -17,6 +17,7 @@ section
     width           : 74%;
     display         : block;
     float           : left;
+    flex-direction  : row;
 }
 
 /* Affect the informative part of the page */
@@ -24,6 +25,7 @@ aside
 {
     margin-right    : 10px;
     float           : right; 
+    flex-direction  : column;
 }
 
 

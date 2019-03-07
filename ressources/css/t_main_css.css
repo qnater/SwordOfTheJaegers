@@ -202,25 +202,63 @@ p.author
 /* Affect titles */
 .title
 {
-    padding-top: 5%;
-    font-weight: bold;
+    padding-top     : 5%;
+    font-weight     : bold;
 }
 
 
 /*responsive menu*/
-@media screen and (max-width: 580px) 
+@media screen and (max-width: 468px) 
 {
-  .navDropdown a {display: none;}
-    .hamburger {
-      display: block;
-    float: center;
+    .navDropdown a 
+    {
+        display: none;
+    }
+    .hamburger 
+    {
+        display: block;
+        float: center;
     }
 }
-@media screen and (max-width: 580px)
+@media screen and (max-width: 468px)
 {
-  .navDropdown.responsive {position: relative;}
-  .navDropdown.responsive .hamburger {
-    position: absolute;
-    top: 0;
+    .navDropdown.responsive
+    {
+        position: relative;
+    }
+    .navDropdown.responsive .hamburger 
+    {
+        position: absolute;
+        top: 0;
     }
 }
+
+@media screen and (max-width: 468px)
+{
+    body
+    {
+        flex-direction  : column;
+    }
+
+    .imgSize
+    {
+        width           : 80%;
+    }
+
+    /* Affect sizes of big pictures not too big not too small */
+    .imgMap
+    {
+        width           : 80%;
+    }
+    /* Handle the size of columns */
+    .tdIco
+    {
+        width           : 50%;
+    }
+    .full
+    {
+        width           : 100%;
+    }
+
+}
+
