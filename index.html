@@ -5,92 +5,93 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="ressources/css/t_main_css.css" >
+    <link rel="stylesheet" type="text/css" href="ressources/css/t_main_shadow.css" >
     <script src="t_main_js.js" type="text/javascript"></script>
 
 </head>
 <body>
 
-<header class="header1">
-    
-    <h1>HES-SO Vs - 624-2 - HTML/CSS/JavaScript</h1>
-   
- <ul>
-     <a href="javascript:void(0);" class="hamburger" onclick="displayMenu()">
-              <img src="ressources/images/hamburger_icon.svg">
+    <div class="body">
+        <header class="header1">
 
-        </a>
+            <h1 class="title">HES-SO Vs - 624-2 - HTML/CSS/JavaScript</h1>
+
+         <ul>
+             <a href="javascript:void(0);" class="hamburger" onclick="displayMenu()">
+                      <img src="ressources/images/hamburger_icon.svg">
+
+                </a>
+
+                    <div class="navDropdown" id="topNav">
+                            <a href="html/description_start.html" class="active">Description</a>
+                            
+                            <a href="html/maquettes_start.html" class="unactive">Maquettes</a>
+                            <a href="html/mockup_start.html" class="unactive">Mockup</a>
+                            <a href="html/flux_start.html" class="unactive">Flux</a>
+                            <a href="html/journal_de_bord_start.html" class="unactive">Journal de bord</a>
+                     </div>
+        </ul> 
+        </header>
+        <div class="main">
         
-            <div class="navDropdown" id="topNav">
-                    <a href="index.html"></a>
-                    <div class="active">
-                        <a href="html/description_start.html" class="bActive">Description</a>
-                    </div>
-                    <a href="html/maquettes_start.html">Maquettes</a>
-                    <a href="html/mockup_start.html">Mockup</a>
-                    <a href="html/flux_start.html">Flux</a>
-                    <a href="html/journal_de_bord_start.html">Journal de bord</a>
-             </div>
-</ul> 
-</header>
+            <!-- Début zone pour votre contenu -->
+          <aside>
+
+                    <table >
+                      <tr>
+                        <th >Fiche signalétique</th>
+                      </tr>
+                            <tr>
+                                <td><b>Taverney Nestor :</b> Développeur</td>
+                            </tr>
+                            <tr>
+                                <td><b>Nater Quentin : </b>Design and game</td>
+                            </tr>
+                        <tr>    
+                                <td><b>Elimares Elizabeth </b>: admin, rules</td>
+                            </tr>
+                    </table>
+
+            </aside>
+
+                    <section id="articles" >
+                        <article >
+                            <header>
+                                <h2>Histoire</h2>
+                                <p class="author">Par Jean Dupont le 5/02/2019 à 09:00</p>
+                            </header>
+                            <p>Lorem ipsum dolor sit amet... <a href="http://www.hevs.ch/">http://www.hevs.ch/</a>,
+                                 Ut non eros scelerisque, varius diam a, pulvinar arcu. Phasellus fermentum non arcu ornare ornare. Sed libero mi, rutrum et felis commodo, molestie tempor leo. Duis sit amet erat ut elit faucibus tincidunt sit amet non leo. Quisque dapibus ultricies cursus.</p>
+                            <p> Aenean elit nisi, maximus sit amet vulputate non, molestie non odio. Quisque in dolor vel libero <strong>lobortis commodo</strong> ultricies sed nisl. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Ut pretium ipsum in ipsum venenatis, id elementum quam ultrices. Nam nec enim sagittis, ultrices massa eu, fermentum sem.</p>
+                            <p><strong>Nam sed justo tortor:</strong>Aliquam eros ex, porttitor vel aliquam in, imperdiet id felis. Aliquam sed est quis nibh vestibulum porta. Nam ipsum quam, dapibus quis felis quis, pharetra auctor sapien</p>
+                                <p>Le code source de l'application est disponible sur le <a href="https://github.com/">github du projet</a>.</p>
+                            <p>At the end of time we struggle to survive by facing all kinds of dangers.
+                               Caster has an awakening from the Almighty God; there is a solution to save the world, Excalibur.
+                               The mistic sword is jealously guarded by monsters of all time. They attack helpless people in their dreams and steal their minds.
+                            </p>
+                        </article>
+                         
+                    </section>
+        
+                    <footer>
+                          <img src="ressources/images/logo.png" width="20%">
+                    </footer>
+            </div>
 
 
-<main>
-    <!-- Début zone pour votre contenu -->
-    <div class="row">
-        <div class="col-lg-8">
-            <section id="articles" >
-                <article >
-                    <header>
-                        <h2>Histoire</h2>
-                        <p class="author">Par Jean Dupont le 5/02/2019 à 09:00</p>
-                    </header>
-                    <p>Lorem ipsum dolor sit amet... <a href="http://www.hevs.ch/">http://www.hevs.ch/</a>,
-                         Ut non eros scelerisque, varius diam a, pulvinar arcu. Phasellus fermentum non arcu ornare ornare. Sed libero mi, rutrum et felis commodo, molestie tempor leo. Duis sit amet erat ut elit faucibus tincidunt sit amet non leo. Quisque dapibus ultricies cursus.</p>
-                    <p> Aenean elit nisi, maximus sit amet vulputate non, molestie non odio. Quisque in dolor vel libero <strong>lobortis commodo</strong> ultricies sed nisl. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Ut pretium ipsum in ipsum venenatis, id elementum quam ultrices. Nam nec enim sagittis, ultrices massa eu, fermentum sem.</p>
-                    <p><strong>Nam sed justo tortor:</strong>Aliquam eros ex, porttitor vel aliquam in, imperdiet id felis. Aliquam sed est quis nibh vestibulum porta. Nam ipsum quam, dapibus quis felis quis, pharetra auctor sapien</p>
-                        <p>Le code source de l'application est disponible sur le <a href="https://github.com/">github du projet</a>.</p>
-                    <p>At the end of time we struggle to survive by facing all kinds of dangers.
-                       Caster has an awakening from the Almighty God; there is a solution to save the world, Excalibur.
-                       The mistic sword is jealously guarded by monsters of all time. They attack helpless people in their dreams and steal their minds.
-                    </p>
-                </article>
-            </section>
-        </div>
-         <div class="col-md-4">
-            <table >
-              <tr>
-                <th >Fiche signalétique</th>
-              </tr>
-                    <tr>
-                        <td><b>Taverney Nestor :</b> Développeur</td>
-                    </tr>
-                    <tr>
-                        <td><b>Nater Quentin :</b></td>
-                    </tr>
-                <tr>    
-                        <td><b>Elimares Elizabeth :</b></td>
-                    </tr>
-            </table>
-        </div>
+           
+
+            <!-- >javascript -->
+            <script>
+                function displayMenu() {
+              var x = document.getElementById("topNav");
+              if (x.className === "navDropdown") {
+                x.className += " responsive";
+              } else {
+                x.className = "navDropdown";
+              }
+            } 
+            </script>
     </div>
-    <!-- >Fin zone pour votre contenu -->
-</main>
-    
-    <footer>
-        <img style="margin-left: auto; display: block;  margin-right: auto;" id="logo" src="ressources/images/logo.png">
-    </footer>
-    
-    <!-- >javascript -->
-    <script>
-        function displayMenu() {
-      var x = document.getElementById("topNav");
-      if (x.className === "navDropdown") {
-        x.className += " responsive";
-      } else {
-        x.className = "navDropdown";
-      }
-    } 
-    </script>
-
 </body>
 </html>
