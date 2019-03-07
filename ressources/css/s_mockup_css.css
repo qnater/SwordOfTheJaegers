@@ -1,14 +1,6 @@
 body
 {
-    width: 100%;
-    font-family:  OCR A Std, monospace;
     text-align: center;
-}
-
-main
-{
-    margin-left: 2%;
-    margin-right :2%;
 }
 
 h3
@@ -24,7 +16,6 @@ hr
 table
 {
     text-align: center;
-    width: 100%;
 }
 tr
 {
