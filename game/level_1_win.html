@@ -1,106 +1,24 @@
-    <!DOCTYPE html>
+<!DOCTYPE html>
 <html>
     
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>GETTING STARTED WITH BRACKETS</title>
-        <meta name="description" content="An interactive getting started guide for Brackets.">
-        
-      
-        <link rel="stylesheet" href="main.css">        
+        <title>Sword Of The Jaegers</title>
+        <meta name="description" content="Sword Of The Jaegers">      
+        <link rel="stylesheet" href="main.css"> 
+		<script rel="stylesheet" media="screen" async type="text/javascript" src="js/level1.js"></script>
+        <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
          
     </head>
-    <body style="background-image:url(pictures/b.PNG);">
-      
-               
-          <script type="text/javascript" >
-
-            // Create the canvas
-            var canvas = document.createElement("canvas");
-            var ctx = canvas.getContext("2d");
-            canvas.width = 750;
-            canvas.height = 750;
-            document.body.appendChild(canvas);
-
-            // Background image
-            var bgReady = false;
-            var bgImage = new Image();
-            bgImage.onload = function () {
-                bgReady = true;
-            };
-            bgImage.src = "pictures/back.PNG";
-
-         
-            // Handle keyboard controls
-            var keysDown = {};
-
-            addEventListener("keydown", function (e) 
-			{
-                keysDown[e.keyCode] = true;
-            }, false);
-
-            addEventListener("keyup", function (e)
-			{
-                delete keysDown[e.keyCode];
-            }, false);
-
-
-
-            // Draw everything
-            var render = function () 
-			{
-                if (bgReady) {
-                    ctx.drawImage(bgImage, 0, 0);
-                }
-				
-				ctx.fillStyle = "rgb(250, 250, 250)";
-                ctx.font = "24px Cursive";
-                ctx.textAlign = "right";
-                ctx.textBaseline = "top";
-                ctx.fillText("Try the Level 2", canvas.width/1.75, canvas.height/2.25); // Display current lifes
-            
-				
-				ctx.fillStyle = "rgb(250, 250, 250)";
-                ctx.font = "24px Cursive";
-                ctx.textAlign = "right";
-                ctx.textBaseline = "top";
-                ctx.fillText("Life (\u2665 \u2665 \u2665)", 710, 20); // Display current lifes
-            };
-			
-			 // Update game objects
-            var update = function (modifier) 
-			{
-                if (13 in keysDown) 
-				{ // Player holding up
-                    window.location.replace("game.html");
-                }
-
-            };
-
-            // The main game loop
-            var main = function () 
-			{
-                var now = Date.now();
-                var delta = now - then;
-
-                update(delta / 1000);
-                render();
-
-                then = now;
-
-                // Request to do this again ASAP
-                requestAnimationFrame(main);
-            };
-
-            // Cross-browser support for requestAnimationFrame
-            var w = window;
-            requestAnimationFrame = w.requestAnimationFrame || w.webkitRequestAnimationFrame || w.msRequestAnimationFrame || w.mozRequestAnimationFrame;
-
-            // Let's play this game!
-            var then = Date.now();
-			update();
-            main();
-        </script>
-    </body>
+    <body style="background-color: black;">
+		<header>
+			<h1 class="game" id="@font-face" >Sword Of The Jaegers</h1>
+				<h6 class="game" id="@font-face" >Quentin Nater - Nestor Taverney - Elisabeth Borgazzi</h6>
+		</header>
+		
+    	<footer>
+			<img src="pictures/hes-so.PNG" width="15%" alt="HES SO" class="hes" />
+		</footer>
+	</body>
 </html>            
