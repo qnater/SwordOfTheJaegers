@@ -71,16 +71,19 @@ p{
 
 h1{
     color: white; text-align: center; 
-    font-family: serif;
+    font-family: "Roboto Slab", Roboto, serif;
     height: 100px;
     background-image: url("../images/Font.PNG");
     vertical-align: text-bottom;
     margin-bottom: 28px;
     margin-top: 0;
 }
-h2{
+h2
+{
+    font-family: "Roboto Slab", Roboto, serif;
     border-bottom: 1px solid gainsboro;
     line-height: 1;
+    margin-top: 30px;
 }
 
 p.author{
@@ -200,21 +203,22 @@ li a {
 }
 .str
 {
-     padding : 10px;
+     padding : 7px;
 }
 .sth
 {
     background-color: orangered; 
     color: white; 
     text-align: left;
-    padding : 5px;
+    padding : 7px;
     font-weight: bold;
+    font-family: "Roboto Slab", Roboto, serif;
 }
 .sstr
 {
-     padding-left : 10px;
-    padding-right : 10px;
-    padding-bottom : 10px;
+     padding-left : 7px;
+    padding-right : 7px;
+    padding-bottom : 7px;
 }
 .title
 {
