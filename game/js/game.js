@@ -64,6 +64,11 @@
 	var StrikeReady = false;
 	var StrikeImage = new Image();
 	StrikeImage.src = "pictures/strikeMagic.PNG"; // Picture of a monster
+	
+	// Slash mode
+	var SlashReady = false;
+	var SlashImage = new Image();
+	SlashImage.src = "pictures/slash.PNG"; // Picture of a monster
 	  
 
 	// Game objects
@@ -73,6 +78,9 @@
 	var monster			= { alive:true };
 	var monster2		= { alive:true };
 	var monster3		= { alive:true };
+	
+	var slashX			= 0;
+	var slashY			= 0;
 	
 	var strike			= { speed: 5 };
 	var strikeX			= 0;
@@ -174,18 +182,32 @@
 		
 		if ( strike.x <= (monster.x + 32) && (monster.x <= (strike.x + 32) && strike.y <= (monster.y + 32) && monster.y <= (strike.y + 32))	)						
 		{
+			SlashReady = true;
+			slashX = monster.x;
+			slashY = monster.y;
+			
 			monster.alive = false;
 			monster.x = 1000;
 		}
 		if ( strike.x <= (monster2.x + 32) && (monster2.x <= (strike.x + 32) && strike.y <= (monster2.y + 32) && monster2.y <= (strike.y + 32)))							
 		{
+			SlashReady = true;
+			slashX = monster2.x;
+			slashY = monster2.y;
+			
 			monster2.alive = false;
 			monster2.x = 1000;
+			
 		}
 		if ( strike.x <= (monster3.x + 32) && (monster3.x <= (strike.x + 32) && strike.y <= (monster3.y + 32) && monster3.y <= (strike.y + 32)))							
 		{
+			SlashReady = true;
+			slashX = monster3.x;
+			slashY = monster3.y;
+			
 			monster3.alive = false;
 			monster3.x = 1000;
+			SlashReady = false;
 		}
 		
 		if(monster.alive == false && monster2.alive == false && monster3.alive == false)
@@ -212,6 +234,7 @@
 
 		if (heroReady) 
 		{
+			
 			ctx.drawImage(heroImage, hero.x, hero.y); // Draw the hero
 		}
 
@@ -250,7 +273,6 @@
 				//while(monster.x > canvas.width || monster.x < 0 || monster.y > canvas.height || monster.y < 0)
 			}	
 			ctx.drawImage(monsterImage, monster.x, monster.y); // Draw the monster
-			
 		}
 		
 		if (monster2Ready)
@@ -280,6 +302,7 @@
 			}	
 			ctx.drawImage(monster3Image, monster3.x, monster3.y); // Draw the monster 2
 		}
+
 		
 		if (StrikeReady)
 		{	
@@ -304,9 +327,17 @@
 
 			}
 			
+				
+			if (SlashReady)
+			{
+				ctx.drawImage(SlashImage, slashX, slashY); // Draw the monster 2
+			}
+			
 
 		}
 
+		SlashReady = false;
+		
 		// Score
 		ctx.fillStyle = "rgb(250, 250, 250)";
 		ctx.font = "16px OCR A Std, monospace";
