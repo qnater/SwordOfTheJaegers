@@ -40,14 +40,32 @@ var render = function ()
 	ctx.font = "32px OCR A Std, monospace";
 	ctx.textAlign = "right";
 	ctx.textBaseline = "top";
-	ctx.fillText("Try the Level 2", canvas.width/1.35, canvas.height/2.25); // Display current lifes
-
+	ctx.fillText("Hall Of Fame", canvas.width/1.42, 50); // Display current lifes
 	
 	ctx.fillStyle = "rgb(250, 250, 250)";
-	ctx.font = "16px OCR A Std, monospace";
+	ctx.font = "32px OCR A Std, monospace";
 	ctx.textAlign = "right";
 	ctx.textBaseline = "top";
-	ctx.fillText("Life (\u2665 \u2665 \u2665)", 475, 15); // Display current lifes
+	ctx.fillText("Nate - 750'000pts", 350, canvas.height/3); // Display current lifes
+
+	ctx.fillStyle = "rgb(250, 250, 250)";
+	ctx.font = "32px OCR A Std, monospace";
+	ctx.textAlign = "right";
+	ctx.textBaseline = "top";
+	ctx.fillText("Fade - 500'000pts", 350, canvas.height/2); // Display current lifes
+
+	ctx.fillStyle = "rgb(250, 250, 250)";
+	ctx.font = "32px OCR A Std, monospace";
+	ctx.textAlign = "right";
+	ctx.textBaseline = "top";
+	ctx.fillText("Plyr - 490'000pts", 350, canvas.height/1.5); // Display current lifes
+
+	ctx.fillStyle = "rgb(250, 250, 250)";
+	ctx.font = "32px OCR A Std, monospace";
+	ctx.textAlign = "right";
+	ctx.textBaseline = "top";
+	ctx.fillText("Your - 120'000pts", 350, canvas.height-50); // Display current lifes
+
 };
 
  // Update game objects
@@ -55,7 +73,7 @@ var update = function (modifier)
 {
 	if (13 in keysDown) 
 	{ // Player holding up
-		window.location.replace("final.html");
+		window.location.replace("game.html");
 	}
 
 };
