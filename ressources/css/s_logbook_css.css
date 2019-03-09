@@ -1,0 +1,15 @@
+table, th, td {
+  border:            1px solid black;
+ 
+}
+td{
+    margin-left:         25%;
+    width: 15%;
+}
+th{
+    background-color: dimgrey;
+    color:             white;
+}
+.Description_taille{
+    width:           60%;
+}
