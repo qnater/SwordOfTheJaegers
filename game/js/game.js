@@ -123,38 +123,37 @@
 	// Update game objects
 	var update = function (modifier)
 	{
-		if (38 in keysDown) 
+		if (87 in keysDown) 
 		{ // Player holding up
 			if(hero.y >= 35) // Limitation because of the walls
 				hero.y -= hero.speed * modifier;
 		}
-		if (40 in keysDown) 
+		if (83 in keysDown) 
 		{ // Player holding down
 			if(hero.y <= canvas.height-115) // Limitation because of the wall
 				hero.y += hero.speed * modifier;
 		}
-		if (37 in keysDown) 
+		if (65 in keysDown) 
 		{ // Player holding left
 		   if(hero.x >= 35) // Limitation because of the wall
 				hero.x -= hero.speed * modifier;
 		}
-		if (39 in keysDown) 
+		if (68 in keysDown) 
 		{ // Player holding right
 			if(hero.x <= canvas.width-115) // Limitation because of the wall
 				hero.x += hero.speed * modifier;
 		}
-		if (32 in keysDown) 
+		if (38 in keysDown) 
 		{
 			strikeType = 0;
 			strikeX= hero.x;
 			StrikeReady = true;	
 		}
-		if (17 in keysDown) 
+		if (40 in keysDown) 
 		{
-			if(strikeType == 0)
-				strikeType = 1;
-			else
-				strikeType = 0;
+			strikeType = 1;
+			strikeX= hero.x;
+			StrikeReady = true;
 		}
 
 
@@ -324,7 +323,11 @@
 				ctx.drawImage(StrikeImage, strikeX, hero.y+position); // Draw the monster 2
 				strike.x = strikeX;
 				strike.y = hero.y+position;
-
+				if(hero.y+position > canvas.height)
+				{
+					position = 0;
+					StrikeReady = false;		
+				}
 			}
 			
 				

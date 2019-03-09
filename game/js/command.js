@@ -11,7 +11,7 @@ var bgImage = new Image();
 bgImage.onload = function () {
 	bgReady = true;
 };
-bgImage.src = "pictures/500_rules.PNG";
+bgImage.src = "pictures/500_command.PNG";
 
 
 // Handle keyboard controls
