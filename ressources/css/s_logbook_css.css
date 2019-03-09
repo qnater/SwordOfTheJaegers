@@ -13,3 +13,6 @@ th{
 .Description_taille{
     width:           60%;
 }
+.resposivetable{
+     overflow-x:        auto;
+}

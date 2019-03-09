@@ -88,3 +88,31 @@ aside
         margin-bottom   : 30px; 
     }
 }
+
+/* Set specifies settings for table  of rules*/
+.specifications {
+       
+    border:            1px solid black;
+    
+    
+}
+.specifications th{
+   
+    background-color: dimgrey;
+    color:             white;
+    border:            1px solid black;
+
+}
+.specifications td{
+    margin-left:         25%;
+    width: 10%;
+    border:            1px solid black;
+}
+
+.tdfirst{
+   background-color: dimgrey;
+    color:             white;
+}
+.resposivetable{
+     overflow-x:        auto;
+}
