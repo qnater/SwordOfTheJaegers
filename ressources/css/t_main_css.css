@@ -58,11 +58,15 @@ footer
 }
 
 /* Affect paragraphs of the page */
-p
+p, ol
 {
     font-family     : "Calibri Light", serif;
 }
 
+ol li
+{
+   margin-bottom    : 20px; 
+}
 
 /* Affect high titles of the page */
 h1
@@ -88,7 +92,7 @@ h2
 }
 
 /* Affect lists */
-ul 
+ul
 {
   list-style-type   : none;
   padding           : 0;
@@ -151,8 +155,14 @@ p.author
 /* Affect the unenable link of the nav */
 .unactive 
 {
- color              : white;
+    color           : white;
   
+}
+
+.explain
+{
+   margin-left      : 50px;  
+   font-style       : italic;
 }
 
 /* Affect links and class of the nav */
