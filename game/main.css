@@ -6,7 +6,7 @@
 body
 {
 	text-align : center;
-	background-image : url(../ressources/images/game/outBackground.JPG);
+	background-image : url(../ressources/images/game/map.PNG);
 	background-attachment		: fixed;
 	background-position			: center;
     background-repeat			: no-repeat;
@@ -18,6 +18,11 @@ body
 	color : white;
 	color 					: black;
 	text-shadow				: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
+}
+h1
+{
+    font-size: 42px;
+    margin-top : -5px;
 }
 .hes
 {
