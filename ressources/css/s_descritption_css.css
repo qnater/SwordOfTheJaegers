@@ -17,12 +17,17 @@
 h3{
     
 }
-main{
-    background-color: gainsboro;
-}
+
 table{
     border-style:20%;box-shadow:  2px 2px 8px 0 rgba(0.1, 0.1, 0.1, 0.19);
 }
 th{
     background-color: orangered; color: white; text-align: left;
+}
+
+
+.Monsters{
+    margin-right    : 10px;
+    float           : right; 
+    flex-direction  : column;
 }
