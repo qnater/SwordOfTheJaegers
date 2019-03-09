@@ -53,7 +53,7 @@ aside
 }
 .sstr
 {
-    padding-left   : 7px;
+    padding-left    : 7px;
     padding-right   : 7px;
     padding-bottom  : 7px;
 }
@@ -70,5 +70,21 @@ aside
     h2
     {
         margin-top: 28pt;
+    }
+}
+
+
+@media screen and (max-width: 1480px)
+{
+    section
+    {
+        width           : 97%;
+        margin-right    : 2%; 
+    }
+    aside
+    {
+        float           : left; 
+        margin-left     : 2%; 
+        margin-bottom   : 30px; 
     }
 }

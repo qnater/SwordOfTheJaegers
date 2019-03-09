@@ -58,11 +58,15 @@ footer
 }
 
 /* Affect paragraphs of the page */
-p
+p, ol
 {
     font-family     : "Calibri Light", serif;
 }
 
+ol li
+{
+   margin-bottom    : 20px; 
+}
 
 /* Affect high titles of the page */
 h1
@@ -88,7 +92,7 @@ h2
 }
 
 /* Affect lists */
-ul 
+ul
 {
   list-style-type   : none;
   padding           : 0;
@@ -151,8 +155,14 @@ p.author
 /* Affect the unenable link of the nav */
 .unactive 
 {
- color              : white;
+    color           : white;
   
+}
+
+.explain
+{
+   margin-left      : 50px;  
+   font-style       : italic;
 }
 
 /* Affect links and class of the nav */
@@ -184,11 +194,7 @@ p.author
     text-align      : center;
     background-color: dimgray;
 } 
-.hamburger:hover
-{
-    background-color: white;
-    color           : orangered;
-}
+
 
 
 .navDropdown.responsive a 
@@ -202,7 +208,7 @@ p.author
 /* Affect titles */
 .title
 {
-    padding-top     : 5%;
+    padding-top     : 60px;
     font-weight     : bold;
 }
 
@@ -232,7 +238,9 @@ p.author
         position: absolute;
         top: 0;
     }
+    
 }
+
 
 @media screen and (max-width: 468px)
 {
@@ -248,13 +256,12 @@ p.author
     /* Affect titles */
     .title
     {
-        padding-top     : 10%;
         font-size: 16pt;
         font-weight     : bold;
     }
     
     
-  .header1
+    .header1
     { 
        height: 0;
     }
@@ -288,4 +295,14 @@ p.author
 
 }
 
+/*mobile part*/
+@media screen and (max-width: 829px)
+{
+    /* Affect titles */
+    .title
+    {
+        padding-top     : 10px;
+        font-weight     : bold;
+    }
+}
 
