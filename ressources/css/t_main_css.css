@@ -9,7 +9,7 @@ body
 {
     margin-left     : 10%;
     margin-right    : 10%;
-    max-width       : 1240px;
+    max-width       : px;
     font-family     : serif;
     text-align      : justify;
     border-style    : hidden;
@@ -119,7 +119,7 @@ p.author
     font-style      : italic;
     text-align      : right;
     color           : darkgray;
-    line-height     : 0px;
+    line-height     : 13px;
     margin-bottom   : 20px;   
     margin-top      : -10px; 
 }
@@ -220,6 +220,7 @@ p.author
         float: center;
     }
 }
+/*mobile part*/
 @media screen and (max-width: 468px)
 {
     .navDropdown.responsive
@@ -239,10 +240,34 @@ p.author
     {
         flex-direction  : column;
     }
+    section
+    {
+        padding-top: 100px;
+    }
+    /* Affect titles */
+    .title
+    {
+        padding-top     : 10%;
+        font-size: 16pt;
+        font-weight     : bold;
+    }
+    
+    
+  .header1
+    { 
+       height: 0;
+    }
+    
+    .hamburger
+    {
+        margin-top: -40px
+    }
+
+    
 
     .imgSize
     {
-        width           : 80%;
+        max-width           : 80px;
     }
 
     /* Affect sizes of big pictures not too big not too small */
