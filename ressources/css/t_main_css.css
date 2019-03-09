@@ -184,11 +184,7 @@ p.author
     text-align      : center;
     background-color: dimgray;
 } 
-.hamburger:hover
-{
-    background-color: white;
-    color           : orangered;
-}
+
 
 
 .navDropdown.responsive a 
@@ -232,6 +228,7 @@ p.author
         position: absolute;
         top: 0;
     }
+    
 }
 
 @media screen and (max-width: 468px)
@@ -248,7 +245,6 @@ p.author
     /* Affect titles */
     .title
     {
-        padding-top     : 10%;
         font-size: 16pt;
         font-weight     : bold;
     }
