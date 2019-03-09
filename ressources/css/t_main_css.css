@@ -239,10 +239,11 @@ p.author
     body
     {
         flex-direction  : column;
+        margin: 0;
     }
     section
     {
-        padding-top: 100px;
+        padding-top: 110px;
     }
     /* Affect titles */
     .title

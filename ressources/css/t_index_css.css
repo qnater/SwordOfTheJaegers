@@ -57,3 +57,18 @@ aside
     padding-right   : 7px;
     padding-bottom  : 7px;
 }
+
+@media screen and (max-width: 468px)
+{
+    body
+    {
+        flex-direction  : column;
+        margin: 0;
+        width: 100%;
+    }
+    
+    h2
+    {
+        margin-top: 28pt;
+    }
+}
