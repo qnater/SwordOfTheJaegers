@@ -244,6 +244,7 @@ p.author
     }
 }
 
+
 @media screen and (max-width: 468px)
 {
     body
@@ -264,7 +265,7 @@ p.author
     }
     
     
-  .header1
+    .header1
     { 
        height: 0;
     }

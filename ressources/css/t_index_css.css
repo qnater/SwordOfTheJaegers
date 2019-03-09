@@ -72,3 +72,17 @@ aside
         margin-top: 28pt;
     }
 }
+
+
+@media screen and (max-width: 1480px)
+{
+    section
+    {
+        width           : 97%;
+        margin-right    : 2%; 
+    }
+    aside
+    {
+        margin-right    : 33%; 
+    }
+}
