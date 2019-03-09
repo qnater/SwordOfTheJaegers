@@ -208,7 +208,7 @@ p.author
 /* Affect titles */
 .title
 {
-    padding-top     : 5%;
+    padding-top     : 60px;
     font-weight     : bold;
 }
 
@@ -295,4 +295,14 @@ p.author
 
 }
 
+/*mobile part*/
+@media screen and (max-width: 829px)
+{
+    /* Affect titles */
+    .title
+    {
+        padding-top     : 10px;
+        font-weight     : bold;
+    }
+}
 
