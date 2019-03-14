@@ -1,0 +1,6 @@
+=== SWORD OF THE JAEGERS ===
+=== PROJET HTML/CSS PT.1 ===
+
+-> Quentin Nater/Nestor Taverney/Elizabeth Bitschnau
+
+-> Lien github : https://github.com/qnater/SwordOfTheJaegers.git
