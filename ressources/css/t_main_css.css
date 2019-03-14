@@ -270,8 +270,12 @@ p.author
     {
         margin-top: -40px
     }
+    .navDropdown
+    {
+        margin-left     : 0;
+    }
 
-    
+
 
     .imgSize
     {
