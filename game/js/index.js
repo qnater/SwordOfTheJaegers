@@ -42,7 +42,7 @@ var update = function (modifier)
 {
 	if (13 in keysDown) 
 	{ // Player holding up
-		window.location.replace("hero.html");
+		window.location.replace("history.html");
 	}
 };
 

@@ -1,18 +1,26 @@
-table, th, td {
-  border:            1px solid black;
- 
+table, th, td
+{
+  border				: 1px solid black;
 }
-td{
-    margin-left:         25%;
-    width: 15%;
+table
+{
+	margin-bottom		: 42px;
 }
-th{
-    background-color: dimgrey;
-    color:             white;
+td
+{
+    margin-left			: 25%;
+    width				: 15%;
 }
-.Descriptiontaille{
-    width:           60%;
+th
+{
+    background-color	: dimgrey;
+    color				: white;
 }
-.resposivetable{
-     overflow-x:        auto;
+.descriptiontaille
+{
+    width				: 60%;
+}
+td:nth-child(1)
+{
+	background-color	: #E0E0E0;
 }

@@ -11,7 +11,7 @@ var bgImage = new Image();
 bgImage.onload = function () {
 	bgReady = true;
 };
-bgImage.src = "pictures/500_a_History.PNG";
+bgImage.src = "pictures/500_back.PNG";
 
 
 // Handle keyboard controls
@@ -35,6 +35,19 @@ var render = function ()
 	if (bgReady) {
 		ctx.drawImage(bgImage, 0, 0);
 	}
+	
+	ctx.fillStyle = "rgb(250, 250, 250)";
+	ctx.font = "32px OCR A Std, monospace";
+	ctx.textAlign = "right";
+	ctx.textBaseline = "top";
+	ctx.fillText("Game Over", canvas.width/1.35, canvas.height/2.25); // Display current lifes
+
+	
+	ctx.fillStyle = "rgb(250, 250, 250)";
+	ctx.font = "16px OCR A Std, monospace";
+	ctx.textAlign = "right";
+	ctx.textBaseline = "top";
+	ctx.fillText("Life 0)", 475, 15); // Display current lifes
 };
 
  // Update game objects
@@ -42,8 +55,9 @@ var update = function (modifier)
 {
 	if (13 in keysDown) 
 	{ // Player holding up
-		window.location.replace("command.html");
+		window.location.replace("game_p.html");
 	}
+
 };
 
 // The main game loop
