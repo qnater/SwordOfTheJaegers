@@ -40,7 +40,7 @@ var render = function ()
 	ctx.font = "32px OCR A Std, monospace";
 	ctx.textAlign = "right";
 	ctx.textBaseline = "top";
-	ctx.fillText("Game Over", canvas.width/1.35, canvas.height/2.25); // Display current lifes
+	ctx.fillText("Game Over", canvas.width/1.50 canvas.height/2.25); // Display current lifes
 
 	
 	ctx.fillStyle = "rgb(250, 250, 250)";

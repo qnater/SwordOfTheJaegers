@@ -1,19 +1,3 @@
-	// =============================================================================== //
-	// COMMAND BOARD
-	// =============================================================================== //
-	var caseByMovementSlim	 	= 25; 	// Movement by 1 to 100
-	var chanceToMoveSlim		= 5; 	// Chance to move by 1 to 100
-	
-	var caseByMovementMonster3 	= 35; 	// Movement by 1 to 100
-	var chanceToMoveMonster3	= 5; 	// Chance to move by 1 to 100
-	var chanceToStrikeMonster3  = 7;  	// chance to strike by 1 to 10
-	
-	var monsterStrikeSpeed		= 10;	// Speed of the strike by 1 to 100
-	
-	var myHero					= 1;	// Choose your hero
-	// =============================================================================== //
-	
-	
 	// Create the canvas
 	var canvas = document.createElement("canvas"); // Creation of the canvas
 	var ctx = canvas.getContext("2d"); // Use the 2d technology
@@ -25,68 +9,48 @@
 	// Background image
 	var ibgReady = false;
 	var ibgImage = new Image();
-	ibgImage.onload = function () {
-		ibgReady = true;
-	};
+	ibgImage.onload = function () { ibgReady = true; };
 	ibgImage.src = "pictures/introduction.PNG";
 
 
 	// Background image
 	var bgReady = false;
 	var bgImage = new Image();
-	bgImage.onload = function () {
-		bgReady = true;
-	};
+	bgImage.onload = function () { bgReady = true; };
 	bgImage.src = "pictures/500_background.PNG"; // Background of levels
 
 	
 	// Hero image
 	var heroReady = false;
 	var heroImage = new Image();
-	heroImage.onload = function () {
-		heroReady = true;
-	};
+	heroImage.onload = function () { heroReady = true; };
 	
 	if(myHero == 0)
-	{
 		heroImage.src = "pictures/a_warrior.PNG"; // Picture of the chosen hero
-	}
 	else if(myHero == 1)
-	{
 		heroImage.src = "pictures/a_caster.PNG"; // Picture of the chosen hero
-	}
 	else
-	{
 		heroImage.src = "pictures/a_paladin.PNG"; // Picture of the chosen hero
-	}
 	
+	// =================== MONSTERS DESIGNS =================== //
 	// Monster 1 image
 	var monsterReady = false;
 	var monsterImage = new Image();
-	monsterImage.onload = function () 
-	{
-		monsterReady = true;
-	};
+	monsterImage.onload = function () { monsterReady = true; };
 	monsterImage.src = "pictures/a_slim.PNG"; // Picture of a monster
 	 
 	// Monster 2 image
 	var monster2Ready = false;
 	var monster2Image = new Image();
-	monster2Image.onload = function () 
-	{
-		monster2Ready = true;
-	};
+	monster2Image.onload = function () { monster2Ready = true; };
 	monster2Image.src = "pictures/a_slim.PNG"; // Picture of a monster
 	  
 	// Monster 3 image
 	var monster3Ready = false;
 	var monster3Image = new Image();
-	monster3Image.onload = function () 
-	{
-		monster3Ready = true;
-	};
+	monster3Image.onload = function () { monster3Ready = true; };
 	monster3Image.src = "pictures/a_bat.PNG"; // Picture of a monster
-	  
+	// =================== ============== ======================== //
 
 	// =================== HERO STRIKES DESIGNS =================== //
 	// Strike mode
@@ -127,18 +91,13 @@
 	  
 
 	// Game objects
-	var hero 			= { speed: 256 }; // movement in pixels per second
-	var life			= { hp : 2 };
+	var hero 			= { speed: 256, hp : 2 }; // movement in pixels per second
 
-	var monster			= { alive:true };
-	var monster2		= { alive:true };
-	var monster3		= { alive:true };
+	var monster			= { alive:true, hp:30 };
+	var monster2		= { alive:true, hp:30 };
+	var monster3		= { alive:true, hp:20 };
 	
 	var monsterStrike3	= { power:1 };
-	
-	var monsterStat		= { hp : 30 };
-	var monster2Stat	= { hp : 30 };
-	var monster3Stat	= { hp : 20 };
 	
 	var slashX			= 0;
 	var slashY			= 0;
@@ -175,21 +134,15 @@
 	var r_position3		= 0;
 	var r_mstrikeType	= 0;
 
-	var monstersCaught 	= 0;
-
 	// Handle keyboard controls
 	var keysDown 		= {};
 
-	addEventListener("keydown", function (e)
-	{
-		keysDown[e.keyCode] = true;
-	}, false);
-
-	addEventListener("keyup", function (e)
-	{
-		delete keysDown[e.keyCode];
-	}, false);
-
+	
+	// == LISTENERS == //
+	addEventListener("keydown", function (e) { keysDown[e.keyCode] = true;}, false);
+	addEventListener("keyup", function (e){ delete keysDown[e.keyCode];}, false);
+	// =============== //
+	
 	// Reset the game when the player catches a monster
 	var reset = function () 
 	{
@@ -211,7 +164,7 @@
 	// Update game objects
 	var update = function (modifier)
 	{
-
+		scorePoints = scorePoints - 0.01;
 		if (87 in keysDown) 
 		{ // Player holding up
 			if(hero.y >= 35) // Limitation because of the walls
@@ -308,22 +261,25 @@
 		// Are they touching?
 		if(hero.x <= (monster.x + 32) && (monster.x <= (hero.x + 32) && hero.y <= (monster.y + 32) && monster.y <= (hero.y + 32)))							
 		{
-			life.hp = life.hp - 1;
+			hero.hp = hero.hp - 1;
 			hero.y = hero.y +36;
+			scorePoints = scorePoints - 10000;
 		}
 		
 		 // Are they touching?
 		if( hero.x <= (monster2.x + 32) &&(monster2.x <= (hero.x + 32) && hero.y <= (monster2.y + 32) && monster2.y <= (hero.y + 32)))							
 		{
-			life.hp = life.hp -1;
+			hero.hp = hero.hp - 1;
 			hero.y = hero.y +36;
+			scorePoints = scorePoints - 10000;
 		}
 		
 		 // Are they touching?
 		if ( hero.x <= (monster3.x + 32) && ( monster3.x <= (hero.x + 32) && hero.y <= (monster3.y + 32) && monster3.y <= (hero.y + 32)))							
 		{
-			life.hp = life.hp -1;
+			hero.hp = hero.hp - 1;
 			hero.y = hero.y + 36;
+			scorePoints = scorePoints - 10000;
 		}
 		
 		if ( strike.x <= (monster.x + 32) && (monster.x <= (strike.x + 32) && strike.y <= (monster.y + 32) && monster.y <= (strike.y + 32))	)						
@@ -333,13 +289,14 @@
 			slashX 			= monster.x;
 			slashY 			= monster.y;
 
-			monsterStat.hp  = monsterStat.hp - 1;
+			monster.hp  = monster.hp - 1;
 			
-			if(monsterStat.hp<0)
+			if(monster.hp<0)
 			{
 				monster.alive= false;
 				monsterReady = false;
 				monster.x    = 800;
+				scorePoints = scorePoints + 1000;
 			}
 			
 			
@@ -351,13 +308,14 @@
 			slashX = monster2.x;
 			slashY = monster2.y;
 			
-			monster2Stat.hp = monster2Stat.hp-1;
+			monster2.hp = monster2.hp-1;
 			
-			if(monster2Stat.hp<0)
+			if(monster2.hp<0)
 			{
 				monster2.alive 	= false;
 				monster2Ready 	= false;
 				monster2.x    	= 800;
+				scorePoints = scorePoints + 1000;
 			}
 			
 		}
@@ -369,35 +327,40 @@
 			slashX = monster3.x;
 			slashY = monster3.y;
 			
-			monster3Stat.hp  = monster3Stat.hp-1;
+			monster3.hp  = monster3.hp-1;
 			
-			if(monster3Stat.hp<0)
+			if(monster3.hp<0)
 			{
 				monster3.alive 	= false;
 				monster3Ready 	= false;
 				monster3.x    	= 800;
+				scorePoints = scorePoints + 1000;
 			}
 		}
 			
 		if( hero.x <= (mstrike.x + 32) &&(mstrike.x <= (hero.x + 32) && hero.y <= (mstrike.y + 32) && mstrike.y <= (hero.y + 32)))							
 		{
-			life.hp = life.hp - 1;
+			hero.hp = hero.hp - 1;
 			hero.y = hero.y + 36;
+			scorePoints = scorePoints - 10000;
 		}
 		if( hero.x <= (d_mstrike.x + 32) &&(d_mstrike.x <= (hero.x + 32) && hero.y <= (d_mstrike.y + 32) && d_mstrike.y <= (hero.y + 32)))							
 		{
-			life.hp = life.hp - 1;
+			hero.hp = hero.hp - 1;
 			hero.y = hero.y + 36;
+			scorePoints = scorePoints - 10000;
 		}
 		if( hero.x <= (l_mstrike.x + 32) &&(l_mstrike.x <= (hero.x + 32) && hero.y <= (l_mstrike.y + 32) && l_mstrike.y <= (hero.y + 32)))							
 		{
-			life.hp = life.hp - 1;
+			hero.hp = hero.hp - 1;
 			hero.y = hero.y + 36;
+			scorePoints = scorePoints - 10000;
 		}
 		if( hero.x <= (r_mstrike.x + 32) &&(r_mstrike.x <= (hero.x + 32) && hero.y <= (r_mstrike.y + 32) && r_mstrike.y <= (hero.y + 32)))							
 		{
-			life.hp = life.hp - 1;
+			hero.hp = hero.hp - 1;
 			hero.y = hero.y + 36;
+			scorePoints = scorePoints - 10000;
 		}
 		
 		if(monster.alive == false && monster2.alive == false && monster3.alive == false)
@@ -405,7 +368,7 @@
 			window.location.replace("score.html");
 		}
 		
-		if(life.hp < 0)
+		if(hero.hp < 0)
 		{
 			window.location.replace("lost.html");
 		}
@@ -425,25 +388,17 @@
 					
 	};
 
-
-	var inc = 0;
 	// Draw everything
 	var render = function () 
 	{
 		if (bgReady) 
-		{
 			ctx.drawImage(bgImage, 0, 0);
-		}
 
 		if (heroReady) 
-		{
 			ctx.drawImage(heroImage, hero.x, hero.y); // Draw the hero
-		}
 
 		var pos_min = 0; 
-		var b1 = false;
-		var b2 = false;
-		var b3 = false;
+		var b1 = false; var b2 = false; var b3 = false;
 	
 		if(Math.random()*100 < chanceToMoveSlim)
 			b1 = true;
@@ -459,25 +414,32 @@
 		else
 			b3 = false;
 		
-		
+		if(Math.random()*10 <5)
+			pos_min = 1;
+		else
+			pos_min = -1;
+				
 		// ================== Mouvement Monster Number 1 ================== //
 		if (monsterReady)
 		{
 			if(b1)
 			{
+
+
+			
 				do
 				{
-					if(Math.random()*10 <5)
-						pos_min = 1;
-					else
-						pos_min = -1;
-					
-					
-				
-					monster.x = monster.x + (pos_min * (Math.random() * 25));
-					monster.y = monster.y + (pos_min * (Math.random() * 25));		
+					pos_min = pos_min * -1;				
+					monster.x = monster.x + (pos_min * (Math.random() * caseByMovementSlim));
 				}
-				while(monster.x > canvas.width-50 && monster.x < 0 && monster.y > canvas.height-50 && monster.y < 0)
+				while(monster.x > canvas.width-100 || monster2.x < 100);
+		
+				do
+				{
+					pos_min = pos_min * -1;		
+					monster.y = monster.y + (pos_min * (Math.random() * caseByMovementSlim));		
+				}
+				while(monster.y > canvas.height-100 || monster.y < 100);
 			}	
 			ctx.drawImage(monsterImage, monster.x, monster.y); // Draw the monster
 		}
@@ -487,18 +449,21 @@
 		{
 			if(b2)
 			{
-				do
-				{
-					if(Math.random()*10 <5)
-						pos_min = 1;
-					else
-						pos_min = -1;
 					
-					monster2.x = monster2.x + (pos_min * (Math.random() * caseByMovementSlim));
-					monster2.y = monster2.y + (pos_min * (Math.random() * caseByMovementSlim));		
+					do
+					{
+						pos_min = pos_min * -1;		
+						monster2.x = monster2.x + (pos_min * (Math.random() * caseByMovementSlim));
+					}
+					while(monster2.x > canvas.width-100 || monster2.x < 100);
+			
+					do
+					{
+						pos_min = pos_min * -1;		
+						monster2.y = monster2.y + (pos_min * (Math.random() *caseByMovementSlim));		
+					}
+					while(monster2.y > canvas.height-100 || monster2.y < 100);
 				}
-				while(monster2.x > canvas.width-50 || monster2.x < 50 || monster2.y > canvas.height-50 || monster2.y < 50)
-			}
 			ctx.drawImage(monster2Image, monster2.x, monster2.y); // Draw the monster 2
 		}
 		
@@ -507,18 +472,20 @@
 		{
 			if(b3)
 			{
-				do
-				{
-					if(Math.random()*10 <5)
-						pos_min = 1;
-					else
-						pos_min = -1;
-					
-					monster3.x = monster3.x + (pos_min * (Math.random() * caseByMovementMonster3));
-					monster3.y = monster3.y + (pos_min * (Math.random() * caseByMovementMonster3));		
-				}
-				while(monster3.x > canvas.width-50 || monster3.x < 50 || monster3.y > canvas.height-50 || monster3.y < 50)
-			}	
+					do
+					{
+						pos_min = pos_min * -1;		
+						monster3.x = monster3.x + (pos_min * (Math.random() * caseByMovementMonster3));
+					}
+					while(monster3.x > canvas.width-100 || monster3.x < 100);
+			
+					do
+					{
+						pos_min = pos_min * -1;		
+						monster3.y = monster3.y + (pos_min * (Math.random() * caseByMovementMonster3));		
+					}
+					while(monster3.y > canvas.height-100 || monster3.y < 100);
+			}		
 			ctx.drawImage(monster3Image, monster3.x, monster3.y); // Draw the monster 2
 		}
 
@@ -528,7 +495,117 @@
 			
 			if(myHero == 1)
 			{
-				// ================== Mouvement Magical Strike HERO TOP ================== //
+				heroStrike();
+			}
+			else
+			{
+				heroStrike();
+			}
+			
+		}
+		
+		// ================== Mouvement Monster Strike  ================== //
+		if (Monster3StrikeReady)
+		{	
+			position3 = position3 - (1 * mstrike.speed);
+			ctx.drawImage(Monster3StrikeImage, monster3.x, monster3.y+position3); // Draw the monster 2
+			mstrike.x = monster3.x;
+			mstrike.y = monster3.y+position3;
+			if(monster3.y+position3 < 0)
+			{
+				position3 	= 0;
+				Monster3StrikeReady = false;		
+			}
+			
+				
+			if (SlashReady)
+				ctx.drawImage(SlashImage, slashX, slashY); // Draw the monster 2
+			
+		}
+		if (d_Monster3StrikeReady)
+		{	
+			d_position3 = d_position3 + (1 * d_mstrike.speed);
+			ctx.drawImage(d_Monster3StrikeImage, monster3.x, monster3.y+d_position3); // Draw the monster 2
+			d_mstrike.x = monster3.x;
+			d_mstrike.y = monster3.y+d_position3;
+			if(monster3.y+d_position3 > canvas.height)
+			{
+				d_position3 	= 0;
+				d_Monster3StrikeReady = false;		
+			}
+			
+				
+			if (SlashReady)
+				ctx.drawImage(SlashImage, slashX, slashY); // Draw the monster 2
+		}
+		if (l_Monster3StrikeReady)
+		{	
+			l_position3 = l_position3 + (1 * l_mstrike.speed);
+			ctx.drawImage(l_Monster3StrikeImage, monster3.x+l_position3, monster3.y); // Draw the monster 2
+			l_mstrike.x = monster3.x+l_position3;
+			l_mstrike.y = monster3.y;
+			if(monster3.x+l_position3 < 0)
+			{
+				l_position3 	= 0;
+				l_Monster3StrikeReady = false;		
+			}
+			
+				
+			if (SlashReady)
+				ctx.drawImage(SlashImage, slashX, slashY); // Draw the monster 2
+		}
+		if (r_Monster3StrikeReady)
+		{	
+			r_position3 = r_position3 - (1 * r_mstrike.speed);
+			ctx.drawImage(r_Monster3StrikeImage, monster3.x+r_position3, monster3.y); // Draw the monster 2
+			r_mstrike.x = monster3.x+r_position3;
+			r_mstrike.y = monster3.y;
+			if(monster3.y+r_position3 > canvas.width)
+			{
+				r_position3 	= 0;
+				r_Monster3StrikeReady = false;		
+			}
+			
+				
+			if (SlashReady)
+				ctx.drawImage(SlashImage, slashX, slashY); // Draw the monster 2
+		}
+		
+
+		SlashReady = false;
+		
+		// Score
+		ctx.fillStyle = "rgb(250, 250, 250)";
+		ctx.font = "16px OCR A Std, monospace";
+		ctx.textAlign = "left";
+		ctx.textBaseline = "top";
+		ctx.fillText("Sword of the Jaegers", 27, 15);
+		
+		ctx.fillStyle = "rgb(250, 250, 250)";
+		ctx.font = "16px OCR A Std, monospace";
+		ctx.textAlign = "right";
+		ctx.textBaseline = "top";
+		
+		if(hero.hp == 2)
+			ctx.fillText("Life (\u2665 \u2665 \u2665)", 475, 15); // Display current lifes
+		else if (hero.hp==1)
+			ctx.fillText("Life (\u2665 \u2665)", 475, 15); // Display current lifes
+		else
+			ctx.fillText("Life (\u2665)", 475, 15); // Display current lifes
+		
+		ctx.fillStyle = "rgb(250, 250, 250)";
+		ctx.font = "16px OCR A Std, monospace";
+		ctx.textAlign = "left";
+		ctx.textBaseline = "bottom";
+		ctx.fillText("Score : " + parseInt(scorePoints), 32, 490);
+	};
+
+	
+	var heroStrike = function()
+	{
+		if(myHero == 1)
+		{
+			// ================== Mouvement Magical Strike HERO TOP ================== //
 				if(strikeType == 0)
 				{
 					position = position - (1 * strike.speed);
@@ -585,13 +662,11 @@
 		
 					
 				if (SlashReady)
-				{
 					ctx.drawImage(SlashImage, slashX, slashY); // Draw the monster 2
-				}
-			}
-			else
-			{
-				if(strikeType == 0)
+		}
+		else
+		{
+			if(strikeType == 0)
 				{
 					ctx.drawImage(StrikeImage, strikeX, strikeY-60); // Draw the monster
 					strike.x = hero.x;
@@ -616,109 +691,10 @@
 					strike.y = hero.y;
 				}
 				StrikeReady = false;	
-			}
-			
 		}
-		
-		// ================== Mouvement Monster Strike  ================== //
-		if (Monster3StrikeReady)
-		{	
-			position3 = position3 - (1 * mstrike.speed);
-			ctx.drawImage(Monster3StrikeImage, monster3.x, monster3.y+position3); // Draw the monster 2
-			mstrike.x = monster3.x;
-			mstrike.y = monster3.y+position3;
-			if(monster3.y+position3 < 0)
-			{
-				position3 	= 0;
-				Monster3StrikeReady = false;		
-			}
-			
-				
-			if (SlashReady)
-			{
-				ctx.drawImage(SlashImage, slashX, slashY); // Draw the monster 2
-			}
-			
-		}
-		if (d_Monster3StrikeReady)
-		{	
-			d_position3 = d_position3 + (1 * d_mstrike.speed);
-			ctx.drawImage(d_Monster3StrikeImage, monster3.x, monster3.y+d_position3); // Draw the monster 2
-			d_mstrike.x = monster3.x;
-			d_mstrike.y = monster3.y+d_position3;
-			if(monster3.y+d_position3 > canvas.height)
-			{
-				d_position3 	= 0;
-				d_Monster3StrikeReady = false;		
-			}
-			
-				
-			if (SlashReady)
-			{
-				ctx.drawImage(SlashImage, slashX, slashY); // Draw the monster 2
-			}
-		}
-		if (l_Monster3StrikeReady)
-		{	
-			l_position3 = l_position3 + (1 * l_mstrike.speed);
-			ctx.drawImage(l_Monster3StrikeImage, monster3.x+l_position3, monster3.y); // Draw the monster 2
-			l_mstrike.x = monster3.x+l_position3;
-			l_mstrike.y = monster3.y;
-			if(monster3.x+l_position3 < 0)
-			{
-				l_position3 	= 0;
-				l_Monster3StrikeReady = false;		
-			}
-			
-				
-			if (SlashReady)
-			{
-				ctx.drawImage(SlashImage, slashX, slashY); // Draw the monster 2
-			}
-		}
-		if (r_Monster3StrikeReady)
-		{	
-			r_position3 = r_position3 - (1 * r_mstrike.speed);
-			ctx.drawImage(r_Monster3StrikeImage, monster3.x+r_position3, monster3.y); // Draw the monster 2
-			r_mstrike.x = monster3.x+r_position3;
-			r_mstrike.y = monster3.y;
-			if(monster3.y+r_position3 > canvas.width)
-			{
-				r_position3 	= 0;
-				r_Monster3StrikeReady = false;		
-			}
-			
-				
-			if (SlashReady)
-			{
-				ctx.drawImage(SlashImage, slashX, slashY); // Draw the monster 2
-			}
-		}
-		
+	}
 
-		SlashReady = false;
-		
-		// Score
-		ctx.fillStyle = "rgb(250, 250, 250)";
-		ctx.font = "16px OCR A Std, monospace";
-		ctx.textAlign = "left";
-		ctx.textBaseline = "top";
-		ctx.fillText("Sword of the Jaegers", 27, 15);
-		
-		ctx.fillStyle = "rgb(250, 250, 250)";
-		ctx.font = "16px OCR A Std, monospace";
-		ctx.textAlign = "right";
-		ctx.textBaseline = "top";
-		
-		if(life.hp == 2)
-			ctx.fillText("Life (\u2665 \u2665 \u2665)", 475, 15); // Display current lifes
-		else if (life.hp==1)
-			ctx.fillText("Life (\u2665 \u2665)", 475, 15); // Display current lifes
-		else
-			ctx.fillText("Life (\u2665)", 475, 15); // Display current lifes
-	};
-
-
+	
 	// The main game loop
 	var main = function () 
 	{
@@ -732,44 +708,8 @@
 
 		// Request to do this again ASAP
 		requestAnimationFrame(main);
-		
-
-
 	};
 
-	// ====================================================== //
-	// Draw everything
-	var iRender = function () 
-	{
-		if (ibgReady) {
-			ctx.drawImage(ibgImage, 0, 0);
-		}
-	};
-
-	 // Update game objects
-	var iUpdate = function () 
-	{
-		reset();
-		main();
-
-	};
-				// The main game loop
-	var iMain = function () 
-	{
-		var inow 	= Date.now(); // Current Date
-		var idelta 	= inow - ithen; // Difference between the beginning and the end of the game
-
-		
-		iRender(); // Display
-		iUpdate(); // Update
-
-		ithen = now; 
-
-		// Request to do this again ASAP
-		requestAnimationFrame(iMain);
-
-	};		
-	// ====================================================== //
 				
 	// Cross-browser support for requestAnimationFrame
 	var w = window;
@@ -778,4 +718,5 @@
 	// Let's play this game!
 	var then = Date.now();
 	var ithen = Date.now();
-	iMain();
+	reset();
+	main();
