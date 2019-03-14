@@ -27,8 +27,6 @@ aside
     float           : right; 
     flex-direction  : column;
 }
-
-
 /* Put a shadow to a form */
 .shadow
 {
@@ -58,6 +56,40 @@ aside
     padding-bottom  : 7px;
 }
 
+/* Set specifies settings for table  of rules*/
+.specifications
+{     
+    border				:  1px solid black;
+}
+.specifications th
+{
+    background-color	: dimgrey;
+    color				: white;
+    border				: 1px solid black;
+
+}
+.specifications td
+{
+    margin-left			: 25%;
+    width				: 10%;
+    border				: 1px solid black;
+}
+
+.tdfirst
+{
+   background-color		: dimgrey;
+    color				:  white;
+}
+.resposivetable
+{
+     overflow-x			: auto;
+}
+table:nth-child(1) tr:nth-child(2n)
+{
+	background-color	: #E0E0E0;
+}
+
+
 @media screen and (max-width: 468px)
 {
     body
@@ -66,11 +98,19 @@ aside
         margin: 0;
         width: 100%;
     }
+
     
     h2
     {
         margin-top: 28pt;
     }
+    
+
+    table:nth-child(1)
+    {
+        font-size: 8px;
+    }
+
 }
 
 
@@ -84,35 +124,7 @@ aside
     aside
     {
         float           : left; 
-        margin-left     : 2%; 
+        margin-left     : 5%; 
         margin-bottom   : 30px; 
     }
-}
-
-/* Set specifies settings for table  of rules*/
-.specifications {
-       
-    border:            1px solid black;
-    
-    
-}
-.specifications th{
-   
-    background-color: dimgrey;
-    color:             white;
-    border:            1px solid black;
-
-}
-.specifications td{
-    margin-left:         25%;
-    width: 10%;
-    border:            1px solid black;
-}
-
-.tdfirst{
-   background-color: dimgrey;
-    color:             white;
-}
-.resposivetable{
-     overflow-x:        auto;
 }

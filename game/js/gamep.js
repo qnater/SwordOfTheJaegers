@@ -10,7 +10,7 @@
 	
 	var monsterStrikeSpeed		= 10;	// Speed of the strike by 1 to 100
 	
-	var myHero					= 1;	// Choose your hero
+	var myHero					= 2;	// Choose your hero
 	// =============================================================================== //
 	
 	
@@ -407,7 +407,7 @@
 		
 		if(life.hp < 0)
 		{
-			window.location.replace("lost.html");
+			window.location.replace("lost_p.html");
 		}
 		
 		// STRIKE DIFFICULTY

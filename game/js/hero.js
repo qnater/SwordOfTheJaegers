@@ -42,15 +42,15 @@ var update = function (modifier)
 {
 	if (87 in keysDown) 
 	{ // Player holding up
-		window.location.replace("command.html");
+		window.location.replace("game_w.html");
 	}
 	if (67 in keysDown) 
 	{ // Player holding up
-		window.location.replace("command.html");
+		window.location.replace("game.html");
 	}
 	if (80 in keysDown) 
 	{ // Player holding up
-		window.location.replace("command.html");
+		window.location.replace("game_p.html");
 	}
 
 
