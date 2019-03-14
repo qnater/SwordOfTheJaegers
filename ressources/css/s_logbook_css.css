@@ -5,6 +5,7 @@ table, th, td
 table
 {
 	margin-bottom		: 42px;
+
 }
 td
 {
@@ -23,4 +24,25 @@ th
 td:nth-child(1)
 {
 	background-color	: #E0E0E0;
+}
+
+@media screen and (max-width: 468px)
+{
+    body
+    {
+        width: 100%;
+
+    }
+    table
+    {
+        font-size: 14px;
+    }
+    td
+    {
+        max-width: 63px;
+    }
+    .descriptiontaille
+    {
+        max-width: 73px;
+    }
 }

@@ -103,6 +103,13 @@ table:nth-child(1) tr:nth-child(2n)
     {
         margin-top: 28pt;
     }
+    
+
+    table:nth-child(1)
+    {
+        font-size: 9px;
+    }
+
 }
 
 
