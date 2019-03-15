@@ -1,4 +1,7 @@
 	// Create the canvas
+	var backgroundCode = 1;
+
+	
 	var canvas = document.createElement("canvas"); // Creation of the canvas
 	var ctx = canvas.getContext("2d"); // Use the 2d technology
 	canvas.width 	= 500; // Define width of the map
@@ -10,14 +13,13 @@
 	var ibgReady = false;
 	var ibgImage = new Image();
 	ibgImage.onload = function () { ibgReady = true; };
-	ibgImage.src = "pictures/introduction.PNG";
-
 
 	// Background image
 	var bgReady = false;
 	var bgImage = new Image();
 	bgImage.onload = function () { bgReady = true; };
-	bgImage.src = "pictures/500_background.PNG"; // Background of levels
+	bgImage.src = "pictures/500_a_History.PNG"; // Background of levels
+
 
 	
 	// Hero image
@@ -25,12 +27,7 @@
 	var heroImage = new Image();
 	heroImage.onload = function () { heroReady = true; };
 	
-	if(myHero == 0)
-		heroImage.src = "pictures/a_warrior.PNG"; // Picture of the chosen hero
-	else if(myHero == 1)
-		heroImage.src = "pictures/a_caster.PNG"; // Picture of the chosen hero
-	else
-		heroImage.src = "pictures/a_paladin.PNG"; // Picture of the chosen hero
+
 	
 	// =================== MONSTERS DESIGNS =================== //
 	// Monster 1 image
@@ -77,6 +74,7 @@
 	l_Monster3StrikeImage.src = "pictures/l_poison.PNG"; // Picture of a strike
 	
 	// Strike mode
+	// Strike mode
 	var r_Monster3StrikeReady = false;
 	var r_Monster3StrikeImage = new Image();
 	r_Monster3StrikeImage.src = "pictures/r_poison.PNG"; // Picture of a strike
@@ -93,9 +91,9 @@
 	// Game objects
 	var hero 			= { speed: 256, hp : 2 }; // movement in pixels per second
 
-	var monster			= { alive:true, hp:30 };
-	var monster2		= { alive:true, hp:30 };
-	var monster3		= { alive:true, hp:20 };
+	var monster			= { alive:true, hp:3 };
+	var monster2		= { alive:true, hp:3 };
+	var monster3		= { alive:true, hp:2 };
 	
 	var monsterStrike3	= { power:1 };
 	
@@ -160,239 +158,334 @@
 		monster3.y = 32 + (Math.random() * (canvas.height - 128));
 	};
 
-
 	// Update game objects
 	var update = function (modifier)
 	{
-		scorePoints = scorePoints - 0.01;
-		if (87 in keysDown) 
-		{ // Player holding up
-			if(hero.y >= 35) // Limitation because of the walls
-				hero.y -= hero.speed * modifier;
-		}
-		if (83 in keysDown) 
-		{ // Player holding down
-			if(hero.y <= canvas.height-115) // Limitation because of the wall
-				hero.y += hero.speed * modifier;
-		}
-		if (65 in keysDown) 
-		{ // Player holding left
-		   if(hero.x >= 35) // Limitation because of the wall
-				hero.x -= hero.speed * modifier;
-		}
-		if (68 in keysDown) 
-		{ // Player holding right
-			if(hero.x <= canvas.width-115) // Limitation because of the wall
-				hero.x += hero.speed * modifier;
-		}
 		
-		if(myHero == 1)
+		console.log(backgroundCode);
+		
+		if(backgroundCode != 4 && backgroundCode != 3)
 		{
-			if (38 in keysDown) 
-			{
-				StrikeImage.src = "pictures/strikeMagic.PNG"; // Picture of strike
-				strikeType 		= 0;
-				position 		= 0;
-				strikeX			= hero.x;
-				StrikeReady 	= true;	
+			if (13 in keysDown) 
+			{ 
+				backgroundCode = 2;
 			}
-			if (40 in keysDown) 
-			{
-				StrikeImage.src = "pictures/b_strikeMagic.PNG"; // Picture of strike
-				strikeType 		= 1;
-				position		= 0;
-				strikeX			= hero.x;
-				StrikeReady 	= true;
+			if (32 in keysDown) 
+			{ 
+				backgroundCode = 3;
 			}
-			if (39 in keysDown) 
+		}
+		if(backgroundCode == 3)
+		{			
+			if (87 in keysDown) 
 			{
-				StrikeImage.src = "pictures/r_strikeMagic.PNG"; // Picture of strike
-				strikeType 		= 2;
-				position 		= 0;
-				strikeY			= hero.y;
-				StrikeReady 	= true;	
+				backgroundCode = 4;
+				heroImage.src = "pictures/a_warrior.PNG"; // Picture of the chosen hero
+				myHero=0;		
 			}
-			if (37 in keysDown) 
-			{
-				StrikeImage.src = "pictures/l_strikeMagic.PNG"; // Picture of strike
-				strikeType 		= 3;
-				position		= 0;
-				strikeY			= hero.y;
-				StrikeReady 	= true;
+			if (67 in keysDown) 
+			{ 
+				backgroundCode = 4;
+				heroImage.src = "pictures/a_caster.PNG"; // Picture of the chosen hero
+				myHero=1;
+			}
+			if (80 in keysDown) 
+			{ // Player holding up
+				backgroundCode = 4;
+				heroImage.src = "pictures/a_paladin.PNG"; // Picture of the chosen hero
+				myHero=2;
 			}
 		}
 		else
 		{
-			if (38 in keysDown) 
+	
+			var go = 0;
+			scorePoints = scorePoints - 0.01;
+			
+			if(parseInt(scorePoints) % 3 == 1)
 			{
-				StrikeImage.src = "pictures/a_sword.PNG"; // Picture of strike
-				strikeType 		= 0;
-				strikeX			= hero.x;
-				strikeY			= hero.y;
-				StrikeReady 	= true;	
+				SlashReady = false;
 			}
-			if (40 in keysDown) 
+				
+			
+				
+			if (87 in keysDown) 
+			{ // Player holding up
+				if(hero.y >= 35) // Limitation because of the walls
+					hero.y -= hero.speed * modifier;
+			}
+			if (83 in keysDown) 
+			{ // Player holding down
+				if(hero.y <= canvas.height-115) // Limitation because of the wall
+					hero.y += hero.speed * modifier;
+			}
+			if (65 in keysDown) 
+			{ // Player holding left
+			   if(hero.x >= 35) // Limitation because of the wall
+					hero.x -= hero.speed * modifier;
+			}
+			if (68 in keysDown) 
+			{ // Player holding right
+				if(hero.x <= canvas.width-115) // Limitation because of the wall
+					hero.x += hero.speed * modifier;
+			}
+
+			
+			if(myHero == 1)
 			{
-				StrikeImage.src = "pictures/a_sword.PNG"; // Picture of strike
-				strikeType 		= 1;
-				strikeX			= hero.x;
-				strikeY			= hero.y;
-				StrikeReady 	= true;
+				if (38 in keysDown) 
+				{
+					StrikeImage.src = "pictures/rasengan.PNG"; // Picture of strike
+					strikeType 		= 0;
+					position 		= 0;
+					strikeX			= hero.x;
+					StrikeReady 	= true;	
+				}
+				if (40 in keysDown) 
+				{
+					StrikeImage.src = "pictures/rasengan.PNG"; // Picture of strike
+					strikeType 		= 1;
+					position		= 0;
+					strikeX			= hero.x;
+					StrikeReady 	= true;
+				}
+				if (39 in keysDown) 
+				{
+					StrikeImage.src = "pictures/rasengan.PNG"; // Picture of strike
+					strikeType 		= 2;
+					position 		= 0;
+					strikeY			= hero.y;
+					StrikeReady 	= true;	
+				}
+				if (37 in keysDown) 
+				{
+					StrikeImage.src = "pictures/rasengan.PNG"; // Picture of strike
+					strikeType 		= 3;
+					position		= 0;
+					strikeY			= hero.y;
+					StrikeReady 	= true;
+				}
 			}
-			if (39 in keysDown) 
+			else
 			{
-				StrikeImage.src = "pictures/a_sword.PNG"; // Picture of strike
-				strikeType 		= 2;
-				strikeX			= hero.x;
-				strikeY			= hero.y;
-				StrikeReady 	= true;	
+				if (38 in keysDown) 
+				{
+					StrikeImage.src = "pictures/a_sword.PNG"; // Picture of strike
+					strikeType 		= 0;
+					strikeX			= hero.x;
+					strikeY			= hero.y;
+					StrikeReady 	= true;	
+				}
+				if (40 in keysDown) 
+				{
+					StrikeImage.src = "pictures/a_sword.PNG"; // Picture of strike
+					strikeType 		= 1;
+					strikeX			= hero.x;
+					strikeY			= hero.y;
+					StrikeReady 	= true;
+				}
+				if (39 in keysDown) 
+				{
+					StrikeImage.src = "pictures/a_sword.PNG"; // Picture of strike
+					strikeType 		= 2;
+					strikeX			= hero.x;
+					strikeY			= hero.y;
+					StrikeReady 	= true;	
+				}
+				if (37 in keysDown) 
+				{
+					StrikeImage.src = "pictures/a_sword.PNG"; // Picture of strike
+					strikeType 		= 3;
+					strikeX			= hero.x;
+					strikeY			= hero.y;				
+					StrikeReady 	= true;
+				}
 			}
-			if (37 in keysDown) 
-			{
-				StrikeImage.src = "pictures/a_sword.PNG"; // Picture of strike
-				strikeType 		= 3;
-				strikeX			= hero.x;
-				strikeY			= hero.y;				
-				StrikeReady 	= true;
-			}
-		}
 
 
-		// Are they touching?
-		if(hero.x <= (monster.x + 32) && (monster.x <= (hero.x + 32) && hero.y <= (monster.y + 32) && monster.y <= (hero.y + 32)))							
-		{
-			hero.hp = hero.hp - 1;
-			hero.y = hero.y +36;
-			scorePoints = scorePoints - 10000;
-		}
-		
-		 // Are they touching?
-		if( hero.x <= (monster2.x + 32) &&(monster2.x <= (hero.x + 32) && hero.y <= (monster2.y + 32) && monster2.y <= (hero.y + 32)))							
-		{
-			hero.hp = hero.hp - 1;
-			hero.y = hero.y +36;
-			scorePoints = scorePoints - 10000;
-		}
-		
-		 // Are they touching?
-		if ( hero.x <= (monster3.x + 32) && ( monster3.x <= (hero.x + 32) && hero.y <= (monster3.y + 32) && monster3.y <= (hero.y + 32)))							
-		{
-			hero.hp = hero.hp - 1;
-			hero.y = hero.y + 36;
-			scorePoints = scorePoints - 10000;
-		}
-		
-		if ( strike.x <= (monster.x + 32) && (monster.x <= (strike.x + 32) && strike.y <= (monster.y + 32) && monster.y <= (strike.y + 32))	)						
-		{
-			SlashReady 		= true;
+			// Are they touching?
+			if(hero.x <= (monster.x + 32) && (monster.x <= (hero.x + 32) && hero.y <= (monster.y + 32) && monster.y <= (hero.y + 32)))							
+			{
+				hero.hp = hero.hp - 1;
+				hero.y = hero.y +36;
+				scorePoints = scorePoints - 10000;
+			}
 			
-			slashX 			= monster.x;
-			slashY 			= monster.y;
+			 // Are they touching?
+			if( hero.x <= (monster2.x + 32) &&(monster2.x <= (hero.x + 32) && hero.y <= (monster2.y + 32) && monster2.y <= (hero.y + 32)))							
+			{
+				hero.hp = hero.hp - 1;
+				hero.y = hero.y +36;
+				scorePoints = scorePoints - 10000;
+			}
+			
+			 // Are they touching?
+			if ( hero.x <= (monster3.x + 32) && ( monster3.x <= (hero.x + 32) && hero.y <= (monster3.y + 32) && monster3.y <= (hero.y + 32)))							
+			{
+				hero.hp = hero.hp - 1;
+				hero.y = hero.y + 36;
+				scorePoints = scorePoints - 10000;
+			}
+			
+			if ( strike.x <= (monster.x + 32) && (monster.x <= (strike.x + 32) && strike.y <= (monster.y + 32) && monster.y <= (strike.y + 32))	)						
+			{
+				SlashReady 		= true;
+				
+				slashX 			= monster.x;
+				slashY 			= monster.y;
 
-			monster.hp  = monster.hp - 1;
-			
-			if(monster.hp<0)
+				strike.x 	= 1000;
+				position 	= 0;
+				StrikeReady = false;
+				
+				monster.hp  = monster.hp - 1;
+				
+				if(monster.hp<0)
+				{
+					monster.alive= false;
+					monsterReady = false;
+					monster.x    = 800;
+					scorePoints = scorePoints + 1000;
+				}
+				
+				
+			}
+			if ( strike.x <= (monster2.x + 32) && (monster2.x <= (strike.x + 32) && strike.y <= (monster2.y + 32) && monster2.y <= (strike.y + 32)))							
 			{
-				monster.alive= false;
-				monsterReady = false;
-				monster.x    = 800;
-				scorePoints = scorePoints + 1000;
+				SlashReady 	= true;
+							
+				slashX = monster2.x;
+				slashY = monster2.y;
+				
+				monster2.hp = monster2.hp-1;
+				
+				strike.x 	= 1000;
+				position 	= 0;
+				StrikeReady = false;
+				
+				if(monster2.hp<0)
+				{
+					monster2.alive 	= false;
+					monster2Ready 	= false;
+					monster2.x    	= 800;
+					scorePoints = scorePoints + 1000;
+				}
+				
 			}
 			
-			
-		}
-		if ( strike.x <= (monster2.x + 32) && (monster2.x <= (strike.x + 32) && strike.y <= (monster2.y + 32) && monster2.y <= (strike.y + 32)))							
-		{
-			SlashReady 	= true;
-						
-			slashX = monster2.x;
-			slashY = monster2.y;
-			
-			monster2.hp = monster2.hp-1;
-			
-			if(monster2.hp<0)
+			if (strike.x <= (monster3.x + 70) && (monster3.x <= (strike.x + 16) && strike.y <= (monster3.y + 70) && monster3.y <= (strike.y + 16)))							
 			{
-				monster2.alive 	= false;
-				monster2Ready 	= false;
-				monster2.x    	= 800;
-				scorePoints = scorePoints + 1000;
+				SlashReady 	= true;
+				
+				slashX = monster3.x;
+				slashY = monster3.y;
+				
+				monster3.hp  = monster3.hp-1;
+				
+				strike.x 	= 1000;
+				position 	= 0;
+				StrikeReady = false;
+				
+				if(monster3.hp<0)
+				{
+					monster3.alive 	= false;
+					monster3Ready 	= false;
+					monster3.x    	= 800;
+					scorePoints = scorePoints + 1000;
+				}
+			}
+				
+			if( hero.x <= (mstrike.x + 32) &&(mstrike.x <= (hero.x + 32) && hero.y <= (mstrike.y + 32) && mstrike.y <= (hero.y + 32)))							
+			{
+				hero.hp = hero.hp - 1;
+				hero.y = hero.y + 36;
+				scorePoints = scorePoints - 10000;
+			}
+			if( hero.x <= (d_mstrike.x + 32) &&(d_mstrike.x <= (hero.x + 32) && hero.y <= (d_mstrike.y + 32) && d_mstrike.y <= (hero.y + 32)))							
+			{
+				hero.hp = hero.hp - 1;
+				hero.y = hero.y + 36;
+				scorePoints = scorePoints - 10000;
+			}
+			if( hero.x <= (l_mstrike.x + 32) &&(l_mstrike.x <= (hero.x + 32) && hero.y <= (l_mstrike.y + 32) && l_mstrike.y <= (hero.y + 32)))							
+			{
+				hero.hp = hero.hp - 1;
+				hero.y = hero.y + 36;
+				scorePoints = scorePoints - 10000;
+			}
+			if( hero.x <= (r_mstrike.x + 32) &&(r_mstrike.x <= (hero.x + 32) && hero.y <= (r_mstrike.y + 32) && r_mstrike.y <= (hero.y + 32)))							
+			{
+				hero.hp = hero.hp - 1;
+				hero.y = hero.y + 36;
+				scorePoints = scorePoints - 10000;
+
 			}
 			
-		}
-		
-		if (strike.x <= (monster3.x + 32) && (monster3.x <= (strike.x + 32) && strike.y <= (monster3.y + 32) && monster3.y <= (strike.y + 32)))							
-		{
-			SlashReady 	= true;
-			
-			slashX = monster3.x;
-			slashY = monster3.y;
-			
-			monster3.hp  = monster3.hp-1;
-			
-			if(monster3.hp<0)
+			if(monster.alive == false && monster2.alive == false && monster3.alive == false)
 			{
-				monster3.alive 	= false;
-				monster3Ready 	= false;
-				monster3.x    	= 800;
-				scorePoints = scorePoints + 1000;
+				backgroundCode == 6;
+				window.location.replace("score.html");
 			}
-		}
 			
-		if( hero.x <= (mstrike.x + 32) &&(mstrike.x <= (hero.x + 32) && hero.y <= (mstrike.y + 32) && mstrike.y <= (hero.y + 32)))							
-		{
-			hero.hp = hero.hp - 1;
-			hero.y = hero.y + 36;
-			scorePoints = scorePoints - 10000;
-		}
-		if( hero.x <= (d_mstrike.x + 32) &&(d_mstrike.x <= (hero.x + 32) && hero.y <= (d_mstrike.y + 32) && d_mstrike.y <= (hero.y + 32)))							
-		{
-			hero.hp = hero.hp - 1;
-			hero.y = hero.y + 36;
-			scorePoints = scorePoints - 10000;
-		}
-		if( hero.x <= (l_mstrike.x + 32) &&(l_mstrike.x <= (hero.x + 32) && hero.y <= (l_mstrike.y + 32) && l_mstrike.y <= (hero.y + 32)))							
-		{
-			hero.hp = hero.hp - 1;
-			hero.y = hero.y + 36;
-			scorePoints = scorePoints - 10000;
-		}
-		if( hero.x <= (r_mstrike.x + 32) &&(r_mstrike.x <= (hero.x + 32) && hero.y <= (r_mstrike.y + 32) && r_mstrike.y <= (hero.y + 32)))							
-		{
-			hero.hp = hero.hp - 1;
-			hero.y = hero.y + 36;
-			scorePoints = scorePoints - 10000;
-		}
-		
-		if(monster.alive == false && monster2.alive == false && monster3.alive == false)
-		{
-			window.location.replace("score.html");
-		}
-		
-		if(hero.hp < 0)
-		{
-			window.location.replace("lost.html");
-		}
-		
-		// STRIKE DIFFICULTY
-		if(Math.random()*1000<chanceToStrikeMonster3 && monster3.alive)
-		{
-			position3				= 0;
-			Monster3StrikeReady 	= true;
-			d_position3				= 0;
-			d_Monster3StrikeReady 	= true;
-			r_position3				= 0;
-			r_Monster3StrikeReady 	= true;
-			l_position3				= 0;
-			l_Monster3StrikeReady 	= true;
-		}
-					
+			if(hero.hp < 0)
+			{
+				if(myHero == 0)
+				{
+					backgroundCode == 5;
+					window.location.replace("lost.html");
+				}
+				if(myHero == 1)
+				{
+					backgroundCode == 5;
+					window.location.replace("lost.html");
+				}
+				else
+				{
+					backgroundCode == 5;
+					window.location.replace("lost.html");
+				}
+			}
+			
+			// STRIKE DIFFICULTY
+			if(Math.random()*1000<chanceToStrikeMonster3 && monster3.alive)
+			{
+				position3				= 0;
+				Monster3StrikeReady 	= true;
+				d_position3				= 0;
+				d_Monster3StrikeReady 	= true;
+				r_position3				= 0;
+				r_Monster3StrikeReady 	= true;
+				l_position3				= 0;
+				l_Monster3StrikeReady 	= true;
+			}
+		}	
 	};
 
 	// Draw everything
 	var render = function () 
 	{
+		console.log(backgroundCode);
+		
+						
 		if (bgReady) 
 			ctx.drawImage(bgImage, 0, 0);
+
+			
+		if(backgroundCode == 1)
+			bgImage.src = "pictures/500_a_History.PNG"; // Background of levels
+		if(backgroundCode == 2)
+			bgImage.src = "pictures/500_command.PNG"; // Background of levels
+		if(backgroundCode == 3)
+			bgImage.src = "pictures/500_a_chooseHero.PNG"; // Background of levels
+		if(backgroundCode == 5 || backgroundCode == 6)
+		{
+			bgImage.src = "pictures/500_back.PNG";
+			reset();
+		}
+		if(backgroundCode == 4)
+		{			
+
+		bgImage.src = "pictures/500_background.PNG"; // Background of levels
 
 		if (heroReady) 
 			ctx.drawImage(heroImage, hero.x, hero.y); // Draw the hero
@@ -424,9 +517,6 @@
 		{
 			if(b1)
 			{
-
-
-			
 				do
 				{
 					pos_min = pos_min * -1;				
@@ -465,6 +555,7 @@
 					while(monster2.y > canvas.height-100 || monster2.y < 100);
 				}
 			ctx.drawImage(monster2Image, monster2.x, monster2.y); // Draw the monster 2
+			
 		}
 		
 		// ================== Mouvement Monster Number 3 ================== //
@@ -572,7 +663,7 @@
 		}
 		
 
-		SlashReady = false;
+		
 		
 		// Score
 		ctx.fillStyle = "rgb(250, 250, 250)";
@@ -598,6 +689,8 @@
 		ctx.textAlign = "left";
 		ctx.textBaseline = "bottom";
 		ctx.fillText("Score : " + parseInt(scorePoints), 32, 490);
+		
+		}
 	};
 
 	
