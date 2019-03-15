@@ -181,8 +181,8 @@
 		
 		console.log(backgroundCode);
 		
-		if(backgroundCode == 0 || backgroundCode == 1 || backgroundCode == 2)
-		{
+		//if(backgroundCode == 0 || backgroundCode == 1 || backgroundCode == 2)
+		//{
 			if (48 in keysDown) 
 			{ 
 				backgroundCode = 0;
@@ -199,7 +199,7 @@
 			{ 
 				backgroundCode = 3;
 			}
-		}
+		//}
 		if(backgroundCode == 3)
 		{			
 			if (87 in keysDown) 
@@ -221,14 +221,14 @@
 				myHero=2;
 			}
 		}
-		if(backgroundCode == 5 || backgroundCode == 6)
-		{	
+		//if(backgroundCode == 5 || backgroundCode == 6)
+		//{	
 			if (8 in keysDown) 
 			{
 				reset();
 				backgroundCode = 3;
 			}
-		}
+		//}
 		else
 		{
 	
