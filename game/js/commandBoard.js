@@ -12,4 +12,11 @@
 
 	var myHero					= 1;		// Choose your hero
 	var scorePoints				= 1000000;	// Beginning Points
+	
+		
+	var backgroundCode 			= 0;		// Where to start
+	
+	var hScore1 				= 999900;	// Highest score
+	var hScore2 				= 992000;	// Second highest score
+	var hScore3 				= 972999;	// Third highest score
 // =============================================================================== //

@@ -1,7 +1,4 @@
-	// Create the canvas
-	var backgroundCode = 1;
 
-	
 	var canvas = document.createElement("canvas"); // Creation of the canvas
 	var ctx = canvas.getContext("2d"); // Use the 2d technology
 	canvas.width 	= 500; // Define width of the map
@@ -156,6 +153,26 @@
 		
 		monster3.x = 32 + (Math.random() * (canvas.width  - 128));
 		monster3.y = 32 + (Math.random() * (canvas.height - 128));
+		
+		hero.hp 	= 2;
+		monster.hp 	= 3;
+		monster2.hp = 3;
+		monster2.hp = 2;
+		
+		monster.alive  = true;
+		monster2.alive = true;
+		monster2.alive = true;
+		
+		StrikeReady	   = false;
+		SlashReady	   = false;
+		
+		monsterReady   = true;
+		monster2Ready  = true;		
+		monster3Ready  = true;
+		
+		
+		
+		scorePoints = 1000000;
 	};
 
 	// Update game objects
@@ -164,13 +181,21 @@
 		
 		console.log(backgroundCode);
 		
-		if(backgroundCode != 4 && backgroundCode != 3)
+		if(backgroundCode == 0 || backgroundCode == 1 || backgroundCode == 2)
 		{
-			if (13 in keysDown) 
+			if (48 in keysDown) 
+			{ 
+				backgroundCode = 0;
+			}
+			if (49 in keysDown) 
+			{ 
+				backgroundCode = 1;
+			}
+			if (50 in keysDown) 
 			{ 
 				backgroundCode = 2;
 			}
-			if (32 in keysDown) 
+			if (51 in keysDown) 
 			{ 
 				backgroundCode = 3;
 			}
@@ -194,6 +219,14 @@
 				backgroundCode = 4;
 				heroImage.src = "pictures/a_paladin.PNG"; // Picture of the chosen hero
 				myHero=2;
+			}
+		}
+		if(backgroundCode == 5 || backgroundCode == 6)
+		{	
+			if (8 in keysDown) 
+			{
+				reset();
+				backgroundCode = 3;
 			}
 		}
 		else
@@ -345,7 +378,7 @@
 					monster.alive= false;
 					monsterReady = false;
 					monster.x    = 800;
-					scorePoints = scorePoints + 1000;
+					scorePoints = scorePoints + 10;
 				}
 				
 				
@@ -368,7 +401,7 @@
 					monster2.alive 	= false;
 					monster2Ready 	= false;
 					monster2.x    	= 800;
-					scorePoints = scorePoints + 1000;
+					scorePoints = scorePoints + 10;
 				}
 				
 			}
@@ -391,7 +424,7 @@
 					monster3.alive 	= false;
 					monster3Ready 	= false;
 					monster3.x    	= 800;
-					scorePoints = scorePoints + 1000;
+					scorePoints = scorePoints + 100;
 				}
 			}
 				
@@ -423,27 +456,12 @@
 			
 			if(monster.alive == false && monster2.alive == false && monster3.alive == false)
 			{
-				backgroundCode == 6;
-				window.location.replace("score.html");
+				backgroundCode = 6;
 			}
 			
 			if(hero.hp < 0)
 			{
-				if(myHero == 0)
-				{
-					backgroundCode == 5;
-					window.location.replace("lost.html");
-				}
-				if(myHero == 1)
-				{
-					backgroundCode == 5;
-					window.location.replace("lost.html");
-				}
-				else
-				{
-					backgroundCode == 5;
-					window.location.replace("lost.html");
-				}
+				backgroundCode = 5;
 			}
 			
 			// STRIKE DIFFICULTY
@@ -470,17 +488,81 @@
 		if (bgReady) 
 			ctx.drawImage(bgImage, 0, 0);
 
-			
+		if(backgroundCode == 0)
+			bgImage.src = "pictures/500_introduction.PNG"; // Background of levels	
 		if(backgroundCode == 1)
 			bgImage.src = "pictures/500_a_History.PNG"; // Background of levels
 		if(backgroundCode == 2)
 			bgImage.src = "pictures/500_command.PNG"; // Background of levels
 		if(backgroundCode == 3)
 			bgImage.src = "pictures/500_a_chooseHero.PNG"; // Background of levels
-		if(backgroundCode == 5 || backgroundCode == 6)
+		if(backgroundCode == 5)
 		{
 			bgImage.src = "pictures/500_back.PNG";
-			reset();
+
+			ctx.fillStyle = "rgb(250, 250, 250)";
+			ctx.font = "32px OCR A Std, monospace";
+			ctx.textAlign = "right";
+			ctx.textBaseline = "top";
+			ctx.fillText("Game Over", canvas.width/1.50, canvas.height/2.25); // Display current lifes
+
+			
+			ctx.fillStyle = "rgb(250, 250, 250)";
+			ctx.font = "16px OCR A Std, monospace";
+			ctx.textAlign = "right";
+			ctx.textBaseline = "top";
+			ctx.fillText("Life 0)", 475, 15); // Display current lifes	
+		}
+		if(backgroundCode == 6)
+		{
+			bgImage.src = "pictures/500_back.PNG";
+
+						
+			ctx.fillStyle = "rgb(250, 250, 250)";
+			ctx.fillStyle = "rgb(250, 250, 250)";
+			ctx.font = "32px OCR A Std, monospace";
+			ctx.textAlign = "right";
+			ctx.textBaseline = "top";
+			ctx.fillText("Hall Of Fame", canvas.width/1.42, 50); // Display current lifes
+
+
+			if(parseInt(scorePoints) > hScore1)
+			{								
+				ctx.fillStyle = "rgb(250, 250, 250)";
+				ctx.font = "20px OCR A Std, monospace";
+				ctx.textAlign = "right";
+				ctx.textBaseline = "top";
+				ctx.fillText("You got the highest score ! - " + parseInt(scorePoints) + "pts", 450, canvas.height/2); // Display current lifes
+			}
+			else
+			{
+							
+			ctx.fillStyle = "rgb(250, 250, 250)";
+			ctx.font = "32px OCR A Std, monospace";
+			ctx.textAlign = "right";
+			ctx.textBaseline = "top";
+			ctx.fillText("Your - " + parseInt(scorePoints) + "pts", 350, canvas.height-50); // Display current lifes
+			
+			ctx.fillStyle = "rgb(250, 250, 250)";
+			ctx.font = "32px OCR A Std, monospace";
+			ctx.textAlign = "right";
+			ctx.textBaseline = "top";
+			ctx.fillText("Nate - " + hScore1 + "pts", 350, canvas.height/3); // Display current lifes
+
+			ctx.fillStyle = "rgb(250, 250, 250)";
+			ctx.font = "32px OCR A Std, monospace";
+			ctx.textAlign = "right";
+			ctx.textBaseline = "top";
+			ctx.fillText("Fade - " + hScore2 + "pts", 350, canvas.height/2); // Display current lifes
+
+			ctx.fillStyle = "rgb(250, 250, 250)";
+			ctx.font = "32px OCR A Std, monospace";
+			ctx.textAlign = "right";
+			ctx.textBaseline = "top";
+			ctx.fillText("Plyr - " + hScore3 + "pts", 350, canvas.height/1.5); // Display current lifes
+
+			}
+		
 		}
 		if(backgroundCode == 4)
 		{			
