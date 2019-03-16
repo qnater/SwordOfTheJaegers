@@ -1,4 +1,10 @@
-
+	//======================================================================================== //
+	// QUENTIN NATER v4.2 (HES-SO)															   //
+	// SWORD OF THE JAEGERS																	   //
+	// MAIN GAME JS	(LINKED TO : GAME.HTML)													   //
+	// LAST UPDATE : 3/15/2019 (NATE)														   //
+	//======================================================================================== //
+	
 	var canvas = document.createElement("canvas"); // Creation of the canvas
 	var ctx = canvas.getContext("2d"); // Use the 2d technology
 	canvas.width 	= 500; // Define width of the map
@@ -231,14 +237,11 @@
 		//}
 		else
 		{
-	
-			var go = 0;
-			scorePoints = scorePoints - 0.01;
+			if(backgroundCode == 4)
+				scorePoints = scorePoints - 0.01;
 			
 			if(parseInt(scorePoints) % 3 == 1)
-			{
 				SlashReady = false;
-			}
 				
 			
 				
@@ -456,12 +459,24 @@
 			
 			if(monster.alive == false && monster2.alive == false && monster3.alive == false)
 			{
-				backgroundCode = 6;
+				if(room_level == 1)
+				{
+					room_level = 2;
+				}
+				if(room_level == 2)
+				{
+					room_level = 3;
+				}
+				if(room_level == 3)
+				{
+					backgroundCode = 6;
+				}
 			}
 			
 			if(hero.hp < 0)
 			{
-				backgroundCode = 5;
+				room_level 		= 1;
+				backgroundCode 	= 5;
 			}
 			
 			// STRIKE DIFFICULTY
@@ -772,6 +787,12 @@
 		ctx.textBaseline = "bottom";
 		ctx.fillText("Score : " + parseInt(scorePoints), 32, 490);
 		
+		ctx.fillStyle = "rgb(250, 250, 250)";
+		ctx.font = "16px OCR A Std, monospace";
+		ctx.textAlign = "right";
+		ctx.textBaseline = "bottom";
+		ctx.fillText("Level : " + room_level, 470, 490);
+		
 		}
 	};
 
@@ -895,3 +916,7 @@
 	var ithen = Date.now();
 	reset();
 	main();
+	
+	//======================================================================================== //
+	// END																					   //
+	//======================================================================================== //
