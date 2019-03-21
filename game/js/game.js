@@ -59,12 +59,20 @@
 	var monster4Image = new Image();
 	monster4Image.onload = function () { monster4Ready = true; };
 	monster4Image.src = "pictures/packy.PNG"; // Picture of a monster
+<<<<<<< HEAD
 	
 	// Monster 4 image
 	var dragonReady = false;
 	var dragonImage = new Image();
 	dragonImage.onload = function () { dragonReady = true; };
 	dragonImage.src = "pictures/a_dragon.PNG"; // Picture of a monster
+=======
+    // Dragon image
+	var dragonReady = false;
+	var dragonImage = new Image();
+	dragonImage.onload = function () { monster4Ready = true; };
+	dragonImage.src = "pictures/a_dragon.PNG"; // Picture of a dragon
+>>>>>>> 81f1c7e4214ba7bf14fb986b553f918a08504e22
 	// =================== ============== ======================== //
 
 	// =================== HERO STRIKES DESIGNS =================== //
@@ -96,6 +104,28 @@
 	var r_Monster3StrikeReady = false;
 	var r_Monster3StrikeImage = new Image();
 	r_Monster3StrikeImage.src = "pictures/r_poison.PNG"; // Picture of a strike
+    // =================== DRAGON STRIKES DESIGNS =============== //
+	
+	// Strike mode
+	var Monster3StrikeReady = false;
+	var Monster3StrikeImage = new Image();
+	dragonStrikeImage.src = "pictures/t_poison.PNG"; // Picture of a strike
+	
+	// Strike mode
+	var d_Monster3StrikeReady = false;
+	var d_Monster3StrikeImage = new Image();
+	d_dragonStrikeeImage.src = "pictures/b_poison.PNG"; // Picture of a strike
+	
+	// Strike mode
+	var l_Monster3StrikeReady = false;
+	var l_Monster3StrikeImage = new Image();
+	l_dragonStrikeImage.src = "pictures/l_poison.PNG"; // Picture of a strike
+	
+	// Strike mode
+	// Strike mode
+	var r_Monster3StrikeReady = false;
+	var r_Monster3StrikeImage = new Image();
+	r_dragonStrikeImage.src = "pictures/r_poison.PNG"; // Picture of a strike
 	// =================== ============== ======================== //
 	
 	
@@ -113,7 +143,11 @@
 	var monster2		= { alive:true, hp:3 };
 	var monster3		= { alive:true, hp:2 };
 	var monster4		= { alive:true, hp:4 };
+<<<<<<< HEAD
 	var dragon			= { alive:true, hp:10 };
+=======
+    var dragon		    = { alive:true, hp:100 };
+>>>>>>> 81f1c7e4214ba7bf14fb986b553f918a08504e22
 	
 	var monsterStrike3	= { power:1 };
 	
@@ -179,6 +213,10 @@
 		
 		monster4.x = 32 + (Math.random() * (canvas.width  - 128));
 		monster4.y = 32 + (Math.random() * (canvas.height - 128));
+        
+        dragon.x = 32 + (Math.random() * (canvas.width  - 128));
+		dragon.y = 32 + (Math.random() * (canvas.height - 128));
+		
 		
 		dragon.x = 32 + (Math.random() * (canvas.width  - 128));
 		dragon.y = 32 + (Math.random() * (canvas.height - 128));
@@ -187,14 +225,23 @@
 		monster.hp 	= 3;
 		monster2.hp = 3;
 		monster3.hp = 2;
+<<<<<<< HEAD
 		monster4.hp = 4;
 		dragon.hp   = 10;
+=======
+        monster4.hp = 2;
+        dragon.hp   = 2;
+>>>>>>> 81f1c7e4214ba7bf14fb986b553f918a08504e22
 		
 		monster.alive  = true;
 		monster2.alive = true;
 		monster3.alive = true;
 		monster4.alive = true;
+<<<<<<< HEAD
 		dragon.alive   = true;
+=======
+        dragon.alive   = true;
+>>>>>>> 81f1c7e4214ba7bf14fb986b553f918a08504e22
 		
 		StrikeReady	   = false;
 		SlashReady	   = false;
@@ -203,7 +250,11 @@
 		monster2Ready  = true;		
 		monster3Ready  = true;
 		monster4Ready  = true;
+<<<<<<< HEAD
 		dragonReady	   = true;
+=======
+        dragonReady    = true;
+>>>>>>> 81f1c7e4214ba7bf14fb986b553f918a08504e22
 		
 		room_level	   = 1;
 		
@@ -433,14 +484,21 @@
 				hero.y = hero.y +36;
 				scorePoints = scorePoints - 10000;
 			}
+<<<<<<< HEAD
 			// Are they touching?
+=======
+            // Are they touching?
+>>>>>>> 81f1c7e4214ba7bf14fb986b553f918a08504e22
 			if(hero.x <= (dragon.x + 32) && (dragon.x <= (hero.x + 32) && hero.y <= (dragon.y + 32) && dragon.y <= (hero.y + 32)))							
 			{
 				hero.hp = hero.hp - 1;
 				hero.y = hero.y +36;
 				scorePoints = scorePoints - 10000;
 			}
+<<<<<<< HEAD
 			
+=======
+>>>>>>> 81f1c7e4214ba7bf14fb986b553f918a08504e22
 			
 			if ( strike.x <= (monster.x + 32) && (monster.x <= (strike.x + 32) && strike.y <= (monster.y + 32) && monster.y <= (strike.y + 32))	)						
 			{
@@ -529,6 +587,26 @@
 					monster4.x    	= 800;
 					scorePoints = scorePoints + 100;
 				}
+                if (strike.x <= (dragon.x + 70) && (dragon.x <= (strike.x + 16) && strike.y <= (dragon.y + 70) && dragon.y <= (strike.y + 16)))							
+			{
+				SlashReady 	= true;
+				
+				slashX = dragon.x;
+				slashY = dragon.y;
+				
+				dragon.hp  = dragon.hp-1;
+				
+				strike.x 	= 1000;
+				position 	= 0;
+				StrikeReady = false;
+				
+				if(dragon.hp<0)
+				{
+					dragon.alive 	= false;
+					dragonReady 	= false;
+					dragon.x    	= 800;
+					scorePoints = scorePoints + 100;
+				}
 			}
 			
 			if (strike.x <= (dragon.x + 70) && (dragon.x <= (strike.x + 16) && strike.y <= (dragon.y + 70) && dragon.y <= (strike.y + 16)))							
@@ -591,7 +669,7 @@
 				monster.alive = true;
 			}
 			
-			if(monster4.alive == false)
+			if(monster4.alive == false && dragon.alive == false)
 			{
 				if(room_level == 2)
 					room_level = 3;
@@ -952,6 +1030,7 @@
 				}		
 				ctx.drawImage(monster4Image, monster4.x, monster4.y); // Draw the monster 4
 			}
+<<<<<<< HEAD
 
 		}
 		else if(room_level == 3)
@@ -986,6 +1065,9 @@
 			ctx.drawImage(dragonImage, dragon.x, dragon.y); // Draw the monster 4
 			
 		}
+=======
+           
+>>>>>>> 81f1c7e4214ba7bf14fb986b553f918a08504e22
 		
 
 		
