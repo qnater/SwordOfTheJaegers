@@ -4,6 +4,9 @@
 	// MAIN GAME JS	(LINKED TO : GAME.HTML)													   //
 	// LAST UPDATE : 3/15/2019 (NATE)														   //
 	//======================================================================================== //
+
+
+	var nickname = document.getElementById("pseudo");
 	
 	var canvas = document.createElement("canvas"); // Creation of the canvas
 	var ctx = canvas.getContext("2d"); // Use the 2d technology
@@ -192,31 +195,45 @@
 		scorePoints = 1000000;
 	};
 
+	function getQueryVariable(variable)
+	{
+		   var query = window.location.search.substring(1);
+		   var vars = query.split("&");
+		   for (var i=0;i<vars.length;i++)
+		   {
+				   var pair = vars[i].split("=");
+				   if(pair[0] == variable){return pair[1];}
+		   }
+		   return(false);
+	}
+
 	// Update game objects
 	var update = function (modifier)
 	{
-		
+		nickname = getQueryVariable('pseudo');
+	
+		if(nickname == null)
+			nickname = "you";
+			
 		console.log(backgroundCode);
-		
-		//if(backgroundCode == 0 || backgroundCode == 1 || backgroundCode == 2)
-		//{
-			if (48 in keysDown) 
-			{ 
-				backgroundCode = 0;
-			}
-			if (49 in keysDown) 
-			{ 
-				backgroundCode = 1;
-			}
-			if (50 in keysDown) 
-			{ 
-				backgroundCode = 2;
-			}
-			if (51 in keysDown) 
-			{ 
-				backgroundCode = 3;
-			}
-		//}
+	
+		if (48 in keysDown) 
+		{ 
+			backgroundCode = 0;
+		}
+		if (49 in keysDown) 
+		{ 
+			backgroundCode = 1;
+		}
+		if (50 in keysDown) 
+		{ 
+			backgroundCode = 2;
+		}
+		if (51 in keysDown) 
+		{ 
+			backgroundCode = 3;
+		}
+
 		if(backgroundCode == 3)
 		{			
 			if (87 in keysDown) 
@@ -595,7 +612,7 @@
 			ctx.font = "32px OCR A Std, monospace";
 			ctx.textAlign = "right";
 			ctx.textBaseline = "top";
-			ctx.fillText("Your - " + parseInt(scorePoints) + "pts", 350, canvas.height-50); // Display current lifes
+			ctx.fillText(nickname + " - " + parseInt(scorePoints) + "pts", 350, canvas.height-50); // Display current lifes
 			
 			ctx.fillStyle = "rgb(250, 250, 250)";
 			ctx.font = "32px OCR A Std, monospace";
@@ -849,7 +866,7 @@
 		ctx.font = "16px OCR A Std, monospace";
 		ctx.textAlign = "left";
 		ctx.textBaseline = "bottom";
-		ctx.fillText("Score : " + parseInt(scorePoints), 32, 490);
+		ctx.fillText(nickname + " : " + parseInt(scorePoints), 32, 490);
 		
 		ctx.fillStyle = "rgb(250, 250, 250)";
 		ctx.font = "16px OCR A Std, monospace";
