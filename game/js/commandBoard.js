@@ -8,9 +8,6 @@
 	var chanceToMoveMonster3	= 5; 		// Chance to move by 1 to 100
 	var chanceToStrikeMonster3 	= 7;  		// chance to strike by 1 to 10
 
-	var caseByMovementPacky	 	= 12; 		// Movement by 1 to 100
-	var chanceToMovePacky		= 35; 		// Chance to move by 1 to 100
-
 	var monsterStrikeSpeed		= 10;		// Speed of the strike by 1 to 100
 
 	var myHero					= 1;		// Choose your hero
@@ -25,5 +22,10 @@
 	
 	var	room_level				= 1;
 	
+	var caseByMovementDragon	= 10;
+	var chanceToMoveDragon		= 5;
+	
+	var chanceToMovePacky 		= 10;
+	var caseByMovementPacky		= 10;
 	
 // =============================================================================== //
