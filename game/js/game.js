@@ -50,6 +50,11 @@
 	var monster3Image = new Image();
 	monster3Image.onload = function () { monster3Ready = true; };
 	monster3Image.src = "pictures/a_bat.PNG"; // Picture of a monster
+	// Monster 4 image
+	var monster4Ready = false;
+	var monster4Image = new Image();
+	monster4Image.onload = function () { monster4Ready = true; };
+	monster4Image.src = "pictures/packy.PNG"; // Picture of a monster
 	// =================== ============== ======================== //
 
 	// =================== HERO STRIKES DESIGNS =================== //
@@ -97,6 +102,7 @@
 	var monster			= { alive:true, hp:3 };
 	var monster2		= { alive:true, hp:3 };
 	var monster3		= { alive:true, hp:2 };
+	var monster4		= { alive:true, hp:4 };
 	
 	var monsterStrike3	= { power:1 };
 	
@@ -160,6 +166,9 @@
 		monster3.x = 32 + (Math.random() * (canvas.width  - 128));
 		monster3.y = 32 + (Math.random() * (canvas.height - 128));
 		
+		monster4.x = 32 + (Math.random() * (canvas.width  - 128));
+		monster4.y = 32 + (Math.random() * (canvas.height - 128));
+		
 		hero.hp 	= 2;
 		monster.hp 	= 3;
 		monster2.hp = 3;
@@ -167,7 +176,8 @@
 		
 		monster.alive  = true;
 		monster2.alive = true;
-		monster2.alive = true;
+		monster3.alive = true;
+		monster4.alive = true;
 		
 		StrikeReady	   = false;
 		SlashReady	   = false;
@@ -175,6 +185,7 @@
 		monsterReady   = true;
 		monster2Ready  = true;		
 		monster3Ready  = true;
+		monster4Ready  = true;
 		
 		
 		
@@ -362,6 +373,13 @@
 				hero.y = hero.y + 36;
 				scorePoints = scorePoints - 10000;
 			}
+			// Are they touching?
+			if(hero.x <= (monster4.x + 32) && (monster4.x <= (hero.x + 32) && hero.y <= (monster4.y + 32) && monster4.y <= (hero.y + 32)))							
+			{
+				hero.hp = hero.hp - 1;
+				hero.y = hero.y +36;
+				scorePoints = scorePoints - 10000;
+			}
 			
 			if ( strike.x <= (monster.x + 32) && (monster.x <= (strike.x + 32) && strike.y <= (monster.y + 32) && monster.y <= (strike.y + 32))	)						
 			{
@@ -430,6 +448,27 @@
 					scorePoints = scorePoints + 100;
 				}
 			}
+			if (strike.x <= (monster4.x + 70) && (monster4.x <= (strike.x + 16) && strike.y <= (monster4.y + 70) && monster4.y <= (strike.y + 16)))							
+			{
+				SlashReady 	= true;
+				
+				slashX = monster4.x;
+				slashY = monster4.y;
+				
+				monster4.hp  = monster4.hp-1;
+				
+				strike.x 	= 1000;
+				position 	= 0;
+				StrikeReady = false;
+				
+				if(monster4.hp<0)
+				{
+					monster4.alive 	= false;
+					monster4Ready 	= false;
+					monster4.x    	= 800;
+					scorePoints = scorePoints + 100;
+				}
+			}
 				
 			if( hero.x <= (mstrike.x + 32) &&(mstrike.x <= (hero.x + 32) && hero.y <= (mstrike.y + 32) && mstrike.y <= (hero.y + 32)))							
 			{
@@ -457,7 +496,7 @@
 
 			}
 			
-			if(monster.alive == false && monster2.alive == false && monster3.alive == false)
+			if(monster.alive == false && monster2.alive == false && monster3.alive == false && monster4.alive == false)
 			{
 				if(room_level == 1)
 				{
@@ -603,6 +642,10 @@
 			b3 = true;
 		else
 			b3 = false;
+		if(Math.random()*100 < chanceToMovePacky)
+			b4 = true;
+		else
+			b4 = false;
 		
 		if(Math.random()*10 <5)
 			pos_min = 1;
@@ -675,6 +718,27 @@
 					while(monster3.y > canvas.height-100 || monster3.y < 100);
 			}		
 			ctx.drawImage(monster3Image, monster3.x, monster3.y); // Draw the monster 2
+		}
+		// ================== Mouvement Monster Number 3 ================== //
+		if (monster4Ready)
+		{
+			if(b4)
+			{
+					do
+					{
+						pos_min = pos_min * -1;		
+						monster4.x = monster4.x + (pos_min * (Math.random() * caseByMovementPacky));
+					}
+					while(monster4.x > canvas.width-100 || monster4.x < 100);
+			
+					do
+					{
+						pos_min = pos_min * -1;		
+						monster4.y = monster4.y + (pos_min * (Math.random() * caseByMovementPacky));		
+					}
+					while(monster4.y > canvas.height-100 || monster4.y < 100);
+			}		
+			ctx.drawImage(monster4Image, monster4.x, monster4.y); // Draw the monster 4
 		}
 
 		// ================== Mouvement Magical Strike HERO ================== //
