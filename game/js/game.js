@@ -513,20 +513,30 @@
 
 			}
 			
-			if(monster.alive == false && monster2.alive == false && monster3.alive == false && monster4.alive == false)
+			if(monster.alive == false && monster2.alive == false && monster3.alive == false)
 			{
 				if(room_level == 1)
 				{
 					room_level = 2;
 				}
+				
+				
+			}
+			
+			if(monster4.alive == false)
+			{
 				if(room_level == 2)
-				{
 					room_level = 3;
-				}
+				
+				backgroundCode = 6;
+			}
+			
+			if(dragon.alive == false)
+			{
 				if(room_level == 3)
-				{
-					backgroundCode = 6;
-				}
+					room_level = 4;
+				
+				backgroundCode = 6;
 			}
 			
 			if(hero.hp < 0)
@@ -554,6 +564,9 @@
 	var render = function () 
 	{
 		console.log(backgroundCode);
+		
+		var pos_min = 0; 
+		var b1 = false; var b2 = false; var b3 = false; var b4 = false;
 		
 						
 		if (bgReady) 
@@ -643,121 +656,6 @@
 		if (heroReady) 
 			ctx.drawImage(heroImage, hero.x, hero.y); // Draw the hero
 
-		var pos_min = 0; 
-		var b1 = false; var b2 = false; var b3 = false;
-	
-		if(Math.random()*100 < chanceToMoveSlim)
-			b1 = true;
-		else
-			b1 = false;
-
-		if(Math.random()*100 < chanceToMoveSlim)
-			b2 = true;
-		else
-			b2= false;
-		if(Math.random()*100 < chanceToMoveMonster3)
-			b3 = true;
-		else
-			b3 = false;
-		if(Math.random()*100 < chanceToMovePacky)
-			b4 = true;
-		else
-			b4 = false;
-		
-		if(Math.random()*10 <5)
-			pos_min = 1;
-		else
-			pos_min = -1;
-				
-		// ================== Mouvement Monster Number 1 ================== //
-		if (monsterReady)
-		{
-			if(b1)
-			{
-				do
-				{
-					pos_min = pos_min * -1;				
-					monster.x = monster.x + (pos_min * (Math.random() * caseByMovementSlim));
-				}
-				while(monster.x > canvas.width-100 || monster2.x < 100);
-		
-				do
-				{
-					pos_min = pos_min * -1;		
-					monster.y = monster.y + (pos_min * (Math.random() * caseByMovementSlim));		
-				}
-				while(monster.y > canvas.height-100 || monster.y < 100);
-			}	
-			ctx.drawImage(monsterImage, monster.x, monster.y); // Draw the monster
-		}
-		
-		// ================== Mouvement Monster Number 2 ================== //
-		if (monster2Ready)
-		{
-			if(b2)
-			{
-					
-					do
-					{
-						pos_min = pos_min * -1;		
-						monster2.x = monster2.x + (pos_min * (Math.random() * caseByMovementSlim));
-					}
-					while(monster2.x > canvas.width-100 || monster2.x < 100);
-			
-					do
-					{
-						pos_min = pos_min * -1;		
-						monster2.y = monster2.y + (pos_min * (Math.random() *caseByMovementSlim));		
-					}
-					while(monster2.y > canvas.height-100 || monster2.y < 100);
-				}
-			ctx.drawImage(monster2Image, monster2.x, monster2.y); // Draw the monster 2
-			
-		}
-		
-		// ================== Mouvement Monster Number 3 ================== //
-		if (monster3Ready)
-		{
-			if(b3)
-			{
-					do
-					{
-						pos_min = pos_min * -1;		
-						monster3.x = monster3.x + (pos_min * (Math.random() * caseByMovementMonster3));
-					}
-					while(monster3.x > canvas.width-100 || monster3.x < 100);
-			
-					do
-					{
-						pos_min = pos_min * -1;		
-						monster3.y = monster3.y + (pos_min * (Math.random() * caseByMovementMonster3));		
-					}
-					while(monster3.y > canvas.height-100 || monster3.y < 100);
-			}		
-			ctx.drawImage(monster3Image, monster3.x, monster3.y); // Draw the monster 2
-		}
-		// ================== Mouvement Monster Number 3 ================== //
-		if (monster4Ready)
-		{
-			if(b4)
-			{
-					do
-					{
-						pos_min = pos_min * -1;		
-						monster4.x = monster4.x + (pos_min * (Math.random() * caseByMovementPacky));
-					}
-					while(monster4.x > canvas.width-100 || monster4.x < 100);
-			
-					do
-					{
-						pos_min = pos_min * -1;		
-						monster4.y = monster4.y + (pos_min * (Math.random() * caseByMovementPacky));		
-					}
-					while(monster4.y > canvas.height-100 || monster4.y < 100);
-			}		
-			ctx.drawImage(monster4Image, monster4.x, monster4.y); // Draw the monster 4
-		}
-
 		// ================== Mouvement Magical Strike HERO ================== //
 		if (StrikeReady)
 		{	
@@ -772,72 +670,203 @@
 			}
 			
 		}
+	
+		if(room_level == 1)
+		{
+			if(Math.random()*100 < chanceToMoveSlim)
+				b1 = true;
+			else
+				b1 = false;
+
+			if(Math.random()*100 < chanceToMoveSlim)
+				b2 = true;
+			else
+				b2= false;
+			if(Math.random()*100 < chanceToMoveMonster3)
+				b3 = true;
+			else
+				b3 = false;
+
+			
+			if(Math.random()*10 <5)
+				pos_min = 1;
+			else
+				pos_min = -1;
+					
+			// ================== Mouvement Monster Number 1 ================== //
+			if (monsterReady)
+			{
+				if(b1)
+				{
+					do
+					{
+						pos_min = pos_min * -1;				
+						monster.x = monster.x + (pos_min * (Math.random() * caseByMovementSlim));
+					}
+					while(monster.x > canvas.width-100 || monster2.x < 100);
+			
+					do
+					{
+						pos_min = pos_min * -1;		
+						monster.y = monster.y + (pos_min * (Math.random() * caseByMovementSlim));		
+					}
+					while(monster.y > canvas.height-100 || monster.y < 100);
+				}	
+				ctx.drawImage(monsterImage, monster.x, monster.y); // Draw the monster
+			}
+			
+			// ================== Mouvement Monster Number 2 ================== //
+			if (monster2Ready)
+			{
+				if(b2)
+				{
+						
+						do
+						{
+							pos_min = pos_min * -1;		
+							monster2.x = monster2.x + (pos_min * (Math.random() * caseByMovementSlim));
+						}
+						while(monster2.x > canvas.width-100 || monster2.x < 100);
+				
+						do
+						{
+							pos_min = pos_min * -1;		
+							monster2.y = monster2.y + (pos_min * (Math.random() *caseByMovementSlim));		
+						}
+						while(monster2.y > canvas.height-100 || monster2.y < 100);
+					}
+				ctx.drawImage(monster2Image, monster2.x, monster2.y); // Draw the monster 2
+				
+			}
+			
+			// ================== Mouvement Monster Number 3 ================== //
+			if (monster3Ready)
+			{
+				if(b3)
+				{
+						do
+						{
+							pos_min = pos_min * -1;		
+							monster3.x = monster3.x + (pos_min * (Math.random() * caseByMovementMonster3));
+						}
+						while(monster3.x > canvas.width-100 || monster3.x < 100);
+				
+						do
+						{
+							pos_min = pos_min * -1;		
+							monster3.y = monster3.y + (pos_min * (Math.random() * caseByMovementMonster3));		
+						}
+						while(monster3.y > canvas.height-100 || monster3.y < 100);
+				}		
+				ctx.drawImage(monster3Image, monster3.x, monster3.y); // Draw the monster 2
+			}
+			
+
+
+			
+			// ================== Mouvement Monster Strike  ================== //
+			if (Monster3StrikeReady)
+			{	
+				position3 = position3 - (1 * mstrike.speed);
+				ctx.drawImage(Monster3StrikeImage, monster3.x, monster3.y+position3); // Draw the monster 2
+				mstrike.x = monster3.x;
+				mstrike.y = monster3.y+position3;
+				if(monster3.y+position3 < 0)
+				{
+					position3 	= 0;
+					Monster3StrikeReady = false;		
+				}
+				
+					
+				if (SlashReady)
+					ctx.drawImage(SlashImage, slashX, slashY); // Draw the monster 2
+				
+			}
+			if (d_Monster3StrikeReady)
+			{	
+				d_position3 = d_position3 + (1 * d_mstrike.speed);
+				ctx.drawImage(d_Monster3StrikeImage, monster3.x, monster3.y+d_position3); // Draw the monster 2
+				d_mstrike.x = monster3.x;
+				d_mstrike.y = monster3.y+d_position3;
+				if(monster3.y+d_position3 > canvas.height)
+				{
+					d_position3 	= 0;
+					d_Monster3StrikeReady = false;		
+				}
+				
+					
+				if (SlashReady)
+					ctx.drawImage(SlashImage, slashX, slashY); // Draw the monster 2
+			}
+			if (l_Monster3StrikeReady)
+			{	
+				l_position3 = l_position3 + (1 * l_mstrike.speed);
+				ctx.drawImage(l_Monster3StrikeImage, monster3.x+l_position3, monster3.y); // Draw the monster 2
+				l_mstrike.x = monster3.x+l_position3;
+				l_mstrike.y = monster3.y;
+				if(monster3.x+l_position3 < 0)
+				{
+					l_position3 	= 0;
+					l_Monster3StrikeReady = false;		
+				}
+				
+					
+				if (SlashReady)
+					ctx.drawImage(SlashImage, slashX, slashY); // Draw the monster 2
+			}
+			if (r_Monster3StrikeReady)
+			{	
+				r_position3 = r_position3 - (1 * r_mstrike.speed);
+				ctx.drawImage(r_Monster3StrikeImage, monster3.x+r_position3, monster3.y); // Draw the monster 2
+				r_mstrike.x = monster3.x+r_position3;
+				r_mstrike.y = monster3.y;
+				if(monster3.y+r_position3 > canvas.width)
+				{
+					r_position3 	= 0;
+					r_Monster3StrikeReady = false;		
+				}
+				
+					
+				if (SlashReady)
+					ctx.drawImage(SlashImage, slashX, slashY); // Draw the monster 2
+			}
+		}
+		else if(room_level == 2)
+		{
 		
-		// ================== Mouvement Monster Strike  ================== //
-		if (Monster3StrikeReady)
-		{	
-			position3 = position3 - (1 * mstrike.speed);
-			ctx.drawImage(Monster3StrikeImage, monster3.x, monster3.y+position3); // Draw the monster 2
-			mstrike.x = monster3.x;
-			mstrike.y = monster3.y+position3;
-			if(monster3.y+position3 < 0)
-			{
-				position3 	= 0;
-				Monster3StrikeReady = false;		
-			}
-			
+			if(Math.random()*10 <5)
+				pos_min = 1;
+			else
+				pos_min = -1;
 				
-			if (SlashReady)
-				ctx.drawImage(SlashImage, slashX, slashY); // Draw the monster 2
-			
-		}
-		if (d_Monster3StrikeReady)
-		{	
-			d_position3 = d_position3 + (1 * d_mstrike.speed);
-			ctx.drawImage(d_Monster3StrikeImage, monster3.x, monster3.y+d_position3); // Draw the monster 2
-			d_mstrike.x = monster3.x;
-			d_mstrike.y = monster3.y+d_position3;
-			if(monster3.y+d_position3 > canvas.height)
-			{
-				d_position3 	= 0;
-				d_Monster3StrikeReady = false;		
-			}
-			
 				
-			if (SlashReady)
-				ctx.drawImage(SlashImage, slashX, slashY); // Draw the monster 2
-		}
-		if (l_Monster3StrikeReady)
-		{	
-			l_position3 = l_position3 + (1 * l_mstrike.speed);
-			ctx.drawImage(l_Monster3StrikeImage, monster3.x+l_position3, monster3.y); // Draw the monster 2
-			l_mstrike.x = monster3.x+l_position3;
-			l_mstrike.y = monster3.y;
-			if(monster3.x+l_position3 < 0)
-			{
-				l_position3 	= 0;
-				l_Monster3StrikeReady = false;		
-			}
+			if(Math.random()*100 < chanceToMovePacky)
+				b4 = true;
+			else
+				b4 = false;
 			
-				
-			if (SlashReady)
-				ctx.drawImage(SlashImage, slashX, slashY); // Draw the monster 2
-		}
-		if (r_Monster3StrikeReady)
-		{	
-			r_position3 = r_position3 - (1 * r_mstrike.speed);
-			ctx.drawImage(r_Monster3StrikeImage, monster3.x+r_position3, monster3.y); // Draw the monster 2
-			r_mstrike.x = monster3.x+r_position3;
-			r_mstrike.y = monster3.y;
-			if(monster3.y+r_position3 > canvas.width)
+			// ================== Mouvement Monster Number 4 ================== //
+			if (monster4Ready)
 			{
-				r_position3 	= 0;
-				r_Monster3StrikeReady = false;		
-			}
-			
+				if(b4)
+				{
+						do
+						{
+							pos_min = pos_min * -1;		
+							monster4.x = monster4.x + (pos_min * (Math.random() * caseByMovementPacky));
+						}
+						while(monster4.x > canvas.width-100 || monster4.x < 100);
 				
-			if (SlashReady)
-				ctx.drawImage(SlashImage, slashX, slashY); // Draw the monster 2
+						do
+						{
+							pos_min = pos_min * -1;		
+							monster4.y = monster4.y + (pos_min * (Math.random() * caseByMovementPacky));		
+						}
+						while(monster4.y > canvas.height-100 || monster4.y < 100);
+				}		
+				ctx.drawImage(monster4Image, monster4.x, monster4.y); // Draw the monster 4
+			}
+
 		}
 		
 
