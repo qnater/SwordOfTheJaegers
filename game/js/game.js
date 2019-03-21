@@ -59,20 +59,19 @@
 	var monster4Image = new Image();
 	monster4Image.onload = function () { monster4Ready = true; };
 	monster4Image.src = "pictures/packy.PNG"; // Picture of a monster
-<<<<<<< HEAD
 	
 	// Monster 4 image
 	var dragonReady = false;
 	var dragonImage = new Image();
 	dragonImage.onload = function () { dragonReady = true; };
 	dragonImage.src = "pictures/a_dragon.PNG"; // Picture of a monster
-=======
+
     // Dragon image
 	var dragonReady = false;
 	var dragonImage = new Image();
 	dragonImage.onload = function () { monster4Ready = true; };
 	dragonImage.src = "pictures/a_dragon.PNG"; // Picture of a dragon
->>>>>>> 81f1c7e4214ba7bf14fb986b553f918a08504e22
+
 	// =================== ============== ======================== //
 
 	// =================== HERO STRIKES DESIGNS =================== //
@@ -104,30 +103,7 @@
 	var r_Monster3StrikeReady = false;
 	var r_Monster3StrikeImage = new Image();
 	r_Monster3StrikeImage.src = "pictures/r_poison.PNG"; // Picture of a strike
-    // =================== DRAGON STRIKES DESIGNS =============== //
-	
-	// Strike mode
-	var Monster3StrikeReady = false;
-	var Monster3StrikeImage = new Image();
-	dragonStrikeImage.src = "pictures/t_poison.PNG"; // Picture of a strike
-	
-	// Strike mode
-	var d_Monster3StrikeReady = false;
-	var d_Monster3StrikeImage = new Image();
-	d_dragonStrikeeImage.src = "pictures/b_poison.PNG"; // Picture of a strike
-	
-	// Strike mode
-	var l_Monster3StrikeReady = false;
-	var l_Monster3StrikeImage = new Image();
-	l_dragonStrikeImage.src = "pictures/l_poison.PNG"; // Picture of a strike
-	
-	// Strike mode
-	// Strike mode
-	var r_Monster3StrikeReady = false;
-	var r_Monster3StrikeImage = new Image();
-	r_dragonStrikeImage.src = "pictures/r_poison.PNG"; // Picture of a strike
-	// =================== ============== ======================== //
-	
+    
 	
 	
 	// Slash mode
@@ -143,11 +119,8 @@
 	var monster2		= { alive:true, hp:3 };
 	var monster3		= { alive:true, hp:2 };
 	var monster4		= { alive:true, hp:4 };
-<<<<<<< HEAD
 	var dragon			= { alive:true, hp:10 };
-=======
-    var dragon		    = { alive:true, hp:100 };
->>>>>>> 81f1c7e4214ba7bf14fb986b553f918a08504e22
+
 	
 	var monsterStrike3	= { power:1 };
 	
@@ -225,23 +198,14 @@
 		monster.hp 	= 3;
 		monster2.hp = 3;
 		monster3.hp = 2;
-<<<<<<< HEAD
 		monster4.hp = 4;
 		dragon.hp   = 10;
-=======
-        monster4.hp = 2;
-        dragon.hp   = 2;
->>>>>>> 81f1c7e4214ba7bf14fb986b553f918a08504e22
 		
 		monster.alive  = true;
 		monster2.alive = true;
 		monster3.alive = true;
 		monster4.alive = true;
-<<<<<<< HEAD
 		dragon.alive   = true;
-=======
-        dragon.alive   = true;
->>>>>>> 81f1c7e4214ba7bf14fb986b553f918a08504e22
 		
 		StrikeReady	   = false;
 		SlashReady	   = false;
@@ -250,11 +214,8 @@
 		monster2Ready  = true;		
 		monster3Ready  = true;
 		monster4Ready  = true;
-<<<<<<< HEAD
 		dragonReady	   = true;
-=======
-        dragonReady    = true;
->>>>>>> 81f1c7e4214ba7bf14fb986b553f918a08504e22
+
 		
 		room_level	   = 1;
 		
@@ -484,21 +445,15 @@
 				hero.y = hero.y +36;
 				scorePoints = scorePoints - 10000;
 			}
-<<<<<<< HEAD
-			// Are they touching?
-=======
+
             // Are they touching?
->>>>>>> 81f1c7e4214ba7bf14fb986b553f918a08504e22
 			if(hero.x <= (dragon.x + 32) && (dragon.x <= (hero.x + 32) && hero.y <= (dragon.y + 32) && dragon.y <= (hero.y + 32)))							
 			{
 				hero.hp = hero.hp - 1;
 				hero.y = hero.y +36;
 				scorePoints = scorePoints - 10000;
 			}
-<<<<<<< HEAD
-			
-=======
->>>>>>> 81f1c7e4214ba7bf14fb986b553f918a08504e22
+
 			
 			if ( strike.x <= (monster.x + 32) && (monster.x <= (strike.x + 32) && strike.y <= (monster.y + 32) && monster.y <= (strike.y + 32))	)						
 			{
@@ -587,6 +542,7 @@
 					monster4.x    	= 800;
 					scorePoints = scorePoints + 100;
 				}
+			}
                 if (strike.x <= (dragon.x + 70) && (dragon.x <= (strike.x + 16) && strike.y <= (dragon.y + 70) && dragon.y <= (strike.y + 16)))							
 			{
 				SlashReady 	= true;
@@ -669,7 +625,7 @@
 				monster.alive = true;
 			}
 			
-			if(monster4.alive == false && dragon.alive == false)
+			if(monster4.alive == false)
 			{
 				if(room_level == 2)
 					room_level = 3;
@@ -706,7 +662,7 @@
 				l_Monster3StrikeReady 	= true;
 			}
 		}	
-	};
+	}
 
 	// Draw everything
 	var render = function () 
@@ -815,296 +771,289 @@
 		}
 		if(backgroundCode == 4)
 		{			
-		bgImage.src = "pictures/500_background.PNG"; // Background of levels
+			bgImage.src = "pictures/500_background.PNG"; // Background of levels
 
-		if (heroReady) 
-			ctx.drawImage(heroImage, hero.x, hero.y); // Draw the hero
+			if (heroReady) 
+				ctx.drawImage(heroImage, hero.x, hero.y); // Draw the hero
 
-		// ================== Mouvement Magical Strike HERO ================== //
-		if (StrikeReady)
-		{	
-			
-			if(myHero == 1)
-			{
-				heroStrike();
-			}
-			else
-			{
-				heroStrike();
-			}
-			
-		}
-	
-		if(room_level == 1)
-		{
-			if(Math.random()*100 < chanceToMoveSlim)
-				b1 = true;
-			else
-				b1 = false;
-
-			if(Math.random()*100 < chanceToMoveSlim)
-				b2 = true;
-			else
-				b2= false;
-			if(Math.random()*100 < chanceToMoveMonster3)
-				b3 = true;
-			else
-				b3 = false;
-
-			
-			if(Math.random()*10 <5)
-				pos_min = 1;
-			else
-				pos_min = -1;
-					
-			// ================== Mouvement Monster Number 1 ================== //
-			if (monsterReady)
-			{
-				if(b1)
+			// ================== Mouvement Magical Strike HERO ================== //
+			if (StrikeReady)
+			{	
+				
+				if(myHero == 1)
 				{
-					do
-					{
-						pos_min = pos_min * -1;				
-						monster.x = monster.x + (pos_min * (Math.random() * caseByMovementSlim));
-					}
-					while(monster.x > canvas.width-100 || monster2.x < 100);
-			
-					do
-					{
-						pos_min = pos_min * -1;		
-						monster.y = monster.y + (pos_min * (Math.random() * caseByMovementSlim));		
-					}
-					while(monster.y > canvas.height-100 || monster.y < 100);
-				}	
-				ctx.drawImage(monsterImage, monster.x, monster.y); // Draw the monster
-			}
-			
-			// ================== Mouvement Monster Number 2 ================== //
-			if (monster2Ready)
-			{
-				if(b2)
+					heroStrike();
+				}
+				else
 				{
+					heroStrike();
+				}
+				
+			}
+		
+			if(room_level == 1)
+			{
+				if(Math.random()*100 < chanceToMoveSlim)
+					b1 = true;
+				else
+					b1 = false;
+
+				if(Math.random()*100 < chanceToMoveSlim)
+					b2 = true;
+				else
+					b2= false;
+				if(Math.random()*100 < chanceToMoveMonster3)
+					b3 = true;
+				else
+					b3 = false;
+
+				
+				if(Math.random()*10 <5)
+					pos_min = 1;
+				else
+					pos_min = -1;
 						
-						do
-						{
-							pos_min = pos_min * -1;		
-							monster2.x = monster2.x + (pos_min * (Math.random() * caseByMovementSlim));
-						}
-						while(monster2.x > canvas.width-100 || monster2.x < 100);
-				
-						do
-						{
-							pos_min = pos_min * -1;		
-							monster2.y = monster2.y + (pos_min * (Math.random() *caseByMovementSlim));		
-						}
-						while(monster2.y > canvas.height-100 || monster2.y < 100);
-					}
-				ctx.drawImage(monster2Image, monster2.x, monster2.y); // Draw the monster 2
-				
-			}
-			
-			// ================== Mouvement Monster Number 3 ================== //
-			if (monster3Ready)
-			{
-				if(b3)
+				// ================== Mouvement Monster Number 1 ================== //
+				if (monsterReady)
 				{
-						do
-						{
-							pos_min = pos_min * -1;		
-							monster3.x = monster3.x + (pos_min * (Math.random() * caseByMovementMonster3));
-						}
-						while(monster3.x > canvas.width-100 || monster3.x < 100);
-				
-						do
-						{
-							pos_min = pos_min * -1;		
-							monster3.y = monster3.y + (pos_min * (Math.random() * caseByMovementMonster3));		
-						}
-						while(monster3.y > canvas.height-100 || monster3.y < 100);
-				}		
-				ctx.drawImage(monster3Image, monster3.x, monster3.y); // Draw the monster 2
-			}
-			
-
-
-			
-			// ================== Mouvement Monster Strike  ================== //
-			if (Monster3StrikeReady)
-			{	
-				position3 = position3 - (1 * mstrike.speed);
-				ctx.drawImage(Monster3StrikeImage, monster3.x, monster3.y+position3); // Draw the monster 2
-				mstrike.x = monster3.x;
-				mstrike.y = monster3.y+position3;
-				if(monster3.y+position3 < 0)
-				{
-					position3 	= 0;
-					Monster3StrikeReady = false;		
-				}
-				
-					
-				if (SlashReady)
-					ctx.drawImage(SlashImage, slashX, slashY); // Draw the monster 2
-				
-			}
-			if (d_Monster3StrikeReady)
-			{	
-				d_position3 = d_position3 + (1 * d_mstrike.speed);
-				ctx.drawImage(d_Monster3StrikeImage, monster3.x, monster3.y+d_position3); // Draw the monster 2
-				d_mstrike.x = monster3.x;
-				d_mstrike.y = monster3.y+d_position3;
-				if(monster3.y+d_position3 > canvas.height)
-				{
-					d_position3 	= 0;
-					d_Monster3StrikeReady = false;		
-				}
-				
-					
-				if (SlashReady)
-					ctx.drawImage(SlashImage, slashX, slashY); // Draw the monster 2
-			}
-			if (l_Monster3StrikeReady)
-			{	
-				l_position3 = l_position3 + (1 * l_mstrike.speed);
-				ctx.drawImage(l_Monster3StrikeImage, monster3.x+l_position3, monster3.y); // Draw the monster 2
-				l_mstrike.x = monster3.x+l_position3;
-				l_mstrike.y = monster3.y;
-				if(monster3.x+l_position3 < 0)
-				{
-					l_position3 	= 0;
-					l_Monster3StrikeReady = false;		
-				}
-				
-					
-				if (SlashReady)
-					ctx.drawImage(SlashImage, slashX, slashY); // Draw the monster 2
-			}
-			if (r_Monster3StrikeReady)
-			{	
-				r_position3 = r_position3 - (1 * r_mstrike.speed);
-				ctx.drawImage(r_Monster3StrikeImage, monster3.x+r_position3, monster3.y); // Draw the monster 2
-				r_mstrike.x = monster3.x+r_position3;
-				r_mstrike.y = monster3.y;
-				if(monster3.y+r_position3 > canvas.width)
-				{
-					r_position3 	= 0;
-					r_Monster3StrikeReady = false;		
-				}
-				
-					
-				if (SlashReady)
-					ctx.drawImage(SlashImage, slashX, slashY); // Draw the monster 2
-			}
-		}
-		else if(room_level == 2)
-		{
-		
-			if(Math.random()*10 <5)
-				pos_min = 1;
-			else
-				pos_min = -1;
-				
-				
-			if(Math.random()*100 < chanceToMovePacky)
-				b4 = true;
-			else
-				b4 = false;
-			
-			// ================== Mouvement Monster Number 4 ================== //
-			if (monster4Ready)
-			{
-				if(b4)
-				{
-						do
-						{
-							pos_min = pos_min * -1;		
-							monster4.x = monster4.x + (pos_min * (Math.random() * caseByMovementPacky));
-						}
-						while(monster4.x > canvas.width-100 || monster4.x < 100);
-				
-						do
-						{
-							pos_min = pos_min * -1;		
-							monster4.y = monster4.y + (pos_min * (Math.random() * caseByMovementPacky));		
-						}
-						while(monster4.y > canvas.height-100 || monster4.y < 100);
-				}		
-				ctx.drawImage(monster4Image, monster4.x, monster4.y); // Draw the monster 4
-			}
-<<<<<<< HEAD
-
-		}
-		else if(room_level == 3)
-		{
-			if(Math.random()*10 <5)
-				pos_min = 1;
-			else
-				pos_min = -1;
-				
-				
-			if(Math.random()*100 < chanceToMoveDragon)
-				b4 = true;
-			else
-				b4 = false;
-			
-			if(b5)
-			{
-					do
+					if(b1)
 					{
-						pos_min = pos_min * -1;		
-						dragon.x = dragon.x + (pos_min * (Math.random() * caseByMovementDragon));
-					}
-					while(dragon.x > canvas.width-100 || dragon.x < 100);
-			
-					do
+						do
+						{
+							pos_min = pos_min * -1;				
+							monster.x = monster.x + (pos_min * (Math.random() * caseByMovementSlim));
+						}
+						while(monster.x > canvas.width-100 || monster2.x < 100);
+				
+						do
+						{
+							pos_min = pos_min * -1;		
+							monster.y = monster.y + (pos_min * (Math.random() * caseByMovementSlim));		
+						}
+						while(monster.y > canvas.height-100 || monster.y < 100);
+					}	
+					ctx.drawImage(monsterImage, monster.x, monster.y); // Draw the monster
+				}
+				
+				// ================== Mouvement Monster Number 2 ================== //
+				if (monster2Ready)
+				{
+					if(b2)
 					{
-						pos_min = pos_min * -1;		
-						dragon.y = dragon.y + (pos_min * (Math.random() * caseByMovementDragon));		
+							
+							do
+							{
+								pos_min = pos_min * -1;		
+								monster2.x = monster2.x + (pos_min * (Math.random() * caseByMovementSlim));
+							}
+							while(monster2.x > canvas.width-100 || monster2.x < 100);
+					
+							do
+							{
+								pos_min = pos_min * -1;		
+								monster2.y = monster2.y + (pos_min * (Math.random() *caseByMovementSlim));		
+							}
+							while(monster2.y > canvas.height-100 || monster2.y < 100);
+						}
+					ctx.drawImage(monster2Image, monster2.x, monster2.y); // Draw the monster 2
+					
+				}
+				
+				// ================== Mouvement Monster Number 3 ================== //
+				if (monster3Ready)
+				{
+					if(b3)
+					{
+							do
+							{
+								pos_min = pos_min * -1;		
+								monster3.x = monster3.x + (pos_min * (Math.random() * caseByMovementMonster3));
+							}
+							while(monster3.x > canvas.width-100 || monster3.x < 100);
+					
+							do
+							{
+								pos_min = pos_min * -1;		
+								monster3.y = monster3.y + (pos_min * (Math.random() * caseByMovementMonster3));		
+							}
+							while(monster3.y > canvas.height-100 || monster3.y < 100);
+					}		
+					ctx.drawImage(monster3Image, monster3.x, monster3.y); // Draw the monster 2
+				}
+				
+
+
+				
+				// ================== Mouvement Monster Strike  ================== //
+				if (Monster3StrikeReady)
+				{	
+					position3 = position3 - (1 * mstrike.speed);
+					ctx.drawImage(Monster3StrikeImage, monster3.x, monster3.y+position3); // Draw the monster 2
+					mstrike.x = monster3.x;
+					mstrike.y = monster3.y+position3;
+					if(monster3.y+position3 < 0)
+					{
+						position3 	= 0;
+						Monster3StrikeReady = false;		
 					}
-					while(dragon.y > canvas.height-100 || dragon.y < 100);
-			}		
-			ctx.drawImage(dragonImage, dragon.x, dragon.y); // Draw the monster 4
+					
+						
+					if (SlashReady)
+						ctx.drawImage(SlashImage, slashX, slashY); // Draw the monster 2
+					
+				}
+				if (d_Monster3StrikeReady)
+				{	
+					d_position3 = d_position3 + (1 * d_mstrike.speed);
+					ctx.drawImage(d_Monster3StrikeImage, monster3.x, monster3.y+d_position3); // Draw the monster 2
+					d_mstrike.x = monster3.x;
+					d_mstrike.y = monster3.y+d_position3;
+					if(monster3.y+d_position3 > canvas.height)
+					{
+						d_position3 	= 0;
+						d_Monster3StrikeReady = false;		
+					}
+					
+						
+					if (SlashReady)
+						ctx.drawImage(SlashImage, slashX, slashY); // Draw the monster 2
+				}
+				if (l_Monster3StrikeReady)
+				{	
+					l_position3 = l_position3 + (1 * l_mstrike.speed);
+					ctx.drawImage(l_Monster3StrikeImage, monster3.x+l_position3, monster3.y); // Draw the monster 2
+					l_mstrike.x = monster3.x+l_position3;
+					l_mstrike.y = monster3.y;
+					if(monster3.x+l_position3 < 0)
+					{
+						l_position3 	= 0;
+						l_Monster3StrikeReady = false;		
+					}
+					
+						
+					if (SlashReady)
+						ctx.drawImage(SlashImage, slashX, slashY); // Draw the monster 2
+				}
+				if (r_Monster3StrikeReady)
+				{	
+					r_position3 = r_position3 - (1 * r_mstrike.speed);
+					ctx.drawImage(r_Monster3StrikeImage, monster3.x+r_position3, monster3.y); // Draw the monster 2
+					r_mstrike.x = monster3.x+r_position3;
+					r_mstrike.y = monster3.y;
+					if(monster3.y+r_position3 > canvas.width)
+					{
+						r_position3 	= 0;
+						r_Monster3StrikeReady = false;		
+					}
+					
+						
+					if (SlashReady)
+						ctx.drawImage(SlashImage, slashX, slashY); // Draw the monster 2
+				}
+			}
+			else if(room_level == 2)
+			{
+			
+				if(Math.random()*10 <5)
+					pos_min = 1;
+				else
+					pos_min = -1;
+					
+					
+				if(Math.random()*100 < chanceToMovePacky)
+					b4 = true;
+				else
+					b4 = false;
+				
+				// ================== Mouvement Monster Number 4 ================== //
+				if (monster4Ready)
+				{
+					if(b4)
+					{
+							do
+							{
+								pos_min = pos_min * -1;		
+								monster4.x = monster4.x + (pos_min * (Math.random() * caseByMovementPacky));
+							}
+							while(monster4.x > canvas.width-100 || monster4.x < 100);
+					
+							do
+							{
+								pos_min = pos_min * -1;		
+								monster4.y = monster4.y + (pos_min * (Math.random() * caseByMovementPacky));		
+							}
+							while(monster4.y > canvas.height-100 || monster4.y < 100);
+					}		
+					ctx.drawImage(monster4Image, monster4.x, monster4.y); // Draw the monster 4
+				}
+
+			}
+			else if(room_level == 3)
+			{
+				if(Math.random()*10 <5)
+					pos_min = 1;
+				else
+					pos_min = -1;
+					
+					
+				if(Math.random()*100 < chanceToMoveDragon)
+					b4 = true;
+				else
+					b4 = false;
+				
+				if(b5)
+				{
+						do
+						{
+							pos_min = pos_min * -1;		
+							dragon.x = dragon.x + (pos_min * (Math.random() * caseByMovementDragon));
+						}
+						while(dragon.x > canvas.width-100 || dragon.x < 100);
+				
+						do
+						{
+							pos_min = pos_min * -1;		
+							dragon.y = dragon.y + (pos_min * (Math.random() * caseByMovementDragon));		
+						}
+						while(dragon.y > canvas.height-100 || dragon.y < 100);
+				}		
+				ctx.drawImage(dragonImage, dragon.x, dragon.y); // Draw the monster 4
+				
+			}	
+		
+			// Score
+			ctx.fillStyle = "rgb(250, 250, 250)";
+			ctx.font = "16px OCR A Std, monospace";
+			ctx.textAlign = "left";
+			ctx.textBaseline = "top";
+			ctx.fillText("Sword of the Jaegers", 27, 15);
+			
+			ctx.fillStyle = "rgb(250, 250, 250)";
+			ctx.font = "16px OCR A Std, monospace";
+			ctx.textAlign = "right";
+			ctx.textBaseline = "top";
+			
+			if(hero.hp == 2)
+				ctx.fillText("Life (\u2665 \u2665 \u2665)", 475, 15); // Display current lifes
+			else if (hero.hp==1)
+				ctx.fillText("Life (\u2665 \u2665)", 475, 15); // Display current lifes
+			else
+				ctx.fillText("Life (\u2665)", 475, 15); // Display current lifes
+			
+			ctx.fillStyle = "rgb(250, 250, 250)";
+			ctx.font = "16px OCR A Std, monospace";
+			ctx.textAlign = "left";
+			ctx.textBaseline = "bottom";
+			ctx.fillText(nickname + " : " + parseInt(scorePoints), 32, 490);
+			
+			ctx.fillStyle = "rgb(250, 250, 250)";
+			ctx.font = "16px OCR A Std, monospace";
+			ctx.textAlign = "right";
+			ctx.textBaseline = "bottom";
+			ctx.fillText("Level : " + room_level, 470, 490);
 			
 		}
-=======
-           
->>>>>>> 81f1c7e4214ba7bf14fb986b553f918a08504e22
-		
-
-		
-		
-		// Score
-		ctx.fillStyle = "rgb(250, 250, 250)";
-		ctx.font = "16px OCR A Std, monospace";
-		ctx.textAlign = "left";
-		ctx.textBaseline = "top";
-		ctx.fillText("Sword of the Jaegers", 27, 15);
-		
-		ctx.fillStyle = "rgb(250, 250, 250)";
-		ctx.font = "16px OCR A Std, monospace";
-		ctx.textAlign = "right";
-		ctx.textBaseline = "top";
-		
-		if(hero.hp == 2)
-			ctx.fillText("Life (\u2665 \u2665 \u2665)", 475, 15); // Display current lifes
-		else if (hero.hp==1)
-			ctx.fillText("Life (\u2665 \u2665)", 475, 15); // Display current lifes
-		else
-			ctx.fillText("Life (\u2665)", 475, 15); // Display current lifes
-		
-		ctx.fillStyle = "rgb(250, 250, 250)";
-		ctx.font = "16px OCR A Std, monospace";
-		ctx.textAlign = "left";
-		ctx.textBaseline = "bottom";
-		ctx.fillText(nickname + " : " + parseInt(scorePoints), 32, 490);
-		
-		ctx.fillStyle = "rgb(250, 250, 250)";
-		ctx.font = "16px OCR A Std, monospace";
-		ctx.textAlign = "right";
-		ctx.textBaseline = "bottom";
-		ctx.fillText("Level : " + room_level, 470, 490);
-		
-		}
-	};
+	}
 
 	
 	var heroStrike = function()
@@ -1226,7 +1175,6 @@
 	var ithen = Date.now();
 	reset();
 	main();
-	
 	//======================================================================================== //
 	// END																					   //
 	//======================================================================================== //
