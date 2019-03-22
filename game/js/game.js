@@ -6,7 +6,12 @@
 	//======================================================================================== //
 
 
+	// Nickname of the player
 	var nickname = document.getElementById("pseudo");
+	
+	var level1 = false;
+	var level2 = false;
+	var level3 = false;
 	
 	var canvas = document.createElement("canvas"); // Creation of the canvas
 	var ctx = canvas.getContext("2d"); // Use the 2d technology
@@ -60,16 +65,10 @@
 	monster4Image.onload = function () { monster4Ready = true; };
 	monster4Image.src = "pictures/packy.PNG"; // Picture of a monster
 	
-	// Monster 4 image
-	var dragonReady = false;
-	var dragonImage = new Image();
-	dragonImage.onload = function () { dragonReady = true; };
-	dragonImage.src = "pictures/a_dragon.PNG"; // Picture of a monster
-
     // Dragon image
 	var dragonReady = false;
 	var dragonImage = new Image();
-	dragonImage.onload = function () { monster4Ready = true; };
+	dragonImage.onload = function () { dragonReady = true; };
 	dragonImage.src = "pictures/a_dragon.PNG"; // Picture of a dragon
 
 	// =================== ============== ======================== //
@@ -187,12 +186,9 @@
 		monster4.x = 32 + (Math.random() * (canvas.width  - 128));
 		monster4.y = 32 + (Math.random() * (canvas.height - 128));
         
-        dragon.x = 32 + (Math.random() * (canvas.width  - 128));
-		dragon.y = 32 + (Math.random() * (canvas.height - 128));
-		
-		
-		dragon.x = 32 + (Math.random() * (canvas.width  - 128));
-		dragon.y = 32 + (Math.random() * (canvas.height - 128));
+        dragon.x = (canvas.width/2) + 50;
+		dragon.y = 50;
+
 		
 		hero.hp 	= 2;
 		monster.hp 	= 3;
@@ -215,12 +211,20 @@
 		monster3Ready  = true;
 		monster4Ready  = true;
 		dragonReady	   = true;
+		
+		level1		   = false;
+		level2		   = false;
+		level3		   = false;
 
 		
 		room_level	   = 1;
 		
 		
 		scorePoints = 1000000;
+		
+		console.log("test " + dragonReady + " pos : " + dragon.x +  " y " + dragon.y);
+				
+
 	};
 
 	function getQueryVariable(variable)
@@ -414,260 +418,247 @@
 				}
 			}
 
+			if(room_level == 1)
+			{			
+				// Are they touching?
+				if(hero.x <= (monster.x + 32) && (monster.x <= (hero.x + 32) && hero.y <= (monster.y + 32) && monster.y <= (hero.y + 32)))							
+				{
+					hero.hp = hero.hp - 1;
+					hero.y = hero.y +36;
+					scorePoints = scorePoints - 10000;
+				}
+				
+				 // Are they touching?
+				if( hero.x <= (monster2.x + 32) &&(monster2.x <= (hero.x + 32) && hero.y <= (monster2.y + 32) && monster2.y <= (hero.y + 32)))							
+				{
+					hero.hp = hero.hp - 1;
+					hero.y = hero.y +36;
+					scorePoints = scorePoints - 10000;
+				}
+				
+				 // Are they touching?
+				if ( hero.x <= (monster3.x + 32) && ( monster3.x <= (hero.x + 32) && hero.y <= (monster3.y + 32) && monster3.y <= (hero.y + 32)))							
+				{
+					hero.hp = hero.hp - 1;
+					hero.y = hero.y + 36;
+					scorePoints = scorePoints - 10000;
+				}
+				if ( strike.x <= (monster.x + 32) && (monster.x <= (strike.x + 32) && strike.y <= (monster.y + 32) && monster.y <= (strike.y + 32))	)						
+				{
+					SlashReady 		= true;
+					
+					slashX 			= monster.x;
+					slashY 			= monster.y;
 
-			// Are they touching?
-			if(hero.x <= (monster.x + 32) && (monster.x <= (hero.x + 32) && hero.y <= (monster.y + 32) && monster.y <= (hero.y + 32)))							
-			{
-				hero.hp = hero.hp - 1;
-				hero.y = hero.y +36;
-				scorePoints = scorePoints - 10000;
-			}
-			
-			 // Are they touching?
-			if( hero.x <= (monster2.x + 32) &&(monster2.x <= (hero.x + 32) && hero.y <= (monster2.y + 32) && monster2.y <= (hero.y + 32)))							
-			{
-				hero.hp = hero.hp - 1;
-				hero.y = hero.y +36;
-				scorePoints = scorePoints - 10000;
-			}
-			
-			 // Are they touching?
-			if ( hero.x <= (monster3.x + 32) && ( monster3.x <= (hero.x + 32) && hero.y <= (monster3.y + 32) && monster3.y <= (hero.y + 32)))							
-			{
-				hero.hp = hero.hp - 1;
-				hero.y = hero.y + 36;
-				scorePoints = scorePoints - 10000;
-			}
-			// Are they touching?
-			if(hero.x <= (monster4.x + 32) && (monster4.x <= (hero.x + 32) && hero.y <= (monster4.y + 32) && monster4.y <= (hero.y + 32)))							
-			{
-				hero.hp = hero.hp - 1;
-				hero.y = hero.y +36;
-				scorePoints = scorePoints - 10000;
-			}
+					strike.x 	= 1000;
+					position 	= 0;
+					StrikeReady = false;
+					
+					monster.hp  = monster.hp - 1;
+					
+					if(monster.hp<0)
+					{
+						monster.alive= false;
+						monsterReady = false;
+						monster.x    = 800;
+						scorePoints = scorePoints + 1;
+					}
+					
+					
+				}
+				if ( strike.x <= (monster2.x + 32) && (monster2.x <= (strike.x + 32) && strike.y <= (monster2.y + 32) && monster2.y <= (strike.y + 32)))							
+				{
+					SlashReady 	= true;
+								
+					slashX = monster2.x;
+					slashY = monster2.y;
+					
+					monster2.hp = monster2.hp-1;
+					
+					strike.x 	= 1000;
+					position 	= 0;
+					StrikeReady = false;
+					
+					if(monster2.hp<0)
+					{
+						monster2.alive 	= false;
+						monster2Ready 	= false;
+						monster2.x    	= 800;
+						scorePoints = scorePoints + 1;
+					}
+					
+				}
+				
+				if (strike.x <= (monster3.x + 70) && (monster3.x <= (strike.x + 16) && strike.y <= (monster3.y + 70) && monster3.y <= (strike.y + 16)))							
+				{
+					SlashReady 	= true;
+					
+					slashX = monster3.x;
+					slashY = monster3.y;
+					
+					monster3.hp  = monster3.hp-1;
+					
+					strike.x 	= 1000;
+					position 	= 0;
+					StrikeReady = false;
+					
+					if(monster3.hp<0)
+					{
+						monster3.alive 	= false;
+						monster3Ready 	= false;
+						monster3.x    	= 800;
+						scorePoints = scorePoints + 10;
+					}
+				}
+				
+								
+				if( hero.x <= (mstrike.x + 32) &&(mstrike.x <= (hero.x + 32) && hero.y <= (mstrike.y + 32) && mstrike.y <= (hero.y + 32)))							
+				{
+					hero.hp = hero.hp - 1;
+					hero.y = hero.y + 36;
+					scorePoints = scorePoints - 10000;
+				}
+				if( hero.x <= (d_mstrike.x + 32) &&(d_mstrike.x <= (hero.x + 32) && hero.y <= (d_mstrike.y + 32) && d_mstrike.y <= (hero.y + 32)))							
+				{
+					hero.hp = hero.hp - 1;
+					hero.y = hero.y + 36;
+					scorePoints = scorePoints - 10000;
+				}
+				if( hero.x <= (l_mstrike.x + 32) &&(l_mstrike.x <= (hero.x + 32) && hero.y <= (l_mstrike.y + 32) && l_mstrike.y <= (hero.y + 32)))							
+				{
+					hero.hp = hero.hp - 1;
+					hero.y = hero.y + 36;
+					scorePoints = scorePoints - 10000;
+				}
+				if( hero.x <= (r_mstrike.x + 32) &&(r_mstrike.x <= (hero.x + 32) && hero.y <= (r_mstrike.y + 32) && r_mstrike.y <= (hero.y + 32)))							
+				{
+					hero.hp = hero.hp - 1;
+					hero.y = hero.y + 36;
+					scorePoints = scorePoints - 10000;
 
-            // Are they touching?
-			if(hero.x <= (dragon.x + 32) && (dragon.x <= (hero.x + 32) && hero.y <= (dragon.y + 32) && dragon.y <= (hero.y + 32)))							
-			{
-				hero.hp = hero.hp - 1;
-				hero.y = hero.y +36;
-				scorePoints = scorePoints - 10000;
-			}
-
-			
-			if ( strike.x <= (monster.x + 32) && (monster.x <= (strike.x + 32) && strike.y <= (monster.y + 32) && monster.y <= (strike.y + 32))	)						
-			{
-				SlashReady 		= true;
-				
-				slashX 			= monster.x;
-				slashY 			= monster.y;
-
-				strike.x 	= 1000;
-				position 	= 0;
-				StrikeReady = false;
-				
-				monster.hp  = monster.hp - 1;
-				
-				if(monster.hp<0)
-				{
-					monster.alive= false;
-					monsterReady = false;
-					monster.x    = 800;
-					scorePoints = scorePoints + 10;
 				}
 				
-				
-			}
-			if ( strike.x <= (monster2.x + 32) && (monster2.x <= (strike.x + 32) && strike.y <= (monster2.y + 32) && monster2.y <= (strike.y + 32)))							
-			{
-				SlashReady 	= true;
-							
-				slashX = monster2.x;
-				slashY = monster2.y;
-				
-				monster2.hp = monster2.hp-1;
-				
-				strike.x 	= 1000;
-				position 	= 0;
-				StrikeReady = false;
-				
-				if(monster2.hp<0)
+				if(monster.alive == false && monster2.alive == false && monster3.alive == false && level1 == false)
 				{
-					monster2.alive 	= false;
-					monster2Ready 	= false;
-					monster2.x    	= 800;
-					scorePoints = scorePoints + 10;
+					if(room_level == 1)
+						room_level = 2;
+					
+					monster4Ready  = false;						
+					backgroundCode = 7;
+					level1 		   = true;
+				}
+				
+						
+				// STRIKE DIFFICULTY
+				if(Math.random()*1000<chanceToStrikeMonster3 && monster3.alive)
+				{
+					position3				= 0;
+					Monster3StrikeReady 	= true;
+					d_position3				= 0;
+					d_Monster3StrikeReady 	= true;
+					r_position3				= 0;
+					r_Monster3StrikeReady 	= true;
+					l_position3				= 0;
+					l_Monster3StrikeReady 	= true;
+				}
+			}
+			else if(room_level == 2)
+			{
+				// Are they touching?
+				if(hero.x <= (monster4.x + 32) && (monster4.x <= (hero.x + 32) && hero.y <= (monster4.y + 32) && monster4.y <= (hero.y + 32)))							
+				{
+					hero.hp = hero.hp - 1;
+					hero.y = hero.y +36;
+					scorePoints = scorePoints - 10000;
+				}
+				
+				if (strike.x <= (monster4.x + 70) && (monster4.x <= (strike.x + 16) && strike.y <= (monster4.y + 70) && monster4.y <= (strike.y + 16)))							
+				{
+					SlashReady 	= true;
+					
+					slashX = monster4.x;
+					slashY = monster4.y;
+					
+					monster4.hp  = monster4.hp-1;
+					
+					strike.x 	= 1000;
+					position 	= 0;
+					StrikeReady = false;
+					
+					if(monster4.hp<0)
+					{
+						monster4.alive 	= false;
+						monster4Ready 	= false;
+						monster4.x    	= 800;
+						scorePoints = scorePoints + 20;
+					}
+				}
+				if(monster4.alive == false && level2 == false)
+				{
+					if(room_level == 2)
+						room_level = 3;
+					
+					backgroundCode = 7;
+					level2		   = true;
+					dragonReady	   = false;
+				}
+			}
+			else if(room_level == 3)
+			{				
+				// Are they touching?
+				if(hero.x <= (dragon.x + 32) && (dragon.x <= (hero.x + 32) && hero.y <= (dragon.y + 32) && dragon.y <= (hero.y + 32)))							
+				{
+					hero.hp = hero.hp - 1;
+					hero.y = hero.y +36;
+					scorePoints = scorePoints - 10000;
+				}
+				if (strike.x <= (dragon.x + 70) && (dragon.x <= (strike.x + 16) && strike.y <= (dragon.y + 70) && dragon.y <= (strike.y + 16)))							
+				{
+					SlashReady 	= true;
+					
+					slashX = dragon.x;
+					slashY = dragon.y;
+					
+					dragon.hp  = dragon.hp-1;
+					
+					strike.x 	= 1000;
+					position 	= 0;
+					StrikeReady = false;
+					
+					if(dragon.hp<0)
+					{
+						dragon.alive 	= false;
+						dragonReady 	= false;
+						dragon.x    	= 800;
+						scorePoints = scorePoints + 100;
+					}
+				}
+				if(dragon.alive == false && level3 == false)
+				{
+					if(room_level == 3)
+						room_level = 4;
+					
+					backgroundCode = 6;
+					level3 = true;
 				}
 				
 			}
+				
 			
-			if (strike.x <= (monster3.x + 70) && (monster3.x <= (strike.x + 16) && strike.y <= (monster3.y + 70) && monster3.y <= (strike.y + 16)))							
-			{
-				SlashReady 	= true;
 				
-				slashX = monster3.x;
-				slashY = monster3.y;
-				
-				monster3.hp  = monster3.hp-1;
-				
-				strike.x 	= 1000;
-				position 	= 0;
-				StrikeReady = false;
-				
-				if(monster3.hp<0)
-				{
-					monster3.alive 	= false;
-					monster3Ready 	= false;
-					monster3.x    	= 800;
-					scorePoints = scorePoints + 100;
-				}
-			}
-			if (strike.x <= (monster4.x + 70) && (monster4.x <= (strike.x + 16) && strike.y <= (monster4.y + 70) && monster4.y <= (strike.y + 16)))							
-			{
-				SlashReady 	= true;
-				
-				slashX = monster4.x;
-				slashY = monster4.y;
-				
-				monster4.hp  = monster4.hp-1;
-				
-				strike.x 	= 1000;
-				position 	= 0;
-				StrikeReady = false;
-				
-				if(monster4.hp<0)
-				{
-					monster4.alive 	= false;
-					monster4Ready 	= false;
-					monster4.x    	= 800;
-					scorePoints = scorePoints + 100;
-				}
-			}
-                if (strike.x <= (dragon.x + 70) && (dragon.x <= (strike.x + 16) && strike.y <= (dragon.y + 70) && dragon.y <= (strike.y + 16)))							
-			{
-				SlashReady 	= true;
-				
-				slashX = dragon.x;
-				slashY = dragon.y;
-				
-				dragon.hp  = dragon.hp-1;
-				
-				strike.x 	= 1000;
-				position 	= 0;
-				StrikeReady = false;
-				
-				if(dragon.hp<0)
-				{
-					dragon.alive 	= false;
-					dragonReady 	= false;
-					dragon.x    	= 800;
-					scorePoints = scorePoints + 100;
-				}
-			}
-			
-			if (strike.x <= (dragon.x + 70) && (dragon.x <= (strike.x + 16) && strike.y <= (dragon.y + 70) && dragon.y <= (strike.y + 16)))							
-			{
-				SlashReady 	= true;
-				
-				slashX = dragon.x;
-				slashY = dragon.y;
-				
-				dragon.hp  = dragon.hp-1;
-				
-				strike.x 	= 1000;
-				position 	= 0;
-				StrikeReady = false;
-				
-				if(dragon.hp<0)
-				{
-					dragon.alive 	= false;
-					dragonReady 	= false;
-					dragon.x    	= 800;
-					scorePoints = scorePoints + 100;
-				}
-			}
-				
-				
-			if( hero.x <= (mstrike.x + 32) &&(mstrike.x <= (hero.x + 32) && hero.y <= (mstrike.y + 32) && mstrike.y <= (hero.y + 32)))							
-			{
-				hero.hp = hero.hp - 1;
-				hero.y = hero.y + 36;
-				scorePoints = scorePoints - 10000;
-			}
-			if( hero.x <= (d_mstrike.x + 32) &&(d_mstrike.x <= (hero.x + 32) && hero.y <= (d_mstrike.y + 32) && d_mstrike.y <= (hero.y + 32)))							
-			{
-				hero.hp = hero.hp - 1;
-				hero.y = hero.y + 36;
-				scorePoints = scorePoints - 10000;
-			}
-			if( hero.x <= (l_mstrike.x + 32) &&(l_mstrike.x <= (hero.x + 32) && hero.y <= (l_mstrike.y + 32) && l_mstrike.y <= (hero.y + 32)))							
-			{
-				hero.hp = hero.hp - 1;
-				hero.y = hero.y + 36;
-				scorePoints = scorePoints - 10000;
-			}
-			if( hero.x <= (r_mstrike.x + 32) &&(r_mstrike.x <= (hero.x + 32) && hero.y <= (r_mstrike.y + 32) && r_mstrike.y <= (hero.y + 32)))							
-			{
-				hero.hp = hero.hp - 1;
-				hero.y = hero.y + 36;
-				scorePoints = scorePoints - 10000;
-
-			}
-			
-			if(monster.alive == false && monster2.alive == false && monster3.alive == false)
-			{
-				if(room_level == 1)
-					room_level = 2;
-				
-				monster4Ready  = false;		
-				
-				backgroundCode = 7;
-				monster.alive = true;
-			}
-			
-			if(monster4.alive == false)
-			{
-				if(room_level == 2)
-					room_level = 3;
-				
-				backgroundCode = 7;
-				monster4.alive = true;
-				dragonReady		= false;
-			}
-			
-			if(dragon.alive == false)
-			{
-				if(room_level == 3)
-					room_level = 4;
-				
-				backgroundCode = 6;
-			}
-			
 			if(hero.hp < 0)
 			{
 				room_level 		= 1;
 				backgroundCode 	= 5;
 			}
 			
-			// STRIKE DIFFICULTY
-			if(Math.random()*1000<chanceToStrikeMonster3 && monster3.alive)
-			{
-				position3				= 0;
-				Monster3StrikeReady 	= true;
-				d_position3				= 0;
-				d_Monster3StrikeReady 	= true;
-				r_position3				= 0;
-				r_Monster3StrikeReady 	= true;
-				l_position3				= 0;
-				l_Monster3StrikeReady 	= true;
-			}
+			
 		}	
 	}
 
 	// Draw everything
 	var render = function () 
 	{
-		console.log(backgroundCode);
 		
 		var pos_min = 0; 
 		var b1 = false; var b2 = false; var b3 = false; var b4 = false; var b5 = false;
@@ -709,7 +700,7 @@
 			ctx.font = "32px OCR A Std, monospace";
 			ctx.textAlign = "right";
 			ctx.textBaseline = "top";
-			ctx.fillText("Next Level : " + room_level, canvas.width/1.50, canvas.height/2.25); // Display current lifes
+			ctx.fillText("Next Level : " + room_level, canvas.width/1.35, canvas.height/2.25); // Display current lifes
 
 			
 			ctx.fillStyle = "rgb(250, 250, 250)";
@@ -793,6 +784,9 @@
 		
 			if(room_level == 1)
 			{
+				monster4Ready = false;
+				dragonReady	= false;
+				
 				if(Math.random()*100 < chanceToMoveSlim)
 					b1 = true;
 				else
@@ -953,6 +947,10 @@
 			}
 			else if(room_level == 2)
 			{
+				monsterReady = false;
+				monster2Ready = false;
+				monster3Ready = false;
+				dragonReady = false;
 			
 				if(Math.random()*10 <5)
 					pos_min = 1;
@@ -990,6 +988,12 @@
 			}
 			else if(room_level == 3)
 			{
+				console.log("dragon " + dragonReady + " pos : " + dragon.x +  " y " + dragon.y);
+				monsterReady  = false;
+				monster2Ready = false;
+				monster3Ready = false;
+				monster4Ready = false;
+				
 				if(Math.random()*10 <5)
 					pos_min = 1;
 				else
@@ -997,28 +1001,30 @@
 					
 					
 				if(Math.random()*100 < chanceToMoveDragon)
-					b4 = true;
+					b5 = true;
 				else
-					b4 = false;
+					b5 = false;
 				
-				if(b5)
+				if (dragonReady)
 				{
-						do
-						{
-							pos_min = pos_min * -1;		
-							dragon.x = dragon.x + (pos_min * (Math.random() * caseByMovementDragon));
-						}
-						while(dragon.x > canvas.width-100 || dragon.x < 100);
-				
-						do
-						{
-							pos_min = pos_min * -1;		
-							dragon.y = dragon.y + (pos_min * (Math.random() * caseByMovementDragon));		
-						}
-						while(dragon.y > canvas.height-100 || dragon.y < 100);
-				}		
-				ctx.drawImage(dragonImage, dragon.x, dragon.y); // Draw the monster 4
-				
+					if(b5)
+					{
+							do
+							{
+								pos_min = pos_min * -1;		
+								dragon.x = dragon.x + (pos_min * (Math.random() * caseByMovementDragon));
+							}
+							while(dragon.x > canvas.width-100 || dragon.x < 100);
+					
+							do
+							{
+								pos_min = pos_min * -1;		
+								dragon.y = dragon.y + (pos_min * (Math.random() * caseByMovementDragon));		
+							}
+							while(dragon.y > canvas.height-100 || dragon.y < 100);
+					}		
+					ctx.drawImage(dragonImage, dragon.x, dragon.y); // Draw the monster 4
+				}
 			}	
 		
 			// Score
