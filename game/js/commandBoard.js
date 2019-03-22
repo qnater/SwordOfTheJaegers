@@ -25,7 +25,9 @@
 	
 	var chanceToMoveDragon 		= 1;
 	var caseByMovementDragon	= 72; 		// Movement by 1 to 100
-	
+	var dragonStrikeSpeed		= 10;
+	var chanceToStrikeDragon	= 7;  		// chance to strike by 1 to 10
+
 	
 	var	room_level				= 1;
 	

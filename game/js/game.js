@@ -97,12 +97,53 @@
 	var l_Monster3StrikeImage = new Image();
 	l_Monster3StrikeImage.src = "pictures/l_poison.PNG"; // Picture of a strike
 	
-	// Strike mode
+
 	// Strike mode
 	var r_Monster3StrikeReady = false;
 	var r_Monster3StrikeImage = new Image();
 	r_Monster3StrikeImage.src = "pictures/r_poison.PNG"; // Picture of a strike
     
+	
+		
+	// Strike mode
+	var Dragon_0_StrikeReady = false;
+	var Dragon_0_StrikeImage = new Image();
+	Dragon_0_StrikeImage.src = "pictures/dragon_ball.PNG"; // Picture of a strike
+	
+	// Strike mode
+	var Dragon_45_StrikeReady = false;
+	var Dragon_45_StrikeImage = new Image();
+	Dragon_45_StrikeImage.src = "pictures/dragon_ball.PNG"; // Picture of a strike
+	
+	// Strike mode
+	var Dragon_90_StrikeReady = false;
+	var Dragon_90_StrikeImage = new Image();
+	Dragon_90_StrikeImage.src = "pictures/dragon_ball.PNG"; // Picture of a strike
+	
+	// Strike mode
+	var Dragon_135_StrikeReady = false;
+	var Dragon_135_StrikeImage = new Image();
+	Dragon_135_StrikeImage.src = "pictures/dragon_ball.PNG"; // Picture of a strike
+	
+	// Strike mode
+	var Dragon_180_StrikeReady = false;
+	var Dragon_180_StrikeImage = new Image();
+	Dragon_180_StrikeImage.src = "pictures/dragon_ball.PNG"; // Picture of a strike
+	
+	// Strike mode
+	var Dragon_225_StrikeReady = false;
+	var Dragon_225_StrikeImage = new Image();
+	Dragon_225_StrikeImage.src = "pictures/dragon_ball.PNG"; // Picture of a strike
+	
+	// Strike mode
+	var Dragon_270_StrikeReady = false;
+	var Dragon_270_StrikeImage = new Image();
+	Dragon_270_StrikeImage.src = "pictures/dragon_ball.PNG"; // Picture of a strike
+	
+	// Strike mode
+	var Dragon_315_StrikeReady = false;
+	var Dragon_315_StrikeImage = new Image();
+	Dragon_315_StrikeImage.src = "pictures/dragon_ball.PNG"; // Picture of a strike
 	
 	
 	// Slash mode
@@ -134,6 +175,9 @@
 	var strikeType		= 0;
 	
 	
+	// ============================================================ //
+	// BAT Strike												    //
+	// ============================================================ //
 	// ==== Strike Bat (TOP) ==== //
 	var mstrike			= { speed: monsterStrikeSpeed };
 	var mstrikeX		= 0;
@@ -157,6 +201,60 @@
 	var r_mstrikeX		= 0;
 	var r_position3		= 0;
 	var r_mstrikeType	= 0;
+	// ============================================================ //
+	
+	// ============================================================ //
+	// DRAGOM Strike												    //
+	// ============================================================ //
+	// ==== Strike DRAGON (0 degré) ==== //
+	var d_0_strike		= { speed: dragonStrikeSpeed };
+	var d_0_strikeX		= 0;
+	var d_0_position	= 0;
+	var d_0_strikeType	= 0;
+	
+	// ==== Strike DRAGON (45 degré) ==== //
+	var d_45_strike		= { speed: dragonStrikeSpeed };
+	var d_45_strikeX	= 0;
+	var d_45_position	= 0;
+	var d_45_strikeType	= 0;
+	
+	// ==== Strike DRAGON (90 degré) ==== //
+	var d_90_strike		= { speed: dragonStrikeSpeed };
+	var d_90_strikeX	= 0;
+	var d_90_position	= 0;
+	var d_90_strikeType	= 0;
+	
+	// ==== Strike DRAGON (135 degré) ==== //
+	var d_135_strike	= { speed: dragonStrikeSpeed };
+	var d_135_strikeX	= 0;
+	var d_135_position	= 0;
+	var d_135_strikeType= 0;
+	
+	// ==== Strike DRAGON (180 degré) ==== //
+	var d_180_strike	= { speed: dragonStrikeSpeed };
+	var d_180_strikeX	= 0;
+	var d_180_position	= 0;
+	var d_180_strikeType= 0;
+	
+	// ==== Strike DRAGON (225 degré) ==== //
+	var d_225_strike	= { speed: dragonStrikeSpeed };
+	var d_225_strikeX	= 0;
+	var d_225_position	= 0;
+	var d_225_strikeType= 0;
+	
+	// ==== Strike DRAGON (270 degré) ==== //
+	var d_270_strike	= { speed: dragonStrikeSpeed };
+	var d_270_strikeX	= 0;
+	var d_270_position	= 0;
+	var d_270_strikeType= 0;
+			
+	// ==== Strike DRAGON (315 degré) ==== //
+	var d_315_strike	= { speed: dragonStrikeSpeed };
+	var d_315_strikeX	= 0;
+	var d_315_position	= 0;
+	var d_315_strikeType= 0;
+
+	// ============================================================ //
 
 	// Handle keyboard controls
 	var keysDown 		= {};
@@ -604,7 +702,57 @@
 				}
 			}
 			else if(room_level == 3)
-			{				
+			{
+								
+				if( hero.x <= (d_0_strike.x + 32) &&(d_0_strike.x <= (hero.x + 32) && hero.y <= (d_0_strike.y + 32) && d_0_strike.y <= (hero.y + 32)))							
+				{
+					hero.hp = hero.hp - 1;
+					hero.y = hero.y + 36;
+					scorePoints = scorePoints - 10000;
+				}
+				if( hero.x <= (d_45_strike.x + 32) &&(d_45_strike.x <= (hero.x + 32) && hero.y <= (d_45_strike.y + 32) && d_45_strike.y <= (hero.y + 32)))							
+				{
+					hero.hp = hero.hp - 1;
+					hero.y = hero.y + 36;
+					scorePoints = scorePoints - 10000;
+				}
+				if( hero.x <= (d_90_strike.x + 32) &&(d_90_strike.x <= (hero.x + 32) && hero.y <= (d_90_strike.y + 32) && d_90_strike.y <= (hero.y + 32)))							
+				{
+					hero.hp = hero.hp - 1;
+					hero.y = hero.y + 36;
+					scorePoints = scorePoints - 10000;
+				}
+				if( hero.x <= (d_135_strike.x + 32) &&(d_135_strike.x <= (hero.x + 32) && hero.y <= (d_135_strike.y + 32) && d_135_strike.y <= (hero.y + 32)))							
+				{
+					hero.hp = hero.hp - 1;
+					hero.y = hero.y + 36;
+					scorePoints = scorePoints - 10000;
+				}
+				if( hero.x <= (d_180_strike.x + 32) &&(d_180_strike.x <= (hero.x + 32) && hero.y <= (d_180_strike.y + 32) && d_180_strike.y <= (hero.y + 32)))							
+				{
+					hero.hp = hero.hp - 1;
+					hero.y = hero.y + 36;
+					scorePoints = scorePoints - 10000;
+				}
+				if( hero.x <= (d_225_strike.x + 32) &&(d_225_strike.x <= (hero.x + 32) && hero.y <= (d_225_strike.y + 32) && d_225_strike.y <= (hero.y + 32)))							
+				{
+					hero.hp = hero.hp - 1;
+					hero.y = hero.y + 36;
+					scorePoints = scorePoints - 10000;
+				}
+				if( hero.x <= (d_270_strike.x + 32) &&(d_270_strike.x <= (hero.x + 32) && hero.y <= (d_270_strike.y + 32) && d_270_strike.y <= (hero.y + 32)))							
+				{
+					hero.hp = hero.hp - 1;
+					hero.y = hero.y + 36;
+					scorePoints = scorePoints - 10000;
+				}
+				if( hero.x <= (d_315_strike.x + 32) &&(d_315_strike.x <= (hero.x + 32) && hero.y <= (d_315_strike.y + 32) && d_315_strike.y <= (hero.y + 32)))							
+				{
+					hero.hp = hero.hp - 1;
+					hero.y = hero.y + 36;
+					scorePoints = scorePoints - 10000;
+				}
+				
 				// Are they touching?
 				if(hero.x <= (dragon.x + 32) && (dragon.x <= (hero.x + 32) && hero.y <= (dragon.y + 32) && dragon.y <= (hero.y + 32)))							
 				{
@@ -640,6 +788,31 @@
 					
 					backgroundCode = 6;
 					level3 = true;
+				}
+				
+						
+				// STRIKE DIFFICULTY
+				if(Math.random()*1000<chanceToStrikeDragon && dragon.alive)
+				{
+					
+					Dragon_0_StrikeReady 	= true;
+					Dragon_45_StrikeReady 	= true;
+					Dragon_90_StrikeReady 	= true;
+					Dragon_135_StrikeReady 	= true;
+					Dragon_180_StrikeReady 	= true;
+					Dragon_225_StrikeReady 	= true;
+					Dragon_270_StrikeReady 	= true;
+					Dragon_315_StrikeReady 	= true;
+					
+					d_0_position = 0;
+					d_45_position = 0;
+					d_90_position = 0;
+					d_135_position = 0;
+					d_180_position = 0;
+					d_225_position = 0;
+					d_270_position = 0;
+					d_315_position = 0;
+					
 				}
 				
 			}
@@ -1024,6 +1197,143 @@
 							while(dragon.y > canvas.height-100 || dragon.y < 100);
 					}		
 					ctx.drawImage(dragonImage, dragon.x, dragon.y); // Draw the monster 4
+				}
+				
+				if (Dragon_0_StrikeReady)
+				{	
+					d_0_position = d_0_position - (1 * d_0_strike.speed);
+					ctx.drawImage(Dragon_0_StrikeImage, dragon.x, dragon.y+d_0_position); // Draw the monster 2
+					d_0_strike.x = dragon.x;
+					d_0_strike.y = dragon.y+d_0_position;
+					if(dragon.y+d_0_position < 0)
+					{
+						d_0_position 	= 0;
+						Dragon_0_StrikeReady = false;		
+					}
+					
+						
+					if (SlashReady)
+						ctx.drawImage(SlashImage, slashX, slashY); // Draw the monster 2
+					
+				}
+				if (Dragon_45_StrikeReady)
+				{	
+					d_45_position = d_45_position - (1 * d_45_strike.speed);
+					ctx.drawImage(Dragon_45_StrikeImage, dragon.x-d_45_position, dragon.y+d_45_position); // Draw the monster 2
+					d_45_strike.x = dragon.x-d_45_position;
+					d_45_strike.y = dragon.y+d_45_position;
+					if(dragon.y+d_45_position < 0 && dragon.x-d_45_position > canvas.width)
+					{
+						d_45_position 	= 0;
+						Dragon_45_StrikeReady = false;		
+					}
+					
+						
+					if (SlashReady)
+						ctx.drawImage(SlashImage, slashX, slashY); // Draw the monster 2
+					
+				}
+				if (Dragon_90_StrikeReady)
+				{	
+					d_90_position = d_90_position + (1 * d_90_strike.speed);
+					ctx.drawImage(Dragon_90_StrikeImage, dragon.x+d_90_position, dragon.y); // Draw the monster 2
+					d_90_strike.x = dragon.x+d_90_position;
+					d_90_strike.y = dragon.y;
+					if(dragon.x+d_90_position > canvas.width)
+					{
+						d_90_position 	= 0;
+						Dragon_90_StrikeReady = false;		
+					}
+					
+						
+					if (SlashReady)
+						ctx.drawImage(SlashImage, slashX, slashY); // Draw the monster 2
+					
+				}
+				if (Dragon_135_StrikeReady)
+				{	
+					d_135_position = d_135_position - (1 * d_135_strike.speed);
+					ctx.drawImage(Dragon_135_StrikeImage, dragon.x+d_135_position, dragon.y+d_135_position); // Draw the monster 2
+					d_135_strike.x = dragon.x+d_135_position;
+					d_135_strike.y = dragon.y+d_135_position;
+					if(dragon.y+d_135_position > canvas.height && dragon.x+d_135_position > canvas.width)
+					{
+						d_135_position 	= 0;
+						Dragon_135_StrikeReady = false;		
+					}
+					
+						
+					if (SlashReady)
+						ctx.drawImage(SlashImage, slashX, slashY); // Draw the monster 2
+					
+				}
+				if (Dragon_180_StrikeReady)
+				{	
+					d_180_position = d_180_position + (1 * d_180_strike.speed);
+					ctx.drawImage(Dragon_180_StrikeImage, dragon.x, dragon.y+d_180_position); // Draw the monster 2
+					d_180_strike.x = dragon.x;
+					d_180_strike.y = dragon.y+d_180_position;
+					if(dragon.y+d_180_position > canvas.width)
+					{
+						d_180_position 	= 0;
+						Dragon_180_StrikeReady = false;		
+					}
+					
+						
+					if (SlashReady)
+						ctx.drawImage(SlashImage, slashX, slashY); // Draw the monster 2
+					
+				}
+				if (Dragon_225_StrikeReady)
+				{	
+					d_225_position = d_225_position - (1 * d_225_strike.speed);
+					ctx.drawImage(Dragon_225_StrikeImage, dragon.x+d_225_position, dragon.y-d_225_position); // Draw the monster 2
+					d_225_strike.x = dragon.x-d_225_position;
+					d_225_strike.y = dragon.y+d_225_position;
+					if(dragon.x+d_225_position > canvas.height && dragon.y-d_225_position < 0)
+					{
+						d_225_position 	= 0;
+						Dragon_225_StrikeReady = false;		
+					}
+					
+						
+					if (SlashReady)
+						ctx.drawImage(SlashImage, slashX, slashY); // Draw the monster 2
+					
+				}
+				if (Dragon_270_StrikeReady)
+				{	
+					d_270_position = d_270_position - (1 * d_270_strike.speed);
+					ctx.drawImage(Dragon_270_StrikeImage, dragon.x+d_270_position, dragon.y); // Draw the monster 2
+					d_270_strike.x = dragon.x+d_270_position;
+					d_270_strike.y = dragon.y;
+					if(dragon.y+d_270_position < 0)
+					{
+						d_270_position 	= 0;
+						Dragon_270_StrikeReady = false;		
+					}
+					
+						
+					if (SlashReady)
+						ctx.drawImage(SlashImage, slashX, slashY); // Draw the monster 2
+					
+				}
+				if (Dragon_315_StrikeReady)
+				{	
+					d_315_position = d_315_position - (1 * d_315_strike.speed);
+					ctx.drawImage(Dragon_315_StrikeImage, dragon.x-d_315_position, dragon.y-d_315_position); // Draw the monster 2
+					d_315_strike.x = dragon.x-d_315_position;
+					d_315_strike.y = dragon.y-d_315_position;
+					if(dragon.y-d_315_position < 0 && dragon.x-d_315_position < 0)
+					{
+						d_315_position 	= 0;
+						Dragon_315_StrikeReady = false;		
+					}
+					
+						
+					if (SlashReady)
+						ctx.drawImage(SlashImage, slashX, slashY); // Draw the monster 2
+					
 				}
 			}	
 		
