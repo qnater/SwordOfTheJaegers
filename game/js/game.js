@@ -1,5 +1,5 @@
 	//======================================================================================== //
-	// QUENTIN NATER v5.1 (HES-SO)															   //
+	// QUENTIN NATER v5.2 (HES-SO)															   //
 	// SWORD OF THE JAEGERS																	   //
 	// MAIN GAME JS	(LINKED TO : GAME.HTML)													   //
 	// LAST UPDATE : 3/27/2019 (NATE)														   //
@@ -12,6 +12,11 @@
 	var level1 = false; // Current level
 	var level2 = false; // Current level
 	var level3 = false; // Current level
+	
+	historia 				= new sound("musics/intro.mp3");
+	swordofthejaegers 		= new sound("musics/swordland.mp3");
+	boss 					= new sound("musics/confrontbattle.mp3");
+	var volume 				= true;
 	
 	var canvas = document.createElement("canvas"); // Creation of the canvas
 	var ctx = canvas.getContext("2d"); // Use the 2d technology
@@ -358,6 +363,23 @@
 			if(hero.x <= canvas.width-115) // Limitation because of the wall
 				hero.x += hero.speed * modifier;
 		}
+		
+		if (77 in keysDown) 
+		{
+			if(volume)
+			{
+				swordofthejaegers.stop();
+				boss.stop();
+				volume = false;
+			}
+			else
+			{
+				swordofthejaegers.play();
+				boss.play();
+				volume = true;
+				
+			}
+		}
 
 		if(backgroundCode == 4)
 			scorePoints = scorePoints - 0.01;
@@ -701,7 +723,10 @@
 	// ======================================================================================================== //
 	// Draw everything
 	var render = function () 
-	{		
+	{	
+		if(backgroundCode != 1)
+			historia.stop();
+	
 		var pos_min = 0; 
 		var b1 = false; var b2 = false; var b3 = false; var b4 = false; var b5 = false;
 		
@@ -711,7 +736,10 @@
 		if(backgroundCode == 0)
 			bgImage.src = "pictures/500_introduction.JPG"; // Background of levels	
 		else if(backgroundCode == 1)
+		{
 			bgImage.src = "pictures/500_a_History.JPG"; // Background of levels
+			historia.play();
+		}
 		else if(backgroundCode == 2)
 			bgImage.src = "pictures/500_command.JPG"; // Background of levels
 		else if(backgroundCode == 3)
@@ -798,7 +826,24 @@
 		
 		}
 		else 
-		{			
+		{
+			if(room_level == 3)
+			{
+				if(volume)
+				{
+					swordofthejaegers.stop();
+					boss.play();
+				}
+			}
+			else
+			{
+				if(volume)
+				{
+					swordofthejaegers.play();
+					boss.stop();
+				}
+			}
+	
 			if(level2)
 				bgImage.src = "pictures/500_test.JPG"; // Background of levels
 			else
@@ -1346,6 +1391,24 @@
 		}
 	}
 
+	function sound(src) 
+	{
+	  this.sound = document.createElement("audio");
+	  this.sound.src = src;
+	  this.sound.setAttribute("preload", "auto");
+	  this.sound.setAttribute("controls", "none");
+	  this.sound.style.display = "none";
+	  document.body.appendChild(this.sound);
+	  this.play = function()
+	  {
+		this.sound.play();
+	  }
+	  this.stop = function()
+	  {
+		this.sound.pause();
+	  }
+	}
+
 	// The main game loop
 	var main = function () 
 	{
@@ -1361,6 +1424,7 @@
 		requestAnimationFrame(main);
 	};
 
+	
 				
 	// Cross-browser support for requestAnimationFrame
 	var w = window;
