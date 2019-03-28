@@ -726,6 +726,11 @@
 	{	
 		if(backgroundCode != 1)
 			historia.stop();
+		if(backgroundCode != 4)
+		{
+			swordofthejaegers.stop();
+			boss.stop();
+		}
 	
 		var pos_min = 0; 
 		var b1 = false; var b2 = false; var b3 = false; var b4 = false; var b5 = false;
@@ -778,7 +783,7 @@
 		}
 		else if(backgroundCode == 6)
 		{
-			bgImage.src = "pictures/500_back.PNG";
+			bgImage.src = "pictures/500_back.JPG";
 
 						
 			ctx.fillStyle = "rgb(250, 250, 250)";
