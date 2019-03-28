@@ -26,10 +26,15 @@
 	var chanceToMoveDragon 		= 1;
 	var caseByMovementDragon	= 72; 		// Movement by 1 to 100
 	var dragonStrikeSpeed		= 10;
-	var chanceToStrikeDragon	= 7;  		// chance to strike by 1 to 10
-
+	var chanceToStrikeDragon	= 10;  		// chance to strike by 1 to 10
+	var chanceToDefenseDragon	= 2;  		// chance to strike by 2 to 10
 	
 	var	room_level				= 1;
 	
+	var life_slim				= 4;
+	var life_bat				= 3;
+	var life_packy				= 5;
+	var life_dragon				= 12;
+	var life_hero				= 2;
 	
 // =============================================================================== //
