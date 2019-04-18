@@ -1,0 +1,33 @@
+.font-face 
+{
+  font-family: 8BitWonder;
+  src: url(../ressources/font/bit.TTF);
+}
+body
+{
+	text-align : center;
+	background-image : url(../ressources/images/game/outBackground.JPG);
+	background-attachment		: fixed;
+	background-position			: center;
+    background-repeat			: no-repeat;
+	background-size				: cover;
+}
+.h2, h1, p, div, a, h6
+{
+	font-family : OCR A Std, monospace;
+	color : white;
+	color 					: black;
+	text-shadow				: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
+}
+.hes
+{
+	position : fixed;
+	top : 10px;
+	right : 10px;
+}
+
+.rule
+{
+	margin-top : 25px;
+	margin-bottom : 35px;
+}
