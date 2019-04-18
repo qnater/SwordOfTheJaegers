@@ -50,20 +50,43 @@
 	batImage.onload = function () { monster3Ready = true; };
 	batImage.src = "pictures/a_bat.PNG"; // Picture of a monster
 	
-	// Monster 4 image
-	var monster4Ready = false;
-	var packyImage = new Image();
-	packyImage.onload = function () { monster4Ready = true; };
-	packyImage.src = "pictures/packy.PNG"; // Picture of a monster
-	
+	// Monster 4 & 5 image
+	var monster4Ready = false;  var monster5Ready = false;
+	var packyImageRight = new Image();
+	packyImageRight.onload = function () { monster4Ready = true; monster5Ready = true;};
+	packyImageRight.src = "pictures/packy.PNG"; // Picture of a monster
+    
+	var packyImageLeft = new Image();
+	packyImageLeft.onload = function () { monster4Ready = true; monster5Ready = true;};
+	packyImageLeft.src = "pictures/packyLeft.PNG"; // Picture of a monster
+    
+    var packyImageUp = new Image();
+	packyImageUp.onload = function () { monster4Ready = true; monster5Ready = true;};
+	packyImageUp.src = "pictures/packyUp.PNG"; // Picture of a monster
+
+    var packyImageDown = new Image();
+	packyImageDown.onload = function () { monster4Ready = true; monster5Ready = true;};
+	packyImageDown.src = "pictures/packyDown.PNG"; // Picture of a monster
+
     // Dragon image
 	var dragonReady = false;
 	var dragonImage = new Image();
 	dragonImage.onload = function () { dragonReady = true; };
 	dragonImage.src = "pictures/a_dragon.PNG"; // Picture of a dragon
+    //hitbox
+	var hitboxImage = new Image();
+	hitboxImage.src = "pictures/Hitbox.PNG"; // Picture of a dragon
 
-	// =================== ============== ======================== //
-
+	// =================== OBSTACLE iMAGES ======================== //
+// flame image
+	var flameReady = false;
+	var flameImage = new Image();
+	flameImage.onload = function () { flameReady = true; flame2Ready = true;  flame3Ready = true; flame4Ready = true; flame5Ready = true;  flame6Ready = true; flame7Ready = true; flame8Ready = true; flame9Ready = true;};
+	flameImage.src = "pictures/flame.PNG"; // Picture of a flame
+    
+    var flameReverseImage = new Image();
+	flameReverseImage.onload = function () {flameReady = true; flame2Ready = true;  flame3Ready = true; flame4Ready = true; flame5Ready = true;  flame6Ready = true; flame7Ready = true; flame8Ready = true; flame9Ready = true; };
+	flameReverseImage.src = "pictures/flameReverse.PNG"; // Picture of a dragon
 	// =================== HERO STRIKES DESIGNS =================== //
 	// Strike mode
 	var StrikeReady = false;
@@ -130,7 +153,18 @@
 	var monster2		= { alive:true, hp:life_slim };
 	var monster3		= { alive:true, hp:life_bat };
 	var monster4		= { alive:true, hp:life_packy };
+    var monster5		= { alive:true, hp:life_packy };
 	var dragon			= { alive:true, hp:life_dragon };
+
+     var flame			= { alive:true};
+     var flame2			= { alive:true};
+     var flame3			= { alive:true};
+     var flame4			= { alive:true};
+     var flame5			= { alive:true};
+     var flame6			= { alive:true};
+     var flame7			= { alive:true};
+     var flame8			= { alive:true};
+     var flame9			= { alive:true};
 
 	var monsterStrike3	= { power:1 };
 	
@@ -218,9 +252,9 @@
 	// Reset the game when the player catches a monster
 	var reset = function () 
 	{
-		hero.x = canvas.width / 2.40;
-		hero.y = canvas.height - (canvas.height/4) ;
-
+		hero.x = 215;
+		hero.y = 385 ;
+       
 		// Throw the monster somewhere on the screen randomly
 		monster.x = 32 + (Math.random() * (canvas.width  - 128));
 		monster.y = 12 + (Math.random() * (canvas.height/2));
@@ -233,21 +267,53 @@
 	
 		monster4.x = 32 + (Math.random() * (canvas.width  - 128));
 		monster4.y = 12 + (Math.random() * (canvas.height/2));
+        
+        monster5.x = 32 + (Math.random() * (canvas.width  - 128));
+		monster5.y = 12 + (Math.random() * (canvas.height/2));
 
 		dragon.x = (canvas.width/2) + 50;
 		dragon.y = 50;
-			
+        //All flames positions
+        flame.x = 135;
+		flame.y = 125;
+        
+        flame2.x = 235;
+		flame2.y = 125;
+        
+        flame3.x = 335;
+		flame3.y = 125;
+        
+        flame4.x = 135;
+		flame4.y = 225;
+        
+        flame5.x = 235;
+		flame5.y = 225;
+        
+        flame6.x = 335;
+		flame6.y = 225;
+        
+        flame7.x = 135;
+		flame7.y = 325;
+        
+        flame8.x = 235;
+		flame8.y = 325;
+        
+        flame9.x = 335;
+		flame9.y = 325;
+		//--------------------//	
 		hero.hp 	= 2;
 		monster.hp 	= 3;
 		monster2.hp = 3;
 		monster3.hp = 2;
 		monster4.hp = 4;
+        monster5.hp = 4;
 		dragon.hp   = 10;
 		
 		monster.alive  = true;
 		monster2.alive = true;
 		monster3.alive = true;
 		monster4.alive = true;
+        monster5.alive = true;
 		dragon.alive   = true;
 		
 		StrikeReady	   = false;
@@ -257,6 +323,7 @@
 		monster2Ready  = true;		
 		monster3Ready  = true;
 		monster4Ready  = true;
+        monster5Ready  = true;
 		dragonReady	   = true;
 		
 		level1		   = false;
@@ -302,7 +369,9 @@
 				if(room_level == 2)
 				{
 					backgroundCode = 4;
-					monster4Ready = true;					
+					monster4Ready = true;
+                    monster5Ready = true;
+                    	
 				}				
 				else if(room_level == 3)
 				{
@@ -336,7 +405,7 @@
 				myHero=1;
 			}
 			else if (80 in keysDown) 
-			{ // Player holding up
+			{ 
 				backgroundCode = 4;
 				heroImage.src = "pictures/a_paladin.PNG"; // Picture of the chosen hero
 				myHero=2;
@@ -422,34 +491,39 @@
 		}
 		else
 		{
-			StrikeImage.src = "pictures/a_sword.PNG"; // Picture of strike
+			 
+        ctx.drawImage(hitboxImage, hero.x, hero.y);
 				
-			if (38 in keysDown) 
+			if (38 in keysDown) //key up
 			{
+                StrikeImage.src = "pictures/a_swordUp.PNG"; // Picture of strike
 				strikeType 		= 0;
-				strikeX			= hero.x;
-				strikeY			= hero.y;
+				strikeX			= hero.x + 10;
+				strikeY			= hero.y + 15;
 				StrikeReady 	= true;	
 			}
-			if (40 in keysDown) 
+			if (40 in keysDown) //key down
 			{
+                StrikeImage.src = "pictures/a_swordDown.PNG"; // Picture of strike
 				strikeType 		= 1;
-				strikeX			= hero.x;
-				strikeY			= hero.y;
+				strikeX			= hero.x + 10;
+				strikeY			= hero.y - 25;
 				StrikeReady 	= true;
 			}
-			if (39 in keysDown) 
+			if (39 in keysDown) //key right
 			{
+                StrikeImage.src = "pictures/a_swordRight.PNG"; // Picture of strike
 				strikeType 		= 2;
-				strikeX			= hero.x;
-				strikeY			= hero.y;
+				strikeX			= hero.x - 25;
+				strikeY			= hero.y + 28;
 				StrikeReady 	= true;	
 			}
-			if (37 in keysDown) 
+			if (37 in keysDown) //key left
 			{
+                StrikeImage.src = "pictures/a_swordLeft.PNG"; // Picture of strike
 				strikeType 		= 3;
-				strikeX			= hero.x;
-				strikeY			= hero.y;				
+				strikeX			= hero.x + 2;
+				strikeY			= hero.y + 28;				
 				StrikeReady 	= true;
 			}
 		}
@@ -457,16 +531,14 @@
 		if(room_level == 1)
 		{			
 			// Are they touching?
-			if(hero.x <= (monster.x + 32) && (monster.x <= (hero.x + 32) && hero.y <= (monster.y + 32) && monster.y <= (hero.y + 32)))							
-				lostPoints();
+			GetTouchedByMonster(monster, slimeHitboxWidth, slimeHitboxHeight, heroHitboxWidth, heroHitboxHeight);
+            
 			
 			 // Are they touching?
-			if( hero.x <= (monster2.x + 32) &&(monster2.x <= (hero.x + 32) && hero.y <= (monster2.y + 32) && monster2.y <= (hero.y + 32)))							
-				lostPoints();
+			GetTouchedByMonster(monster2, slimeHitboxWidth, slimeHitboxHeight, heroHitboxWidth, heroHitboxHeight);
 			
 			 // Are they touching?
-			if ( hero.x <= (monster3.x + 32) && ( monster3.x <= (hero.x + 32) && hero.y <= (monster3.y + 32) && monster3.y <= (hero.y + 32)))							
-				lostPoints();
+			GetTouchedByMonster(monster3, batHitboxWidth, batHitboxHeight, heroHitboxWidth, heroHitboxHeight);
 		
 			if (strike.x <= (monster.x + 32) && (monster.x <= (strike.x + 32) && strike.y <= (monster.y + 32) && monster.y <= (strike.y + 32))	)						
 			{
@@ -575,9 +647,25 @@
 		}
 		else if(room_level == 2)
 		{
+            //flames dissapear when the hero touches it
+           burnt(flame, flameReady);
+           burnt(flame2, flame2Ready);
+           burnt(flame3, flame3Ready);
+           burnt(flame4, flame4Ready);
+           burnt(flame5, flame5Ready);
+           burnt(flame6, flame6Ready);
+           burnt(flame7, flame7Ready);
+           burnt(flame8, flame8Ready);
+           burnt(flame9, flame9Ready);
+           
+            //-----------------------------------------------------------------------------------------------------------------------------//
+            //-------------------------------------------------------------------------------------------------------------------------------//
 			// Are they touching?
-			if(hero.x <= (monster4.x + 32) && (monster4.x <= (hero.x + 32) && hero.y <= (monster4.y + 32) && monster4.y <= (hero.y + 32)))							
-				lostPoints();
+			GetTouchedByMonster(monster4, packyHitbox, packyHitbox, heroHitboxWidth, heroHitboxHeight);
+            
+            GetTouchedByMonster(monster5, packyHitbox, packyHitbox, heroHitboxWidth, heroHitboxHeight);
+            
+                
 			
 			if (strike.x <= (monster4.x + 70) && (monster4.x <= (strike.x + 16) && strike.y <= (monster4.y + 70) && monster4.y <= (strike.y + 16)))							
 			{
@@ -600,7 +688,29 @@
 					scorePoints = scorePoints + 3;
 				}
 			}
-			if(monster4.alive == false && level2 == false)
+            
+            if (strike.x <= (monster5.x + 70) && (monster5.x <= (strike.x + 16) && strike.y <= (monster5.y + 70) && monster5.y <= (strike.y + 16)))							
+			{
+				SlashReady 	= true;
+				
+				slashX = monster5.x;
+				slashY = monster5.y;
+				
+				monster5.hp  = monster5.hp-1;
+				
+				strike.x 	= 1000;
+				position 	= 0;
+				StrikeReady = false;
+				
+				if(monster5.hp<0)
+				{
+					monster5.alive 	= false;
+					monster5Ready 	= false;
+					monster5.x    	= 800;
+					scorePoints = scorePoints + 3;
+				}
+			}
+			if(monster4.alive == false && monster5.alive == false && level2 == false)
 			{
 				if(room_level == 2)
 					room_level = 3;
@@ -731,11 +841,7 @@
 			swordofthejaegers.stop();
 			boss.stop();
 		}
-	
-		var pos_min = 0; 
-		var b1 = false; var b2 = false; var b3 = false; var b4 = false; var b5 = false;
-		
-						
+				
 		if (bgReady) 
 			ctx.drawImage(bgImage, 0, 0);
 		if(backgroundCode == 0)
@@ -863,99 +969,61 @@
 		
 			if(room_level == 1)
 			{
+                resetHeroPosition = true;
+                resetHeroPosition2 = true;
 				monster4Ready 	= false;
 				dragonReady		= false;
 				
-				if(Math.random()*100 < chanceToMoveSlim)
-					b1 = true;
-				else
-					b1 = false;
-
-				if(Math.random()*100 < chanceToMoveSlim)
-					b2 = true;
-				else
-					b2= false;
-				if(Math.random()*100 < chanceToMoveMonster3)
-					b3 = true;
-				else
-					b3 = false;
-
 				
-				if(Math.random()*10 <5)
-					pos_min = 1;
-				else
-					pos_min = -1;
 						
 				// ================== Mouvement Monster Number 1 ================== //
 				if (monsterReady)
 				{
-					if(b1)
-					{
-						do
-						{
-							pos_min = pos_min * -1;				
-							monster.x = monster.x + (pos_min * (Math.random() * caseByMovementSlim));
-						}
-						while(monster.x > canvas.width-100 || monster2.x < 100);
-				
-						do
-						{
-							pos_min = pos_min * -1;		
-							monster.y = monster.y + (pos_min * (Math.random() * caseByMovementSlim));		
-						}
-						while(monster.y > canvas.height-100 || monster.y < 100);
-					}	
-					ctx.drawImage(slimeImage, monster.x, monster.y); // Draw the monster
+                    pusrsuitPattern(monster, slimeImage, slimeImage, slimeImage, slimeImage)
 				}
 				
 				// ================== Mouvement Monster Number 2 ================== //
 				if (monster2Ready)
 				{
-					if(b2)
-					{
-							
-						do
-						{
-							pos_min = pos_min * -1;		
-							monster2.x = monster2.x + (pos_min * (Math.random() * caseByMovementSlim));
-						}
-						while(monster2.x > canvas.width-100 || monster2.x < 100);
-				
-						do
-						{
-							pos_min = pos_min * -1;		
-							monster2.y = monster2.y + (pos_min * (Math.random() *caseByMovementSlim));		
-						}
-						while(monster2.y > canvas.height-100 || monster2.y < 100);
-					}
-					ctx.drawImage(slimeImage, monster2.x, monster2.y); // Draw the monster 2
-				}
+                    getRandomProbability();
+
+                    if (probability > goSameWay)
+                    {
+                        direction2 = parseInt(Math.random()*4)+1;
+                    } 
+                    if (monster2.y < 45)
+                        direction2 = 2;
+                    if (monster2.y > 405)
+                        direction2 = 1;
+                     if (monster2.x < 55)
+                        direction2 = 4;
+                    if (monster2.x > 415)
+                        direction2 = 3;
+                    randomMove(monster2, slimeImage, slimeImage, slimeImage, slimeImage, direction2);
+                }
 				
 				// ================== Mouvement Monster Number 3 ================== //
 				if (monster3Ready)
 				{
-					if(b3)
-					{
-						do
-						{
-							pos_min = pos_min * -1;		
-							monster3.x = monster3.x + (pos_min * (Math.random() * caseByMovementMonster3));
-						}
-						while(monster3.x > canvas.width-100 || monster3.x < 100);
-				
-						do
-						{
-							pos_min = pos_min * -1;		
-							monster3.y = monster3.y + (pos_min * (Math.random() * caseByMovementMonster3));		
-						}
-						while(monster3.y > canvas.height-100 || monster3.y < 100);
-					}		
-					ctx.drawImage(batImage, monster3.x, monster3.y); // Draw the monster 2
+                   
+                    getRandomProbability();
+                        
+                     if (probability > goSameWay)
+                        {
+                            direction3 = parseInt(Math.random()*4)+1;
+                        } 
+                    //changes direction if it's out of boudaries
+                    if (monster3.y < 45)
+                        direction3 = 2;
+                    if (monster3.y > 405)
+                        direction3 = 1;
+                    if (monster3.x < 55)
+                        direction3 = 4;
+                    if (monster3.x > 415)
+                        direction3 = 3;
+                    randomMove(monster3, batImage, batImage, batImage, batImage, direction3);
+                     
 				}
-				
-
-
-				
 				// ================== Mouvement Monster Strike  ================== //
 				if (Monster3StrikeReady)
 				{	
@@ -968,9 +1036,6 @@
 						position3 	= 0;
 						Monster3StrikeReady = false;		
 					}
-					
-					if (SlashReady)
-						ctx.drawImage(SlashImage, slashX, slashY); // Draw the monster 2
 					
 				}
 				
@@ -985,9 +1050,6 @@
 						d_position3 	= 0;
 						d_Monster3StrikeReady = false;		
 					}
-					
-					if (SlashReady)
-						ctx.drawImage(SlashImage, slashX, slashY); // Draw the monster 2
 				}
 				
 				if (l_Monster3StrikeReady)
@@ -1001,9 +1063,6 @@
 						l_position3 	= 0;
 						l_Monster3StrikeReady = false;		
 					}
-					
-					if (SlashReady)
-						ctx.drawImage(SlashImage, slashX, slashY); // Draw the monster 2
 				}
 				
 				if (r_Monster3StrikeReady)
@@ -1017,58 +1076,77 @@
 						r_position3 	= 0;
 						r_Monster3StrikeReady = false;		
 					}
-						
-					if (SlashReady)
-						ctx.drawImage(SlashImage, slashX, slashY); // Draw the monster 2
 				}
+                
 			}
 			else if(room_level == 2)
 			{
+                //reset hero position
+                if(resetHeroPosition){
+                hero.x = 215;
+                hero.y = 385;
+                }
+                
+                resetHeroPosition = false;
+                
 				monsterReady 	= false;
 				monster2Ready 	= false;
 				monster3Ready 	= false;
 				dragonReady 	= false;
-			
-				if(Math.random()*10 <5)
-					pos_min = 1;
-				else
-					pos_min = -1;
-					
-					
-				if(Math.random()*100 < chanceToMovePacky)
-					b4 = true;
-				else
-					b4 = false;
+                
+                displayFlames(flame, flameImage, flameReverseImage);
+                displayFlames(flame2, flameImage, flameReverseImage);
+                displayFlames(flame3, flameImage, flameReverseImage);
+                displayFlames(flame4, flameImage, flameReverseImage);
+                displayFlames(flame5, flameImage, flameReverseImage);
+                displayFlames(flame6, flameImage, flameReverseImage);
+                displayFlames(flame7, flameImage, flameReverseImage);
+                displayFlames(flame8, flameImage, flameReverseImage);
+                displayFlames(flame9, flameImage, flameReverseImage);
+                
+               
+                   
+                
 				
-				// ================== Mouvement Monster Number 4 ================== //
+				
+				// ================== Mouvement Monster Number 4 && 5 ================== //
 				if (monster4Ready)
 				{
-					if(b4)
-					{
-						do
-						{
-							pos_min = pos_min * -1;		
-							monster4.x = monster4.x + (pos_min * (Math.random() * caseByMovementPacky));
-						}
-						while(monster4.x > canvas.width-100 || monster4.x < 100);
-				
-						do
-						{
-							pos_min = pos_min * -1;		
-							monster4.y = monster4.y + (pos_min * (Math.random() * caseByMovementPacky));		
-						}
-						while(monster4.y > canvas.height-100 || monster4.y < 100);
-					}		
-					ctx.drawImage(packyImage, monster4.x, monster4.y); // Draw the monster 4
+				    pusrsuitPattern(monster4, packyImageUp, packyImageDown, packyImageLeft, packyImageRight);
 				}
-
-			}
+                if (monster5Ready)
+				{ 
+                        getRandomProbability();
+                    if (probability > goSameWay)
+                    {
+                        direction5 = parseInt(Math.random()*4)+1;
+                    }
+                    if (monster5.y < 45)
+                        direction5 = 2;
+                    if (monster5.y > 405)
+                        direction5 = 1;
+                     if (monster5.x < 55)
+                        direction5 = 4;
+                    if (monster5.x > 415)
+                        direction5 = 3;
+                    randomMove(monster5, packyImageUp, packyImageDown, packyImageLeft, packyImageRight, direction5);
+                }
+			 }
 			else if(room_level == 3)
 			{
+                //reset hero position
+                if(resetHeroPosition2){
+                hero.x = 215;
+                hero.y = 385;
+                }
+                resetHeroPosition2 = false;
+                
 				monsterReady  = false;
 				monster2Ready = false;
 				monster3Ready = false;
 				monster4Ready = false;
+                monster5Ready = false;
+                flameReady    = false;
 				
 				if(Math.random()*10 <5)
 					pos_min = 1;
@@ -1290,12 +1368,123 @@
 			
 		}
 	}
+    //---------------------------- CONTACTS WITH MONSTER ---------------------------------------//
+    var GetTouchedByMonster = function (monsterName, monsterHitboxX, monsterHitboxY, heroHitboxX, heroHitboxY)
+    {   // monster touches hero
+        if (monsterName.y + monsterHitboxY >= hero.y + 5 && monsterName.y <= hero.y + heroHitboxY && monsterName.x <= hero.x + heroHitboxX && monsterName.x + monsterHitboxX >= hero.x + 5)
+            lostPoints(); 
+    }
+    var strikesMonster = function(monsterName, monsterHitboxX, monsterHitboxY)
+    {
+        if(strike.y >= monsterName.y + monsterHitboxY && st);
+    }
+    //------------------------MONSTERS' MOVES' ALGORITHMS----------------------------------//
+     
+ 
+     var goUp = function(monsterName, imageUp)
+     {
+            monsterName.y = monsterName.y - caseByMovement;
+            ctx.drawImage(imageUp, monsterName.x, monsterName.y);
+     }
+     var goDown = function(monsterName, imageDown)
+     {
+            monsterName.y = monsterName.y + caseByMovement;
+            ctx.drawImage(imageDown, monsterName.x, monsterName.y);
+     }
+     var goLeft = function(monsterName, imageLeft) 
+     {
+            monsterName.x = monsterName.x - caseByMovement;
+            ctx.drawImage(imageLeft, monsterName.x, monsterName.y);
+     }
+     var goRight = function(monsterName, imageRight) 
+     {
+            monsterName.x = monsterName.x + caseByMovement;
+            ctx.drawImage(imageRight, monsterName.x, monsterName.y);
+     }
+     //=================================function to give a monster the pursuit move pattern=====================//
+     var pusrsuitPattern = function(monsterName, imageUp, imageDown, imageLeft, imageRight)
+    {
+        //Pursuit Move
 
+        if ((monsterName.x - hero.x) < -pursuitRange  )
+        {
+            goRight(monsterName, imageRight, imageLeft);
+        }
+        else if (monsterName.y - hero.y > pursuitRange)
+            {
+                goUp(monsterName, imageUp, imageDown);
+
+            }
+        else if ((monsterName.y - hero.y) < -pursuitRange)
+            {
+                goDown(monsterName, imageDown, imageUp);
+            }
+        else if (monsterName.x - hero.x > pursuitRange)
+            {
+               goLeft(monsterName, imageLeft, imageRight);
+            }
+
+    }    
+//=================================function to give a monster the random move pattern=====================//
+  var randomMove = function(monsterName, imageUp, imageDown, imageLeft, imageRight, direction)
+   {
+        if (direction == 1) 
+        {
+            goUp(monsterName, imageUp, imageDown);
+        }
+        else if (direction == 2) 
+        {
+            goDown(monsterName, imageDown, imageUp);
+        }
+        else if (direction == 3) 
+        {
+            goLeft(monsterName, imageLeft, imageRight);
+        }
+        else if (direction == 4) 
+        {
+            goRight(monsterName, imageRight, imageLeft);
+        }
+   }
+  var getRandomProbability = function()
+  {
+    probability = parseInt(Math.random()*100) +1;
+  }
+//================================ Diplay flames algortihme ==============================//
+  var displayFlames = function(fire, fireImage, fireReverseImage)
+{
+	if(flameSprite <= 50)
+        {
+         ctx.drawImage(fireImage, fire.x, fire.y); // Draw the flame
+         flameSprite = flameSprite+1;
+        }
+
+    else if (flameSprite > 50 && flameSprite <= 100)
+    {
+         ctx.drawImage(fireReverseImage, fire.x, fire.y); // Draw the flame
+         flameSprite = flameSprite + 1;
+    }
+	else 
+	{
+		 ctx.drawImage(fireImage, fire.x, fire.y); // Draw the flame
+		 flameSprite = 0;
+	}
+}
+//============================ get burnt by flames =================//
+  var burnt = function(fire, fireReady)
+  {
+       if(hero.x <= (fire.x + flameHitboxWidth) && fire.x <= (hero.x + heroHitboxWidth) && hero.y <= (fire.y + flameHitboxWidth) && fire.y <= (hero.y + heroHitboxHeight))	
+        {					
+            lostPoints();
+            fireReady = false;
+            fire.x    = 800;
+        }
+  }
+ //=========================== lose life and points ======================//
 	var lostPoints = function()
 	{
 		hero.hp = hero.hp - 1;
-		hero.x = hero.x + 36;
-		hero.y = hero.y + 36;
+		hero.x = hero.x + 32;
+		hero.y = hero.y + 32;
 		scorePoints = scorePoints - 10000;
 	}
 	
