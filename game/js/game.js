@@ -350,12 +350,22 @@
 	// Update game objects
 	var update = function (modifier)
 	{
+        
 		nickname = getQueryVariable('pseudo');
-	
+        
+        
 		if(nickname == null || nickname == false)
 			nickname = "PL1";
-		
-				
+        
+        if (nickname.length > 7);
+            nickname = nickname.substring(0, 7)
+        
+        for (i = nickname.length; i < 7; i++)
+            {
+               nickname = nickname + ' '; 
+            }
+       
+        
 		if (8 in keysDown) 
 		{
 			reset();
@@ -624,6 +634,8 @@
 			if(monster.alive == false && monster2.alive == false && monster3.alive == false && level1 == false)
 			{
 				if(room_level == 1)
+                    hero.x = 215;
+                    hero.y = 385;
 					room_level = 2;
 				
 				monster4Ready  = false;						
@@ -889,6 +901,59 @@
 		}
 		else if(backgroundCode == 6)
 		{
+            //store the score if it's an highscore
+            if (typeof(Storage) !== "undefined") 
+            {
+	
+                if (scorePoints > highScores[0])
+                {
+                    previousScore = highScores[0]
+                    previousNickname = nicknames[0]
+
+                    nicknames[0] = nickname;
+                    highScores[0] = scorePoints;
+
+                    nickname = previousNickname;
+                    scorePoints = previousScore;
+                }
+                for (i = 1; i < 10; i++)
+                {
+                    if (scorePoints > highScores[i] && scorePoints < highScores[i-1])
+                    {   //replace the previous highscore
+                        previousScore = highScores[i]
+                        previousNickname = nicknames[i]
+                        
+                        nicknames[i] = nickname;
+                        highScores[i] = scorePoints;
+                        
+                        nickname = previousNickname;
+                        scorePoints = previousScore;
+
+                    }
+                     
+                }
+               //store highscores
+                for (j = 0; j < highScores.length; j++)
+                {
+                    localStorage.setItem("highScores", JSON.stringify(highScores));
+                    localStorage.setItem("nicknames", JSON.stringify(nicknames));
+                }
+              
+                //Display highscores
+                storedHighScores = JSON.parse(localStorage.getItem("highScores"));
+                storedNicknames = JSON.parse(localStorage.getItem("nicknames")); 
+                
+                console.log(highScores);
+                highScores = storedHighScores;
+                nicknames = storedNicknames;
+                 console.log(highScores);
+
+            } 
+            else 
+            {
+              console.log("Error: your score can't be stored in this browser")
+            }
+            
 			bgImage.src = "pictures/500_back.JPG";
 
 						
@@ -897,43 +962,19 @@
 			ctx.font = "32px OCR A Std, monospace";
 			ctx.textAlign = "right";
 			ctx.textBaseline = "top";
-			ctx.fillText("Hall Of Fame", canvas.width/1.42, 50); // Display current lifes
+			ctx.fillText("Hall Of Fame", canvas.width/1.42, 50); // Display Hall of fame
 
 
-			if(parseInt(scorePoints) > hScore1)
-			{								
-				ctx.fillStyle = "rgb(250, 250, 250)";
-				ctx.font = "20px OCR A Std, monospace";
-				ctx.textAlign = "right";
-				ctx.textBaseline = "top";
-				ctx.fillText("You got the highest score ! - " + parseInt(scorePoints) + "pts", 450, canvas.height/2); // Display current lifes
-			}
-			else
-			{			
-				ctx.fillStyle = "rgb(250, 250, 250)";
-				ctx.font = "32px OCR A Std, monospace";
-				ctx.textAlign = "right";
-				ctx.textBaseline = "top";
-				ctx.fillText(nickname + " - " + parseInt(scorePoints) + "pts", 350, canvas.height-50); // Display current lifes
-				
-				ctx.fillStyle = "rgb(250, 250, 250)";
-				ctx.font = "32px OCR A Std, monospace";
-				ctx.textAlign = "right";
-				ctx.textBaseline = "top";
-				ctx.fillText("Nate - " + hScore1 + "pts", 350, canvas.height/3); // Display current lifes
-
-				ctx.fillStyle = "rgb(250, 250, 250)";
-				ctx.font = "32px OCR A Std, monospace";
-				ctx.textAlign = "right";
-				ctx.textBaseline = "top";
-				ctx.fillText("Fade - " + hScore2 + "pts", 350, canvas.height/2); // Display current lifes
-
-				ctx.fillStyle = "rgb(250, 250, 250)";
-				ctx.font = "32px OCR A Std, monospace";
-				ctx.textAlign = "right";
-				ctx.textBaseline = "top";
-				ctx.fillText("Plyr - " + hScore3 + "pts", 350, canvas.height/1.5); // Display current life
-			}
+                // display all highScores
+				for (i = 0; i < 10; i++)
+                {
+                    ctx.fillStyle = "rgb(250, 250, 250)";
+                    ctx.font = "28px OCR A Std, monospace";
+                    ctx.textAlign = "left";
+                    ctx.textBaseline = "top";
+                    ctx.fillText(nicknames[i] + " - " + parseInt(highScores[i]) + " pts" + " SUI", 12, canvas.height/4 + (i*30)); 
+                }
+            
 		
 		}
 		else 
@@ -1302,7 +1343,7 @@
 				if (Dragon_315_StrikeReady)
 				{	
 					d_315_position = d_315_position - (1 * d_315_strike.speed);
-					ctx.drawImage(dragon_StrikeImage, dragon.x-d_315_position, dragon.y-d_315_position); // Draw the monster 2
+					ctx.drawImage(dragon_StrikeImage, dragon.x-d_315_position, dragon.y-d_315_position); 
 					d_315_strike.x = dragon.x-d_315_position;
 					d_315_strike.y = dragon.y-d_315_position;
 					if(dragon.y-d_315_position < 0 && dragon.x-d_315_position < 0)
@@ -1312,13 +1353,12 @@
 					}
 											
 					if (SlashReady)
-						ctx.drawImage(SlashImage, slashX, slashY); // Draw the monster 2
-					
+						ctx.drawImage(SlashImage, slashX, slashY); 
 				}
 				
 				if (Dragon_Barrier_StrikeReady)
 				{	
-					ctx.drawImage(Dragon_Barrier_StrikeImage, dragon.x-115, dragon.y-100); // Draw the monster 2
+					ctx.drawImage(Dragon_Barrier_StrikeImage, dragon.x-115, dragon.y-100); 
 					d_barrier_strike.x = dragon.x-115;
 					d_barrier_strike.y = dragon.y-100;			
 					
@@ -1330,7 +1370,7 @@
 					}
 							
 					if (SlashReady)
-						ctx.drawImage(SlashImage, slashX, slashY); // Draw the monster 2
+						ctx.drawImage(SlashImage, slashX, slashY); 
 					
 				}
 			}	
@@ -1369,6 +1409,8 @@
 		}
 	}
     //---------------------------- CONTACTS WITH MONSTER ---------------------------------------//
+    // set the invicibilityFrame
+    invicibilityFrame = invicibilityFrame + 1;
     var GetTouchedByMonster = function (monsterName, monsterHitboxX, monsterHitboxY, heroHitboxX, heroHitboxY)
     {   // monster touches hero
         if (monsterName.y + monsterHitboxY >= hero.y + 5 && monsterName.y <= hero.y + heroHitboxY && monsterName.x <= hero.x + heroHitboxX && monsterName.x + monsterHitboxX >= hero.x + 5)
@@ -1482,10 +1524,14 @@
  //=========================== lose life and points ======================//
 	var lostPoints = function()
 	{
-		hero.hp = hero.hp - 1;
-		hero.x = hero.x + 32;
-		hero.y = hero.y + 32;
-		scorePoints = scorePoints - 10000;
+       
+          hero.hp = hero.hp - 1; 
+          hero.x = hero.x + 32;
+		  hero.y = hero.y + 32;
+          scorePoints = scorePoints - 10000;
+       
+		
+		
 	}
 	
 	var heroStrike = function()

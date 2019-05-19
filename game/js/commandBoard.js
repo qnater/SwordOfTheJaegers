@@ -46,23 +46,27 @@
 
     var flameSprite              = 1;     //if 1 draw flame if 2 draw flameReverse
 	
-	var hScore1 				= 999900;	// Highest score
-	var hScore2 				= 992000;	// Second highest score
-	var hScore3 				= 972999;	// Third highest score
-	
 	var chanceToMoveDragon 		= 1;
-	var caseByMovementDragon	= 72; 		// Movement by 1 to 100
-	var dragonStrikeSpeed		= 10;
-	var chanceToStrikeDragon	= 10;  		// chance to strike by 1 to 10
-	var chanceToDefenseDragon	= 2;  		// chance to strike by 2 to 10
+	var caseByMovementDragon	= 1; 		// Movement by 1 to 100
+	var dragonStrikeSpeed		= 1;
+	var chanceToStrikeDragon	= 1;  		// chance to strike by 1 to 10
+	var chanceToDefenseDragon	= 1;  		// chance to strike by 2 to 10
 	
 	var	room_level				= 1;
 	
-	var life_slim				= 4;
-	var life_bat				= 3;
-	var life_packy				= 5;
-	var life_dragon				= 12;
-	var life_hero				= 2;
-    var life_flame               =1;
+	var life_slim				= 0;
+	var life_bat				= 0;
+	var life_packy				= 0;
+	var life_dragon				= 0;
+	var life_hero				= 0;
+    var life_flame              = 0;
+
+    var highScores              = [];      //array of HighScores to display at the end of the game
+    var nicknames               = [];      //nickNames of highscorers
+    var previousScore;                      //stores temporarily the previous score to put it down in the classement
+    
+    
+    var invicible               = false;
+    var invicibilityFrame       = 0;
 	
 // =============================================================================== //
