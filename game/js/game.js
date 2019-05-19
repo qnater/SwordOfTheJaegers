@@ -928,18 +928,25 @@
                         
                         nickname = previousNickname;
                         scorePoints = previousScore;
-                        
-                        localStorage.setItem("nicknames", JSON.stringify(nicknames));
-                        localStorage.setItem("highScores", JSON.stringify(highScores));
-                        //when the score is placed quit the loop
-                        
+
                     }
+                     
                 }
+               //store highscores
+                for (j = 0; j < highScores.length; j++)
+                {
+                    localStorage.setItem("highScores", JSON.stringify(highScores));
+                    localStorage.setItem("nicknames", JSON.stringify(nicknames));
+                }
+              
+                //Display highscores
                 storedHighScores = JSON.parse(localStorage.getItem("highScores"));
-                storedNicknames = JSON.parse(localStorage.getItem("nicknames"));
+                storedNicknames = JSON.parse(localStorage.getItem("nicknames")); 
+                
+                console.log(highScores);
                 highScores = storedHighScores;
                 nicknames = storedNicknames;
-                 
+                 console.log(highScores);
 
             } 
             else 
@@ -1402,6 +1409,8 @@
 		}
 	}
     //---------------------------- CONTACTS WITH MONSTER ---------------------------------------//
+    // set the invicibilityFrame
+    invicibilityFrame = invicibilityFrame + 1;
     var GetTouchedByMonster = function (monsterName, monsterHitboxX, monsterHitboxY, heroHitboxX, heroHitboxY)
     {   // monster touches hero
         if (monsterName.y + monsterHitboxY >= hero.y + 5 && monsterName.y <= hero.y + heroHitboxY && monsterName.x <= hero.x + heroHitboxX && monsterName.x + monsterHitboxX >= hero.x + 5)
@@ -1515,10 +1524,14 @@
  //=========================== lose life and points ======================//
 	var lostPoints = function()
 	{
-		hero.hp = hero.hp - 1;
-		hero.x = hero.x + 32;
-		hero.y = hero.y + 32;
-		scorePoints = scorePoints - 10000;
+       
+          hero.hp = hero.hp - 1; 
+          hero.x = hero.x + 32;
+		  hero.y = hero.y + 32;
+          scorePoints = scorePoints - 10000;
+       
+		
+		
 	}
 	
 	var heroStrike = function()
