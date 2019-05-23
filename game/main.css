@@ -1,16 +1,11 @@
+body
+{
+    
+}
 .font-face 
 {
   font-family: 8BitWonder;
-  src: url(../ressources/font/bit.TTF);
-}
-body
-{
-	text-align : center;
-	background-image : url(../ressources/images/game/map.PNG);
-	background-attachment		: fixed;
-	background-position			: center;
-    background-repeat			: no-repeat;
-	background-size				: cover;
+  src: url(../../ressources/font/bit.TTF);
 }
 .h2, h1, p, div, a, h6
 {
@@ -29,15 +24,37 @@ h6
 {
 	margin-top: -10px;
 }
-.hes
-{
-	position : fixed;
-	top : 10px;
-	right : 10px;
-}
+
 
 .rule
 {
 	margin-top : 25px;
 	margin-bottom : 35px;
+}
+
+header
+{
+     background-color: black;
+}
+
+footer
+{
+    padding-top: 10px;
+    background-color: black;
+    margin-bottom: -10px;
+}
+
+@media screen and (max-width: 1000px)
+{
+        header
+        {
+             background-color: white;
+        }
+
+        footer
+        {
+            padding-top: 10px;
+            background-color: white;
+            margin-bottom: -10px;
+        }
 }

@@ -1,9 +1,12 @@
 	//======================================================================================== //
-	// QUENTIN NATER v5.2 (HES-SO)															   //
+	// QUENTIN NATER v5.3 (HES-SO)															   //
 	// SWORD OF THE JAEGERS																	   //
 	// MAIN GAME JS	(LINKED TO : GAME.HTML)													   //
-	// LAST UPDATE : 3/27/2019 (NATE)														   //
+	// LAST UPDATE : 5/22/2019 (NATE)														   //
 	//======================================================================================== //
+
+
+
 
 
 	// Nickname of the player
@@ -12,10 +15,27 @@
 	var level1 = false; // Current level
 	var level2 = false; // Current level
 	var level3 = false; // Current level
+
+    var p = 0;
 	
+	//===================================================================== //
+	// Music and sound of the game											//
+	//===================================================================== //
 	historia 				= new sound("musics/intro.mp3");
 	swordofthejaegers 		= new sound("musics/swordland.mp3");
 	boss 					= new sound("musics/confrontbattle.mp3");
+    chauve_souris           = new sound ("musics/chauve_souris.mp3");
+    epee                    = new sound ("musics/epee.mp3");
+    game_over               = new sound ("musics/game_over.mp3");
+    cri_dragon              = new sound ("musics/cri_dragon_2.mp3");
+    monstre_vert            = new sound ("musics/monstre_vert.mp3");
+    elec                    = new sound ("musics/tir_electrique2.mp3");
+    hurt                    = new sound ("musics/degat.mp3");
+	cast                    = new sound ("musics/sort_magique.mp3");
+    dragon_hurt             = new sound ("musics/dragon_degat");
+	//===================================================================== //
+	
+	// Volume of the music
 	var volume 				= true;
 	
 	var canvas = document.createElement("canvas"); // Creation of the canvas
@@ -92,6 +112,33 @@
 	var StrikeReady = false;
 	var StrikeImage = new Image();
 	
+	
+	// =================== Geolocalisation =================== //
+    function onSuccess(position)
+    {
+        var lat= position.coords.latitude; // Latitude
+        var long= position.coords.longitude; // Longitude
+
+        if ((lat>=45.828465)&&(lat<=48.96667)){ // If it is in CH
+               if ((long>=5.971636) && (long<=10.492014)){ // If it's in CH
+                   country = "SUI"
+               }                  
+               else  country = "EXT"; // Other country
+           }else  country = "EXT"; // Other Country
+    }            
+            
+    function onError(error) { country = "UKN"; } // Error            
+            // Geolocalisation
+    navigator.geolocation.getCurrentPosition(onSuccess, onError);
+                
+    console.log(country);
+    // =================== ============== ======================== //
+ 
+    var PowerOfGods = new Image();
+    var PowerOfGodsReady = true;
+    PowerOfGods.onload = function () { PowerOfGodsReady = true; };
+    PowerOfGods.src = "pictures/powerOfGods.PNG"; // Picture of a monster
+
 	// =================== ============== ======================== //
 	
 	// =================== MONSTER STRIKES DESIGNS =============== //
@@ -145,9 +192,10 @@
 	  
 
 	// =================== ======================== =============== //
-	
 	// Game objects
+	// =================== ======================== =============== //
 	var hero 			= { speed: 2560, hp : life_hero }; // movement in pixels per second
+    var powerofgods     = false;
 
 	var monster			= { alive:true, hp:life_slim };
 	var monster2		= { alive:true, hp:life_slim };
@@ -156,18 +204,20 @@
     var monster5		= { alive:true, hp:life_packy };
 	var dragon			= { alive:true, hp:life_dragon };
 
-     var flame			= { alive:true};
-     var flame2			= { alive:true};
-     var flame3			= { alive:true};
-     var flame4			= { alive:true};
-     var flame5			= { alive:true};
-     var flame6			= { alive:true};
-     var flame7			= { alive:true};
-     var flame8			= { alive:true};
-     var flame9			= { alive:true};
+    var flame			= { alive:true};
+    var flame2			= { alive:true};
+    var flame3			= { alive:true};
+    var flame4			= { alive:true};
+    var flame5			= { alive:true};
+    var flame6			= { alive:true};
+    var flame7			= { alive:true};
+    var flame8			= { alive:true};
+    var flame9			= { alive:true};
 
 	var monsterStrike3	= { power:1 };
-	
+	// =================== ======================== =============== //
+
+	// Wound location
 	var slashX			= 0;
 	var slashY			= 0;
 	
@@ -202,39 +252,39 @@
 	// ============================================================ //
 	// DRAGOM Strike												    //
 	// ============================================================ //
-	// ==== Strike DRAGON (0 degré) ==== //
+	// ==== Strike DRAGON (0 degrÃ©) ==== //
 	var d_0_strike		= { speed: dragonStrikeSpeed };
 	var d_0_position	= 0;
 	
-	// ==== Strike DRAGON (45 degré) ==== //
+	// ==== Strike DRAGON (45 degrÃ©) ==== //
 	var d_45_strike		= { speed: dragonStrikeSpeed };
 	var d_45_position	= 0;
 	
-	// ==== Strike DRAGON (90 degré) ==== //
+	// ==== Strike DRAGON (90 degrÃ©) ==== //
 	var d_90_strike		= { speed: dragonStrikeSpeed };
 	var d_90_position	= 0;
 	
-	// ==== Strike DRAGON (135 degré) ==== //
+	// ==== Strike DRAGON (135 degrÃ©) ==== //
 	var d_135_strike	= { speed: dragonStrikeSpeed };
 	var d_135_position	= 0;
 	
-	// ==== Strike DRAGON (180 degré) ==== //
+	// ==== Strike DRAGON (180 degrÃ©) ==== //
 	var d_180_strike	= { speed: dragonStrikeSpeed };
 	var d_180_position	= 0;
 	
-	// ==== Strike DRAGON (225 degré) ==== //
+	// ==== Strike DRAGON (225 degrÃ©) ==== //
 	var d_225_strike	= { speed: dragonStrikeSpeed };
 	var d_225_position	= 0;
 	
-	// ==== Strike DRAGON (270 degré) ==== //
+	// ==== Strike DRAGON (270 degrÃ©) ==== //
 	var d_270_strike	= { speed: dragonStrikeSpeed };
 	var d_270_position	= 0;
 			
-	// ==== Strike DRAGON (315 degré) ==== //
+	// ==== Strike DRAGON (315 degrÃ©) ==== //
 	var d_315_strike	= { speed: dragonStrikeSpeed };
 	var d_315_position	= 0;
 	
-	// ==== Strike DRAGON (315 degré) ==== //
+	// ==== Strike DRAGON (315 degrÃ©) ==== //
 	var d_barrier_strike	= { speed: dragonStrikeSpeed };
 	var d_barrier_position	= 0;
 
@@ -254,6 +304,8 @@
 	{
 		hero.x = 215;
 		hero.y = 385 ;
+        
+        var over = false;
        
 		// Throw the monster somewhere on the screen randomly
 		monster.x = 32 + (Math.random() * (canvas.width  - 128));
@@ -271,8 +323,10 @@
         monster5.x = 32 + (Math.random() * (canvas.width  - 128));
 		monster5.y = 12 + (Math.random() * (canvas.height/2));
 
+		// The position of the dragon is fix
 		dragon.x = (canvas.width/2) + 50;
 		dragon.y = 50;
+		
         //All flames positions
         flame.x = 135;
 		flame.y = 125;
@@ -309,6 +363,7 @@
         monster5.hp = 4;
 		dragon.hp   = 10;
 		
+		// Monsters are alive
 		monster.alive  = true;
 		monster2.alive = true;
 		monster3.alive = true;
@@ -319,6 +374,7 @@
 		StrikeReady	   = false;
 		SlashReady	   = false;
 		
+		// Monsters are enabled
 		monsterReady   = true;
 		monster2Ready  = true;		
 		monster3Ready  = true;
@@ -326,22 +382,27 @@
         monster5Ready  = true;
 		dragonReady	   = true;
 		
+		// The game is not started
 		level1		   = false;
 		level2		   = false;
 		level3		   = false;
 
+		// Start with the first room
 		room_level	   = 1;
 	
+		// All the score points
 		scorePoints = 1000000;
+        
 	};
 
+	// Function which sets the variable of the pseudo by the URL
 	function getQueryVariable(variable)
 	{
 		   var query = window.location.search.substring(1);
 		   var vars = query.split("&");
 		   for (var i=0;i<vars.length;i++)
 		   {
-				   var pair = vars[i].split("=");
+				   var pair = vars[i].split("="); // Split after the "="
 				   if(pair[0] == variable){return pair[1];}
 		   }
 		   return(false);
@@ -350,56 +411,67 @@
 	// Update game objects
 	var update = function (modifier)
 	{
+     	nickname = getQueryVariable('pseudo'); // Call the getQueryVariable to have the pseudo
         
-		nickname = getQueryVariable('pseudo');
         
-        
-		if(nickname == null || nickname == false)
+		if(nickname == null || nickname == false) // If the user does not write a nickname
 			nickname = "PL1";
         
-        if (nickname.length > 7);
+        if (nickname.length > 7); // Limitation of the number of letters
             nickname = nickname.substring(0, 7)
         
-        for (i = nickname.length; i < 7; i++)
+        for (i = nickname.length; i < 7; i++) 
             {
                nickname = nickname + ' '; 
             }
        
         
+		// key return <-- //
 		if (8 in keysDown) 
 		{
 			reset();
-			backgroundCode = 3;
+			backgroundCode = 3; // choice of the hero page
 		}
-
+		
+		
+		// If it's the new level page
 		if(backgroundCode == 7)
 		{
 			if (27 in keysDown) 
 			{ 
+				// Room number 2 -> monster 4 and 5
 				if(room_level == 2)
 				{
-					backgroundCode = 4;
+					backgroundCode = 4; // battle field
 					monster4Ready = true;
                     monster5Ready = true;
                     	
 				}				
-				else if(room_level == 3)
+				else if(room_level == 3) // Room number 3 -> boss
 				{
+                    p++;
+                    
+                    if(p==1) // Scream only one time
+                        cri_dragon.play();
+                    
 					backgroundCode = 4;
 					dragonReady = true;							
 				}
 			}
 		}
 				
-		if (48 in keysDown) 
-			backgroundCode = 0;
-		if (49 in keysDown)  
-			backgroundCode = 1;
-		if (50 in keysDown) 
-			backgroundCode = 2;
-		if (51 in keysDown)  
-			backgroundCode = 3;
+		if (48 in keysDown)  // key 0
+			backgroundCode = 0; // Introduction
+		if (49 in keysDown)  // key 1
+			backgroundCode = 1; // Hitory
+		if (50 in keysDown)  // key 2
+			backgroundCode = 2; // Commandes
+		if (51 in keysDown)  // key 3
+			backgroundCode = 3; // Hero
+        if (90 in keysDown)
+            backgroundCode = 6;
 		
+		// only in the hero page
 		if(backgroundCode == 3)
 		{			
 			if (87 in keysDown) 
@@ -443,33 +515,38 @@
 				hero.x += hero.speed * modifier;
 		}
 		
+		// key m -> kill/allow the sound		
 		if (77 in keysDown) 
 		{
 			if(volume)
 			{
 				swordofthejaegers.stop();
-				boss.stop();
+				boss.stop(); // Kill
 				volume = false;
 			}
 			else
 			{
 				swordofthejaegers.play();
-				boss.play();
+				boss.play(); // Play
 				volume = true;
 				
 			}
 		}
 
+		// Lose points because of the time
 		if(backgroundCode == 4)
 			scorePoints = scorePoints - 0.01;
 		
+		// Disable all slahes images all multiple of 3
 		if(parseInt(scorePoints) % 3 == 1)
 			SlashReady = false;
 				
+		// If it is the caster
 		if(myHero == 1)
 		{
 			StrikeImage.src = "pictures/rasengan.PNG"; // Picture of strike
 				
+			// Direction of the strike
 			if (38 in keysDown) 
 			{
 				strikeType 		= 0;
@@ -499,11 +576,12 @@
 				StrikeReady 	= true;
 			}
 		}
-		else
+		else // If it is the warrior or the paladin
 		{
 			 
-        ctx.drawImage(hitboxImage, hero.x, hero.y);
+			ctx.drawImage(hitboxImage, hero.x, hero.y);
 				
+			// Strike Direction
 			if (38 in keysDown) //key up
 			{
                 StrikeImage.src = "pictures/a_swordUp.PNG"; // Picture of strike
@@ -538,108 +616,113 @@
 			}
 		}
 
+		// ROOM NUMBER ONE
 		if(room_level == 1)
 		{			
 			// Are they touching?
-			GetTouchedByMonster(monster, slimeHitboxWidth, slimeHitboxHeight, heroHitboxWidth, heroHitboxHeight);
+			GetTouchedByMonster(monster, slimeHitboxWidth, slimeHitboxHeight, heroHitboxWidth, heroHitboxHeight, lostPoints);
             
 			
 			 // Are they touching?
-			GetTouchedByMonster(monster2, slimeHitboxWidth, slimeHitboxHeight, heroHitboxWidth, heroHitboxHeight);
+			GetTouchedByMonster(monster2, slimeHitboxWidth, slimeHitboxHeight, heroHitboxWidth, heroHitboxHeight, lostPoints);
 			
 			 // Are they touching?
-			GetTouchedByMonster(monster3, batHitboxWidth, batHitboxHeight, heroHitboxWidth, heroHitboxHeight);
+			GetTouchedByMonster(monster3, batHitboxWidth, batHitboxHeight, heroHitboxWidth, heroHitboxHeight,lostPoints);
 		
+			// Is the strike touch the monster
 			if (strike.x <= (monster.x + 32) && (monster.x <= (strike.x + 32) && strike.y <= (monster.y + 32) && monster.y <= (strike.y + 32))	)						
 			{
-				SlashReady 		= true;
+                monstre_vert.play(); // Hurt sound
+				SlashReady 		= true; // Hurt image
 				
-				slashX 			= monster.x;
-				slashY 			= monster.y;
+				slashX 			= monster.x; // Position of the hurt
+				slashY 			= monster.y; // Position of the hurt
 
 				strike.x 	= 1000;
 				position 	= 0;
 				StrikeReady = false;
 				
-				monster.hp  = monster.hp - 1;
+				monster.hp  = monster.hp - 1; // Lose health points
 				
-				if(monster.hp<0)
+				if(monster.hp<0) // if the monster is dead
 				{
 					monster.alive= false;
 					monsterReady = false;
 					monster.x    = 800;
-					scorePoints = scorePoints + 1;
+					scorePoints = scorePoints + 1; // Win point on the score
 				}
 				
 				
 			}
 			if (strike.x <= (monster2.x + 32) && (monster2.x <= (strike.x + 32) && strike.y <= (monster2.y + 32) && monster2.y <= (strike.y + 32)))							
 			{
-				SlashReady 	= true;
+                monstre_vert.play(); // Hurt sound                
+				SlashReady 	= true; // Hurt image
 							
-				slashX = monster2.x;
-				slashY = monster2.y;
+				slashX = monster2.x; // Position of the hurt
+				slashY = monster2.y; // Position of the hurt
 				
-				monster2.hp = monster2.hp-1;
+				monster2.hp = monster2.hp-1; // Lose health points
 				
 				strike.x 	= 1000;
 				position 	= 0;
 				StrikeReady = false;
 				
-				if(monster2.hp<0)
+				if(monster2.hp<0) // if the monster is dead
 				{
 					monster2.alive 	= false;
 					monster2Ready 	= false;
 					monster2.x    	= 800;
-					scorePoints = scorePoints + 1;
+					scorePoints = scorePoints + 1; // Win point on the score
 				}
 				
 			}
 			if (strike.x <= (monster3.x + 70) && (monster3.x <= (strike.x + 16) && strike.y <= (monster3.y + 70) && monster3.y <= (strike.y + 16)))							
 			{
-				SlashReady 	= true;
+				SlashReady 	= true; // Hurt image
 				
-				slashX = monster3.x;
-				slashY = monster3.y;
+				slashX = monster3.x; // Position of the hurt
+				slashY = monster3.y; // Position of the hurt
 				
-				monster3.hp  = monster3.hp-1;
+				monster3.hp  = monster3.hp-1; // Lose health points
 				
 				strike.x 	= 1000;
 				position 	= 0;
 				StrikeReady = false;
 				
-				if(monster3.hp<0)
+				if(monster3.hp<0) // if the monster is dead
 				{
 					monster3.alive 	= false;
 					monster3Ready 	= false;
 					monster3.x    	= 800;
-					scorePoints = scorePoints + 2;
+					scorePoints = scorePoints + 2; // Win point on the score
 				}
 			}
 			
 							
 			if( hero.x <= (mstrike.x + 32) &&(mstrike.x <= (hero.x + 32) && hero.y <= (mstrike.y + 32) && mstrike.y <= (hero.y + 32)))							
-				lostPoints();
+				lostPoints(); // Hero is touched by an attack
 			
 			if( hero.x <= (d_mstrike.x + 32) &&(d_mstrike.x <= (hero.x + 32) && hero.y <= (d_mstrike.y + 32) && d_mstrike.y <= (hero.y + 32)))							
-				lostPoints();
+				lostPoints(); // Hero is touched by an attack
 			
 			if( hero.x <= (l_mstrike.x + 32) &&(l_mstrike.x <= (hero.x + 32) && hero.y <= (l_mstrike.y + 32) && l_mstrike.y <= (hero.y + 32)))							
-				lostPoints();
+				lostPoints(); // Hero is touched by an attack
 			
 			if( hero.x <= (r_mstrike.x + 32) &&(r_mstrike.x <= (hero.x + 32) && hero.y <= (r_mstrike.y + 32) && r_mstrike.y <= (hero.y + 32)))							
-				lostPoints();
+				lostPoints(); // Hero is touched by an attack
 			
 			
+			// If the monsters from the level are dead
 			if(monster.alive == false && monster2.alive == false && monster3.alive == false && level1 == false)
 			{
-				if(room_level == 1)
+				if(room_level == 1) // Initionalisation
                     hero.x = 215;
                     hero.y = 385;
 					room_level = 2;
 				
 				monster4Ready  = false;						
-				backgroundCode = 7;
+				backgroundCode = 7; // Next level page
 				level1 		   = true;
 			}
 			
@@ -673,9 +756,9 @@
             //-----------------------------------------------------------------------------------------------------------------------------//
             //-------------------------------------------------------------------------------------------------------------------------------//
 			// Are they touching?
-			GetTouchedByMonster(monster4, packyHitbox, packyHitbox, heroHitboxWidth, heroHitboxHeight);
+			GetTouchedByMonster(monster4, packyHitbox, packyHitbox, heroHitboxWidth, heroHitboxHeight, lostPoints);
             
-            GetTouchedByMonster(monster5, packyHitbox, packyHitbox, heroHitboxWidth, heroHitboxHeight);
+            GetTouchedByMonster(monster5, packyHitbox, packyHitbox, heroHitboxWidth, heroHitboxHeight, lostPoints);
             
                 
 			
@@ -773,6 +856,8 @@
 			
 			if (strike.x <= (dragon.x + 70) && (dragon.x <= (strike.x + 16) && strike.y <= (dragon.y + 70) && dragon.y <= (strike.y + 16)))							
 			{
+				dragon_hurt.play();
+
 				SlashReady 	= true;
 				
 				slashX = dragon.x;
@@ -789,7 +874,7 @@
 					dragon.alive 	= false;
 					dragonReady 	= false;
 					dragon.x    	= 800;
-					scorePoints = scorePoints + 6;
+					scorePoints = scorePoints + 1;
 				}
 			}
 			if(dragon.alive == false && level3 == false)
@@ -801,13 +886,14 @@
 				level3 			= true;
 	
 				if(myHero != 1)
-					scorePoints = scorePoints +20;
+					scorePoints = scorePoints +2;
 			}
 			
 					
 			// STRIKE DIFFICULTY
 			if(Math.random()*1000<chanceToStrikeDragon && dragon.alive)
 			{				
+                elec.play();
 				Dragon_0_StrikeReady 	= true;
 				Dragon_45_StrikeReady 	= true;
 				Dragon_90_StrikeReady 	= true;
@@ -835,10 +921,11 @@
 			}
 		}
 
+		// If the hero is killed
 		if(hero.hp < 0)
 		{
-			room_level 		= 1;
-			backgroundCode 	= 5;
+			room_level 		= 1; // Reset the room level
+			backgroundCode 	= 5; // Game over page
 		}
 	}
 
@@ -846,22 +933,30 @@
 	// Draw everything
 	var render = function () 
 	{	
+
 		if(backgroundCode != 1)
-			historia.stop();
+			historia.stop(); // Stop the sound of the history
+		
+		// Stop sounds
 		if(backgroundCode != 4)
 		{
 			swordofthejaegers.stop();
 			boss.stop();
 		}
 				
+		// ====================================================================================	//
+		// Draw differents backgrounds 															//
+		// ====================================================================================	//
 		if (bgReady) 
 			ctx.drawImage(bgImage, 0, 0);
 		if(backgroundCode == 0)
 			bgImage.src = "pictures/500_introduction.JPG"; // Background of levels	
 		else if(backgroundCode == 1)
 		{
-			bgImage.src = "pictures/500_a_History.JPG"; // Background of levels
-			historia.play();
+            bgImage.src = "pictures/500_a_history.JPG"; // Background of levels	
+
+			ctx.drawImage(bgImage, 0, 0);
+			historia.play(); // Play the history explanation
 		}
 		else if(backgroundCode == 2)
 			bgImage.src = "pictures/500_command.JPG"; // Background of levels
@@ -869,15 +964,16 @@
 			bgImage.src = "pictures/500_a_chooseHero.JPG"; // Background of levels
 		else if(backgroundCode == 5)
 		{
+            
 			bgImage.src = "pictures/500_back.JPG";
 
-			ctx.fillStyle = "rgb(250, 250, 250)";
+			ctx.fillStyle = "red";
 			ctx.font = "32px OCR A Std, monospace";
 			ctx.textAlign = "right";
 			ctx.textBaseline = "top";
-			ctx.fillText("Game Over", canvas.width/1.50, canvas.height/2.25); // Display current lifes
+			ctx.fillText("Game Over", canvas.width/1.50, canvas.height/1.25); // Display current lifes
 			
-			ctx.fillStyle = "rgb(250, 250, 250)";
+			ctx.fillStyle = "red";
 			ctx.font = "16px OCR A Std, monospace";
 			ctx.textAlign = "right";
 			ctx.textBaseline = "top";
@@ -885,79 +981,71 @@
 		}
 		else if(backgroundCode == 7)
 		{
-			bgImage.src = "pictures/500_back.JPG";
+			bgImage.src = "pictures/b_500_back.JPG";
 
-			ctx.fillStyle = "rgb(250, 250, 250)";
+			ctx.fillStyle = "red";
 			ctx.font = "32px OCR A Std, monospace";
 			ctx.textAlign = "right";
 			ctx.textBaseline = "top";
-			ctx.fillText("Next Level : " + room_level, canvas.width/1.35, canvas.height/2.25); // Display current lifes
+			ctx.fillText("Next Level : " + room_level, canvas.width/1.35, canvas.height/1.25); // Display current lifes
 			
-			ctx.fillStyle = "rgb(250, 250, 250)";
+			ctx.fillStyle = "red";
 			ctx.font = "16px OCR A Std, monospace";
 			ctx.textAlign = "right";
 			ctx.textBaseline = "top";
-			ctx.fillText("Press the space bar", 475, 15); // Display current lifes	
+			ctx.fillText("Press the esc key", 475, 15); // Display current lifes	
 		}
-		else if(backgroundCode == 6)
+		else if(backgroundCode == 6) // HALL OF FAME
 		{
+            
             //store the score if it's an highscore
             if (typeof(Storage) !== "undefined") 
             {
-	
-                if (scorePoints > highScores[0])
+                if (scorePoints > all_might_storage[0].score) // High Score
                 {
-                    previousScore = highScores[0]
-                    previousNickname = nicknames[0]
+                    previousScore = all_might_storage[0].score;  // SAVE DATA
+                    previousNickname = all_might_storage[0].name; // SAVE DATA
+                    previousCountry = all_might_storage[0].land; // SAVE DATA
 
-                    nicknames[0] = nickname;
-                    highScores[0] = scorePoints;
+                    all_might_storage[0].name = nickname; // REPLACE DATA
+                    all_might_storage[0].score = scorePoints; // REPLACE DATA
+                     all_might_storage[0].land = country; // REPLACE DATA
 
-                    nickname = previousNickname;
-                    scorePoints = previousScore;
+                    nickname = previousNickname; // RESTORE DATA
+                    scorePoints = previousScore; // RESTORE DATA
+                    country = previousCountry; // RESTORE DATA
                 }
-                for (i = 1; i < 10; i++)
+                for (i = 1; i < all_might_storage.length; i++)
                 {
-                    if (scorePoints > highScores[i] && scorePoints < highScores[i-1])
+                   if (scorePoints > all_might_storage[i].score && scorePoints < all_might_storage[i-1].score)
                     {   //replace the previous highscore
-                        previousScore = highScores[i]
-                        previousNickname = nicknames[i]
-                        
-                        nicknames[i] = nickname;
-                        highScores[i] = scorePoints;
-                        
-                        nickname = previousNickname;
-                        scorePoints = previousScore;
+                    previousScore = all_might_storage[i].score;  // SAVE DATA
+                    previousNickname = all_might_storage[i].name; // SAVE DATA
+                    previousCountry = all_might_storage[i].land; // SAVE DATA
 
+                    all_might_storage[i].name = nickname; // REPLACE DATA
+                    all_might_storage[i].score = scorePoints; // REPLACE DATA
+                     all_might_storage[i].land = country; // REPLACE DATA
+
+                    nickname = previousNickname; // RESTORE DATA
+                    scorePoints = previousScore; // RESTORE DATA
+                    country = previousCountry; // RESTORE DATA
                     }
-                     
+                    
                 }
-               //store highscores
-                for (j = 0; j < highScores.length; j++)
-                {
-                    localStorage.setItem("highScores", JSON.stringify(highScores));
-                    localStorage.setItem("nicknames", JSON.stringify(nicknames));
-                }
-              
-                //Display highscores
-                storedHighScores = JSON.parse(localStorage.getItem("highScores"));
-                storedNicknames = JSON.parse(localStorage.getItem("nicknames")); 
                 
-                console.log(highScores);
-                highScores = storedHighScores;
-                nicknames = storedNicknames;
-                 console.log(highScores);
-
+                //store highscores        
+                localStorage.setItem("all_might_storage", JSON.stringify(all_might_storage)); // Save the 
+                all_might_storage = JSON.parse(localStorage.getItem("all_might_storage")); // Get the array 
             } 
             else 
             {
               console.log("Error: your score can't be stored in this browser")
             }
             
-			bgImage.src = "pictures/500_back.JPG";
+			bgImage.src = "pictures/500_back_old.JPG";
 
 						
-			ctx.fillStyle = "rgb(250, 250, 250)";
 			ctx.fillStyle = "rgb(250, 250, 250)";
 			ctx.font = "32px OCR A Std, monospace";
 			ctx.textAlign = "right";
@@ -965,20 +1053,23 @@
 			ctx.fillText("Hall Of Fame", canvas.width/1.42, 50); // Display Hall of fame
 
 
-                // display all highScores
-				for (i = 0; i < 10; i++)
-                {
-                    ctx.fillStyle = "rgb(250, 250, 250)";
-                    ctx.font = "28px OCR A Std, monospace";
-                    ctx.textAlign = "left";
-                    ctx.textBaseline = "top";
-                    ctx.fillText(nicknames[i] + " - " + parseInt(highScores[i]) + " pts" + " SUI", 12, canvas.height/4 + (i*30)); 
-                }
+            // display all highScores
+            for (i = 0; i < all_might_storage.length; i++)
+            {
+                ctx.fillStyle = "rgb(250, 250, 250)";
+                ctx.font = "28px OCR A Std, monospace";
+                ctx.textAlign = "left";
+                ctx.textBaseline = "top";
+                
+                // Display of the local storage
+                ctx.fillText(all_might_storage[i].name + " - " + parseInt(all_might_storage[i].score) + " pts " + all_might_storage[i].land, 12, canvas.height/4 + (i*30)); 
+            }
             
 		
 		}
 		else 
 		{
+			// Stop or start the sounds
 			if(room_level == 3)
 			{
 				if(volume)
@@ -1066,6 +1157,10 @@
                      
 				}
 				// ================== Mouvement Monster Strike  ================== //
+                
+                if(Monster3StrikeReady)
+                    chauve_souris.play();
+                    
 				if (Monster3StrikeReady)
 				{	
 					position3 = position3 - (1 * mstrike.speed);
@@ -1200,6 +1295,7 @@
 				else
 					b5 = false;
 				
+				// DIRECTIONS
 				if (dragonReady)
 				{
 					if(b5)
@@ -1375,7 +1471,7 @@
 				}
 			}	
 		
-			// Score
+			// INFORMATION //
 			ctx.fillStyle = "rgb(250, 250, 250)";
 			ctx.font = "16px OCR A Std, monospace";
 			ctx.textAlign = "left";
@@ -1387,6 +1483,8 @@
 			ctx.textAlign = "right";
 			ctx.textBaseline = "top";
 			
+			
+			// CURRENT LIFE //
 			if(hero.hp == 2)
 				ctx.fillText("Life (\u2665 \u2665 \u2665)", 475, 15); // Display current lifes
 			else if (hero.hp==1)
@@ -1394,12 +1492,15 @@
 			else
 				ctx.fillText("Life (\u2665)", 475, 15); // Display current lifes
 			
+			
+			// CURRENT SCORE //
 			ctx.fillStyle = "rgb(250, 250, 250)";
 			ctx.font = "16px OCR A Std, monospace";
 			ctx.textAlign = "left";
 			ctx.textBaseline = "bottom";
 			ctx.fillText(nickname + " : " + parseInt(scorePoints), 32, 490);
 			
+			// CURRENT LEVEL //
 			ctx.fillStyle = "rgb(250, 250, 250)";
 			ctx.font = "16px OCR A Std, monospace";
 			ctx.textAlign = "right";
@@ -1407,14 +1508,28 @@
 			ctx.fillText("Level : " + room_level, 470, 490);
 			
 		}
+                
+		// Drag and drop power
+    	if(powerofgods)
+        {
+            ctx.drawImage(PowerOfGods, 0, 0); // Draw the power
+            
+			
+            // Disable the image
+            if(parseInt(scorePoints) % 3 == 0)
+            {
+                PowerOfGodsReady = false;
+                powerofgods = false;
+            }
+        }
+
+
 	}
     //---------------------------- CONTACTS WITH MONSTER ---------------------------------------//
-    // set the invicibilityFrame
-    invicibilityFrame = invicibilityFrame + 1;
-    var GetTouchedByMonster = function (monsterName, monsterHitboxX, monsterHitboxY, heroHitboxX, heroHitboxY)
+    var GetTouchedByMonster = function (monsterName, monsterHitboxX, monsterHitboxY, heroHitboxX, heroHitboxY, callback) //callback
     {   // monster touches hero
         if (monsterName.y + monsterHitboxY >= hero.y + 5 && monsterName.y <= hero.y + heroHitboxY && monsterName.x <= hero.x + heroHitboxX && monsterName.x + monsterHitboxX >= hero.x + 5)
-            lostPoints(); 
+            callback(); 
     }
     var strikesMonster = function(monsterName, monsterHitboxX, monsterHitboxY)
     {
@@ -1524,20 +1639,19 @@
  //=========================== lose life and points ======================//
 	var lostPoints = function()
 	{
-       
-          hero.hp = hero.hp - 1; 
-          hero.x = hero.x + 32;
-		  hero.y = hero.y + 32;
-          scorePoints = scorePoints - 10000;
-       
-		
-		
+        hurt.play();
+		hero.hp = hero.hp - 1;
+		hero.x = hero.x + 32; // save from another demage
+		hero.y = hero.y + 32;
+		scorePoints = scorePoints - 10000;
 	}
 	
 	var heroStrike = function()
 	{
 		if(myHero == 1)
 		{
+			cast.play();
+			
 			// ================== Mouvement Magical Strike HERO TOP ================== //
 				if(strikeType == 0)
 				{
@@ -1599,6 +1713,8 @@
 		}
 		else
 		{
+            epee.play(); // Sound of the sword
+            
 			if(strikeType == 0)
 			{
 				ctx.drawImage(StrikeImage, strikeX, strikeY-60); // Draw the monster
@@ -1627,27 +1743,74 @@
 				strike.y = hero.y;
 				scorePoints = scorePoints - 0.1;					
 			}
-			StrikeReady = false;				
+			StrikeReady = false;
 		}
 	}
 
+    // Manage all kind of sounds
 	function sound(src) 
 	{
-	  this.sound = document.createElement("audio");
-	  this.sound.src = src;
-	  this.sound.setAttribute("preload", "auto");
-	  this.sound.setAttribute("controls", "none");
-	  this.sound.style.display = "none";
-	  document.body.appendChild(this.sound);
-	  this.play = function()
+	  this.sound = document.createElement("audio"); // Creation element audio
+	  this.sound.src = src; 
+	  this.sound.setAttribute("preload", "auto"); // attributes
+	  this.sound.setAttribute("controls", "none"); // controls
+	  this.sound.style.display = "none"; // no display style
+	  document.body.appendChild(this.sound); 
+	  this.play = function() // Play the music
 	  {
 		this.sound.play();
 	  }
-	  this.stop = function()
+	  this.stop = function() // break the music
 	  {
 		this.sound.pause();
 	  }
 	}
+    
+
+        // Get the html element by his ID
+        var dropzone = document.getElementById("dropzone");
+
+        // We the user drop the image
+        function drop(ev) 
+        {
+
+            ev.preventDefault(); // Mandatory
+
+            if(backgroundCode == 4) // In the game
+            {
+                powerofgods = true; // The image is enable
+                scorePoints = scorePoints - 100000; // Lose a lot of points
+
+                // Lifes of the monsters in the levels drop the 1
+                if(room_level == 1)
+                {
+                    monster.hp = 1;
+                    monster2.hp = 1;
+                    monster3.hp = 1;
+                }
+                else if (room_level == 2)
+                {
+                    monster4.hp = 1;
+                    monster5.hp = 1;
+                }
+                else
+                {
+                    dragon.hp = 1;
+                }
+              }
+              else // Desable the image
+                  powerofgods = false;
+        }
+    
+        function allowDrop(ev)
+        {
+          ev.preventDefault();
+        }
+        function drag(ev) 
+        {
+          ev.dataTransfer.setData("text", ev.target.id); // keep the image
+        }
+	
 
 	// The main game loop
 	var main = function () 
@@ -1664,7 +1827,7 @@
 		requestAnimationFrame(main);
 	};
 
-	
+
 				
 	// Cross-browser support for requestAnimationFrame
 	var w = window;

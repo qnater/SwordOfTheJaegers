@@ -7,38 +7,79 @@
         <meta name="description" content="Sword Of The Jaegers">      
         <link rel="stylesheet" href="main.css"> 
 		
+        <link rel="stylesheet" href="http://www.naterscreations.com/css/hes.css"> 
+        
         <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
 		
-		<script rel="stylesheet" media="screen" type="text/javascript" src="js/commandBoard.js"</script>
-		<script rel="stylesheet" media="screen" type="text/javascript" src="js/heroStrike.js"></script>   
+		<script rel="stylesheet" media="screen" type="text/javascript" src="http://www.naterscreations.com/swordofthejaegers/js/commandBoard.js"></script>
+
     </head>
     <body>
-	<!--	<iframe src="musics/swordland.mp3" allow="autoplay" id="audio" style="display:none"></iframe>-->
+        <style>
+            body
+            {
+                text-align : center;
+                background-image : url(pictures/swordofthejaegers.JPG);
+                background-attachment		: fixed;
+                background-position			: center;
+                background-repeat			: no-repeat;
+                background-size				: cover;
+                margin                      : 0;
+            }
+            @media screen and (max-width: 1000px)
+            {
+                body
+                {
+                    background-image : url(pictures/s_swordofthejaegers.JPG);
+                    background-attachment		: fixed;
+                    background-position			: center;
+                    background-repeat			: no-repeat;
+                    background-size				: cover;
+                    margin                      : 0;
+                }
+            }
+        </style>
+
 		<header>
 			<h1 class="game" id="@font-face" >Sword Of The Jaegers</h1>
 				<h6 class="game" id="@font-face" >Quentin Nater - Nestor Taverney - Elizabeth Bitschnau</h6>
 		</header>
 		
 		<main>
-		<script language="javascript" >var myHero = 1;</script>
-			<script rel="stylesheet" media="screen" type="text/javascript" src="js/game.js"></script>
-		</main>
-		
+             <script language="javascript" >var myHero = 1;</script>
+                    <script rel="stylesheet" media="screen" type="text/javascript" src="js/game.js" id="dropzone" ></script>
+        </main>
+
 		<div id='appear' ></div>
-		<script language='javascript'>
-			if(window.location.search.substring(1) == "")
-				document.getElementById("appear").innerHTML = "<form action='#' method='get' ><input type='text' name='pseudo' id='pseudo' placeholder='pseudo' value='pseudo' /><input type='submit' /></form>";
-		</script>
+
+        
+        <div class="in_game">
+            <script language='javascript'>
+                if(window.location.search.substring(1) == "")
+                    document.getElementById("appear").innerHTML = "<form action='#' method='get' ><input type='text' name='pseudo' id='pseudo' placeholder='pseudo' value='pseudo' /><input type='submit' /></form>";
+            </script>
+
+            <div  id="dropzone" ondrop="drop(event)" ondragover="allowDrop(event)"  >
+                 
+                <img src="pictures/chidori.PNG" width="100px" alt="Special power" draggable="true" ondragstart="drag(event)" class="ret" />
+
+                <img src="pictures/dropzone.PNG" width="75px"  class="ret"  />
+            </div>
+        </div>
 		
 		<footer>
-			<div class="rule">
-				
-				<h6>(1) - history / (2) - commands / (3) hero (w/c/p) / (back space) to reset<h6>
-			
+			<div class="rule">				
+                <h6>(1) - history / (2) - commands / (3) hero (w/c/p) / (back space) to reset</h6>	
+                <br />
 				Directions-<img src="pictures/directionskey.PNG" width="5%" alt="Directions Key - Rules" />
-				<t><img src="pictures/arrowskey.PNG" width="5%" alt="Arrows Key - Rules" />-Strikes
+                <t><img src="pictures/arrowskey.PNG" width="5%" alt="Arrows Key - Rules" />-Strikes</t>
 			</div>
-			<img src="pictures/hes-so.PNG" width="15%" alt="HES SO" class="hes" />
+            
+            
+              <iframe width="320px" height="180px" src="https://www.youtube.com/embed/pLkC_uxWmDI" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen ></iframe><br /><br />
+
+           
+			<img src="pictures/hes-so.PNG" width="9%" alt="HES SO" class="hes" />
 		</footer>
 	</body>
 </html>            
